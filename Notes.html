@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<p>
+
+
+        creating categories in ar and en
+
+    CREATE TABLE category (
+    id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title_ar varchar(255) NOT NULL,
+    title_en varchar(255) NOT NULL
+    )
+
+    INSERT INTO `category`(`id`, `title_ar`, `title_en`) VALUES ([value-1],[value-2],[value-3])
+
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('بلاط - تبليط','Tileswork');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('قصارة - أعمال باطون','Concrete works');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('حفر','Landscaping');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('دهان','Painting');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('ديكور','Decoration');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('كهرباء','Electrical works');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('تمديدات صحية','Plumping');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('تكييف و تبريد','Air conditioning');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('مطاعم و مقاهي','Restaurants and cafes');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('اصطفاف سيارات','Valet');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('زراعة','Farming');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('تحميل و تنزيل','Porter');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('نقل - تركيب أثاث','Furniture installation');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('ألمنيوم','Aluminum works');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('تنظيف بيوت','House keeping');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('غسيل سيارات','Car washing');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('ميكانيك','Mechanics');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('علاج طبيعي','Physical therapy');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('تمريض','Nursing');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('جليس أطفال','Baby sitter');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('أعمال خياطة','Sewing work');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('كوافير','Barber');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('بديكير - منيكير','Nail Master');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('تركيب ساتالايت','Satellite installation');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('سكرتير','Secretary');
+    INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('أخرى','Other');
+
+
+    yii2 --> messages https://gitlab.com/thyseus/yii2-message
+    The following Actions are possible:
+
+    inbox: https://your-domain/message/message/inbox
+    drafts: https://your-domain/message/message/drafts
+    signature: https://your-domain/message/message/signature
+    out-of-office: https://your-domain/message/message/out-of-office
+    sent messages: https://your-domain/message/message/sent
+    compose a message: https://your-domain/message/message/compose
+    delete a message: https://your-domain/message/message/delete/hash/
+    view a message: https://your-domain/message/message/view/hash/
+    manage your ignorelist: https://your-domain/message/message/ignorelist
+
+
+
+    echo $form->field($model, 'addtime')->widget(DateTimePicker::className(),[
+    'name' => 'dp_1',
+    'type' => DateTimePicker::TYPE_INPUT,
+    'options' => ['placeholder' => 'Ввод даты/времени...'],
+    'convertFormat' => true,
+    'value'=> date("d.m.Y h:i",(integer) $model->addtime),
+    'pluginOptions' => [
+    'format' => 'dd.MM.yyyy hh:i',
+    'autoclose'=>true,
+    'weekStart'=>1, //неделя начинается с понедельника
+    'startDate' => '01.05.2015 00:00', //самая ранняя возможная дата
+    'todayBtn'=>true, //снизу кнопка "сегодня"
+    ]
+    ]); ?>
+
+
+
+   useful --> !!  https://riptutorial.com/yii2/example/4929/where-clausehttps://riptutorial.com/yii2/example/4929/where-clause
+    another useful --> !! https://demos.krajee.com/widget-details/datetimepicker //For extensions really important !
+
+to create user dektruim
+
+    for the user
+    /user/registration/register Displays registration form
+    /user/registration/resend Displays resend form
+    /user/registration/confirm Confirms a user (requires id and token query params)
+    /user/security/login Displays login form
+    /user/security/logout Logs the user out (available only via POST method)
+    /user/recovery/request Displays recovery request form
+    /user/recovery/reset Displays password reset form (requires id and token query params)
+    /user/settings/profile Displays profile settings form
+    /user/settings/account Displays account settings form (email, username, password)
+    /user/settings/networks Displays social network accounts settings page
+    /user/profile/show Displays user's profile (requires id query param)
+    /user/admin/index Displays user management interface
+
+
+    change it to this if you have a problem with identity !
+    'user' => [
+    'identityClass' => 'dektrium\user\models\User',
+    'enableAutoLogin' => true,
+    ],
+
+
+    you have to add these lines in the vendor\yiisoft\yii2\web\user !important NO YOU FUCKING DON"T LOOK UP
+
+    public static function findIdentity($id)
+    {
+    return static::findOne($id);
+    }
+
+    /** @inheritdoc */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+    throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
+    }
+
+
+
+
+To create a form
+
+1. create a table in database
+
+    CREATE TABLE jobbid (
+    id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title varchar(255) NOT null,
+    description varchar(255) not null,
+    paid int(5) not null,
+    job_id int(11) NOT NUll,
+    user_id int(11) NOT NULL,
+    create_date datetime DEFAULT CURRENT_TIMESTAMP
+    )
+
+    ALTER TABLE joboffer
+     ADD howlong VARCHAR(50),
+        pay int(11);
+
+    ALTER TABLE joboffer
+    ADD views int(11) DEFAULT 0,
+    ADD	publish	int(4) DEFAULT 0,
+    ADD user_id int(11) DEFAULT NULL;
+
+    ALTER TABLE joboffer
+    ADD create_date datetime DEFAULT 	CURRENT_TIMESTAMP;
+
+
+
+    CREATE TABLE help (
+    id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    question varchar(255) NOT NULL DEFAULT '',
+    how varchar(255) NOT NULL DEFAULT ''
+    )
+
+CREATE TABLE joboffer (
+id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+title varchar(255) NOT null,
+description varchar(255) not null
+)
+
+    CREATE TABLE contact (
+    id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name varchar(255) NOT null,
+    email varchar(255) NOT null,
+    subject varchar(255) NOT null,
+    body varchar(255) NOT null
+    )
+ALTER TABLE `joboffer` CHANGE `description` `description` varchar(255) not null DEFAULT ' '
+
+2. create controller
+2.1. in controller
+$model = new nameForm();
+if (Yii::$app->post() and $model->validate()) {
+// do smth
+}
+return $this->render('index', [
+'model' => $model,
+]); VERY IMPORTANT to add 'model' => $model!
+
+
+3. create in view php file in the name of the action that you created in the controller
+
+     you can use this for dropdownlist()
+    ArrayHelper::map(Cities::find()->asArray()->all(), 'id', 'city'
+    , 'options'=>[
+    '1'=> ['Selected'=> true ],
+    '2' => ['Selected'=>true],
+    '3'=> ['Selected'=> true ]
+    ]
+    <?php
+$script = <<< JS
+
+$('form').on('beforeSubmit', function(){
+ var data = $(this).serialize();
+        $.ajax({
+            url: '/basic/web/job/index',
+            type: 'POST',
+            data: data,
+            success: function(res){
+                console.log(res);
+            },
+            error: function(){
+                alert('Error!');
+            }
+        });
+        return false;
+    });
+
+JS;
+
+$this->registerJs($script);
+
+    ?>
+
+
+4. create a form in models with nameForm.php ... don't forget static tableName() {{%tablename}}
+
+
+
+
+
+
+
+
+
+
+
+errors :
+values are not getting saved in the database only the id number is increasing .. don't know why
+
+
+
+
+
+
+
+
+
+
+
+
+
+accesss to pages in user
+/user/registration/register Displays registration form
+/user/registration/resend Displays resend form
+/user/registration/confirm Confirms a user (requires id and token query params)
+/user/security/login Displays login form
+/user/security/logout Logs the user out (available only via POST method)
+/user/recovery/request Displays recovery request form
+/user/recovery/reset Displays password reset form (requires id and token query params)
+/user/settings/profile Displays profile settings form
+/user/settings/account Displays account settings form (email, username, password)
+/user/settings/networks Displays social network accounts settings page
+/user/profile/show Displays user's profile (requires id query param)
+/user/admin/index Displays user management interface
+
+
+
+
+</p>
+</body>
+</html>
