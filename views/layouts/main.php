@@ -29,7 +29,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrap">
+
 <?= $this->render('header.php')?>
 <div class="container">
 
@@ -42,7 +42,7 @@ AppAsset::register($this);
 
 </div>
 
-</div>
+
 <?= $this->render('footer.php')?>
 
 <?php $this->endBody() ?>
