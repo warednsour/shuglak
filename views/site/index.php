@@ -41,7 +41,6 @@ $this->title = 'My Yii Application';
             </div>
         <?php } ?>
     </div>
-    <input type="text" id="title">
     <a type="button" class="btn btn-primary" id="filter">Search</a>
 </nav>
 
@@ -66,7 +65,9 @@ $this->title = 'My Yii Application';
 
     </div>
 
-
+    <button id = "loadMore" class="btn-primary btn-block">
+        Load More
+    </button>
 </div>
 
 
@@ -95,7 +96,7 @@ $this->registerJs("
        var page = 0;
         
             
-        filter_data()
+        filter_data();
        
        function filter_data() {
 

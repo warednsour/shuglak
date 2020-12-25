@@ -225,22 +225,20 @@ class AjaxController extends SiteController
         if($job) {
             foreach ($job as $j) {
 
-                $outPut .=    '<div class="card col-md-3" style="width: 18rem;">
-            <div id = "loading"></div>
-            <div class="card-body">
+                $outPut .=    '
+            
+            
                 <h5 class="card-title">' . $j->title . '</h5>
             <p class="card-text text-muted">' . $j->description . '</p>
             <p class="card-text text-muted">' . $j->place . '</p>
             <p class="card-text text-muted">' . $j->pay . '</p>
             <a href="'. Url::to(['job/showjob', 'link' => $j->link]) .'" class="btn btn-primary">Bid Now!</a>
-            </div>
-            </div>';
+          
+           ';
 
             }
 
-            $outPut .= ' <button id = "loadMore" class="btn-primary btn-block">
-                Load More
-            </button>';
+            $outPut .= '';
         } else {
             $outPut = 'No results found';
         }
