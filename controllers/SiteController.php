@@ -62,13 +62,6 @@ class SiteController extends Controller
             ->limit($pagination->limit)
             ->all();
 
-//     //   $job = new JobController();
-//        $data['jobs'] = Job::find()->all();
-//        $countData = clone $data['jobs'];
-//        $pages = new Pagination(['totalCount' => $countData->count()]);
-//        $models = $data['jobs']->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->all();
         return $this->render('index',[
             'jobs' => $job,
             'city' => $city,
@@ -81,7 +74,7 @@ class SiteController extends Controller
 
     /**
      * Logout action.
-     *
+     *                               
      * @return Response
      */
     public function actionLogout()
