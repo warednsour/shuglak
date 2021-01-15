@@ -225,14 +225,14 @@ class AjaxController extends SiteController
         if($job) {
             foreach ($job as $j) {
 
-                $outPut .=    '
+                $outPut .=    '<div class="job-offer-main">
             
             
                 <h5 class="card-title">' . $j->title . '</h5>
             <p class="card-text text-muted">' . $j->description . '</p>
             <p class="card-text text-muted">' . $j->place . '</p>
             <p class="card-text text-muted">' . $j->pay . '</p>
-            <a href="'. Url::to(['job/showjob', 'link' => $j->link]) .'" class="btn btn-primary">Bid Now!</a>
+            <a href="'. Url::to(['job/showjob', 'link' => $j->link]) .'" class="btn-yellow">Bid Now!</a></div>
           
            ';
 

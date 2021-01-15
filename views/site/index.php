@@ -12,63 +12,82 @@ $this->title = 'My Yii Application';
 ?>
 
 
-                <!-- search bar for jobs -->
+<!-- search bar for jobs -->
+<form class="search-form">
+    <input class="search-main" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn-dark-blue" type="submit" style="margin-bottom: 3px;">Search</button>
+</form>
+<!--<nav style="width: 100%; background-color: white; margin: auto;">-->
+<!--    <div class="dropdown-menu-lg table-bordered select-category" style="">-->
+<!--        <label for="">choose your category</label><span class="fas fa-arrow-circle-down arrow-category"-->
+<!--                                                        style="margin-left: 9%;"></span>-->
+<!--    </div>-->
+<!--    <div class="category-list list-group-horizontal hide-category-list">-->
+<!---->
+<!--        --><?php //foreach ($category as $cat) { ?>
+<!--            <div class="list-group-item checkbox">-->
+<!--                <label><input class="common_selector category" type="checkbox" value="--><?//= $cat->title_en ?><!--"-->
+<!--                              id="category_id">--><?//= $cat->title_en ?><!--</label>-->
+<!--            </div>-->
+<!--        --><?php //} ?>
+<!--    </div>-->
+<!---->
+<!--    <!-- City -->-->
+<!--    <div class="dropdown-menu-lg table-bordered select-city" style="">-->
+<!--        <label for="">city</label><span class="fas fa-arrow-circle-down arrow-city" style="margin-left: 9%;"></span>-->
+<!---->
+<!--    </div>-->
+<!--    <div class="city-list list-group-horizontal hide-city-list">-->
+<!--        --><?php //foreach ($city as $c) { ?>
+<!--            <div class="list-group-item checkbox">-->
+<!--                <label><input class="common_selector city" type="checkbox" value="--><?//= $c->city ?><!--"-->
+<!--                              id="city_id">--><?//= $c->city ?><!--</label>-->
+<!--            </div>-->
+<!--        --><?php //} ?>
+<!--    </div>-->
+<!--    <a type="button" class="btn btn-primary" id="filter">Search</a>-->
+<!--</nav>-->
 
-<nav style="width: 100%; background-color: white; margin: auto;">
-    <div class="dropdown-menu-lg table-bordered select-category" style="">
-        <label for="">choose your category</label><span class="fas fa-arrow-circle-down arrow-category"
-                                                        style="margin-left: 9%;"></span>
-    </div>
-    <div class="category-list list-group-horizontal hide-category-list">
-        <?php foreach ($category as $cat) { ?>
-            <div class="list-group-item checkbox">
-                <label><input class="common_selector category" type="checkbox" value="<?= $cat->title_en ?>"
-                              id="category_id"><?= $cat->title_en ?></label>
-            </div>
-        <?php } ?>
-    </div>
-
-    <!-- City -->
-    <div class="dropdown-menu-lg table-bordered select-city" style="">
-        <label for="">city</label><span class="fas fa-arrow-circle-down arrow-city" style="margin-left: 9%;"></span>
-
-    </div>
-    <div class="city-list list-group-horizontal hide-city-list">
-        <?php foreach ($city as $c) { ?>
-            <div class="list-group-item checkbox">
-                <label><input class="common_selector city" type="checkbox" value="<?= $c->city ?>"
-                              id="city_id"><?= $c->city ?></label>
-            </div>
-        <?php } ?>
-    </div>
-    <a type="button" class="btn btn-primary" id="filter">Search</a>
-</nav>
-
-                        <!-- Filter column -->
-
-<div class="left-column">
-    <h3>Paid</h3>
-    <p id="paid_show"> 0 - 1000 </p>
-    <input type="range" id="paid" value="0" min="0" max="1000">
-    <h3>title</h3>
-    <input type="text" id="title">
-    <h3>Description</h3>
-    <input type="text" id="description">
-    <h3>how long</h3>
-    <input type="text" id="howlong">
-        <h3>city</h3>
-</div>
 
                 <!-- Results The job search -->
-<div class="right-column">
-    <div class="filter_data">
+<div class="results">
 
+    <!-- Filter column -->
+
+    <div class="left-column">
+        <div class="category-list">
+            <p>Category</p>
+            <ul>
+                <?php foreach ($category as $cat) {?>
+                <li><input type="checkbox" value="<?= $cat->title_en?>"><?= $cat->title_en ?></li>
+                                <?php   }?>
+                <p>Show more</p>
+            </ul>
+        </div>
+        <h3>Paid</h3>
+        <p id="paid_show"> 0 - 1000 </p>
+        <input type="range" id="paid" value="0" min="0" max="1000">
+        <h3>title</h3>
+        <input type="text" id="title">
+        <h3>Description</h3>
+        <input type="text" id="description">
+        <h3>how long</h3>
+        <input type="text" id="howlong">
+        <h3>city</h3>
     </div>
 
-    <button id = "loadMore" class="btn-primary btn-block">
-        Load More
-    </button>
-</div>
+    <!-- Results -->
+    <div class="right-column">
+        <div class="filter_data">
+
+
+
+            <button id = "loadMore" class="btn-primary btn-block">
+                Load More
+            </button>
+        </div>
+
+    </div>
 
 
 <style>

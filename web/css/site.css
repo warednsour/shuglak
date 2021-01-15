@@ -1,38 +1,105 @@
 html,
 body {
-    height: 100%;
-    background-color: #f7f7f7;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 
 
-/*The navigation bar*/
+/*********    <header>         **************/
+.site-header {
+    top: 0;
+    left: 0;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+    z-index: 999;
+    width: 100%;
+    background-color: #f3d537;
+}
+.nav-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    max-width: 1280px;
+    position: relative;
+}
+
+.corset {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
 
 .myNav {
-    background-color: #4267B2;
+    background-color: #f3d537;
     align-content: center;
     text-align: center;
     padding: 2% 0 2% 0;
 }
-.myNav a {
-    color: white;
-    text-decoration: none;
-    font-size: 2rem;
 
+.nav-link-head {
+    color: #03293c;
+    font-size: 3.0625rem;
+    line-height: 1.3125rem;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    border: 2px solid transparent;
+    padding: 20px 16px;
+    text-decoration: none;
+    -webkit-transition-property: border,color;
+    transition-property: border,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+.nav-link-head:hover {
+    border-color: #fff;
+    color: #03293c;
+    text-decoration: none;
 }
 .brand {
     display: inline;
     margin-right: 28%;
 }
-.brand-name {
+.logo {
+    color: #03293c;
     padding-right: 10px;
     font-size: 2rem;
+    text-decoration: none;
+    -webkit-transition-property: border,color;
+    transition-property: border,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
 }
-.search-form {
-    display: inline;
+.brand-name:hover {
+    color: #fff;
+    text-decoration: none;
 }
-.search-btn {
-    color: black;
+
+/*********    </header>         **************/
+
+/*********    <search-bar-on-main>           **************/
+.search-main {
+    width: 93%;
+    padding: 5px;
+    margin-top: 16px;
+    border: 1px solid #03293c;
+    border-radius: 4px;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+.search-main:focus {
+    border: 1px solid #03293c;
+    outline-width: 0;
+    box-shadow: 0px 1px 5px #03293c;
 }
 .search-input:before {
     content: '';
@@ -42,7 +109,122 @@ body {
     border-left: 80px solid rgba(0,0,0,0);
     width: 0;
 }
+.btn-dark-blue {
+    background-color: #03293c;
+    color: #f3d537;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-dark-blue:hover {
+    background-color: #f3d537;
+    color: #fff;
+    font-weight: bolder;
+}
 
+/*********    </search-bar-on-main>           **************/
+
+
+
+/********* <results> ****************/
+
+.results{
+    display: flex;
+    justify-content: space-between;
+}
+
+/********* </results> ****************/
+
+
+
+
+/*********    <left-column-main>           **************/
+.left-column {
+    width: 33%;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #03293c;
+    border-radius: 4px;
+    box-shadow: 0px 1px 7px #03293c;
+}
+.category-list ul {
+     list-style-type: none;
+ }
+.category-list input {
+   margin-right: 3px;
+}
+.category-list p:hover {
+    cursor: pointer;
+}
+/*----------   </left-column-main>           -----------*/
+
+
+/*********    <right-column-main>           **************/
+
+.right-column {
+    width: 66%;
+    display: inline-block;
+}
+.job-offer-main {
+    border: 1px solid #03293c;
+    border-radius: 4px;
+    box-shadow: 0px 5px 6px #03293c;
+    margin-bottom: 21px;
+}
+.btn-yellow {
+    background-color: #f3d537;
+    color:  #03293c;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-yellow:hover {
+    background-color: #f3d537;
+    color: #fff;
+    font-weight: bolder;
+    text-decoration: none;
+}
+/*------------   </right-column-main>           ---------------*/
 .footer {
     height: 60px;
     background-color: #f5f5f5;
@@ -50,76 +232,6 @@ body {
     padding-top: 20px;
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-.not-set {
-    color: #c55;
-    font-style: italic;
-}
-
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    padding-left: 5px;
-}
-
-a.asc:after {
-    content: /*"\e113"*/ "\e151";
-}
-
-a.desc:after {
-    content: /*"\e114"*/ "\e152";
-}
-
-.sort-numerical a.asc:after {
-    content: "\e153";
-}
-
-.sort-numerical a.desc:after {
-    content: "\e154";
-}
-
-.sort-ordinal a.asc:after {
-    content: "\e155";
-}
-
-.sort-ordinal a.desc:after {
-    content: "\e156";
-}
-
-.grid-view th {
-    white-space: nowrap;
-}
-
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding: 15px;
     border: none;
@@ -202,13 +314,5 @@ a.desc:after {
     display: none;
 }
 
-.right-column {
-    width: 66%;
-    display: inline-block;
-}
 
-.left-column {
-    width: 33%;
-    display: inline-block;
-    vertical-align: top;
-}
+

@@ -28,9 +28,9 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'rmrevin\yii\fontawesome\NpmFreeAssetBundle',
-        'yii\web\JqueryAsset',
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-       'yii\bootstrap\BootstrapPluginAsset',
+//        'yii\web\JqueryAsset',
+//        'yii\web\YiiAsset',
+//        'yii\bootstrap\BootstrapAsset',
+//       'yii\bootstrap\BootstrapPluginAsset',
     ];
 }
