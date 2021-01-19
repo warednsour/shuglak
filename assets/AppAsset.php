@@ -23,14 +23,17 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
     ];
+//    public $jsOptions = array(
+//        'position' => \yii\web\View::POS_HEAD
+//    );
     public $js = [
         'js/script.js'
     ];
     public $depends = [
         'rmrevin\yii\fontawesome\NpmFreeAssetBundle',
-//        'yii\web\JqueryAsset',
-//        'yii\web\YiiAsset',
-//        'yii\bootstrap\BootstrapAsset',
-//       'yii\bootstrap\BootstrapPluginAsset',
+        'yii\web\JqueryAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapAsset',
+       'yii\bootstrap4\BootstrapPluginAsset',
     ];
 }

@@ -36,7 +36,8 @@
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-krajee-base": "@dev",
         "budyaga/yii2-cropper": "*",
-        "rmrevin/yii2-fontawesome": "~3.5"
+        "rmrevin/yii2-fontawesome": "~3.5",
+        "yiisoft/yii2-composer": "dev-composer-2 as 2.0.8"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

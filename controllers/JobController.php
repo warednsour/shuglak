@@ -3,6 +3,8 @@
 
 namespace app\controllers;
 
+use app\models\Category;
+use app\models\cities;
 use app\models\Review;
 use app\models\Message;
 use app\models\Bids;
@@ -34,7 +36,8 @@ class JobController extends Controller
     {
         if(!Yii::$app->user->isGuest){
             $data['model'] = new Job();
-
+            $data['cities'] = Cities::find()->all();
+            $data['categories'] = Category::find()->all();
             return $this->render('addjob', compact('data'));
 
         } else {

@@ -3,9 +3,11 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+a:hover {
+    text-decoration: none;
+}
 
-
-/*********    <header>         **************/
+/*********            <header>         **************/
 .site-header {
     top: 0;
     left: 0;
@@ -167,15 +169,22 @@ body {
     border-radius: 4px;
     box-shadow: 0px 1px 7px #03293c;
 }
-.category-list ul {
+.category-list ul , .city-list ul {
      list-style-type: none;
  }
-.category-list input {
+.category-list input , .city-list input{
    margin-right: 3px;
 }
-.category-list p:hover {
+
+.category-list p:hover , .category-list input:hover, .city-list p:hover , .city-list input:hover{
     cursor: pointer;
 }
+.hide {
+    display: none;
+    transition: height 350ms ease-in-out;
+}
+
+
 /*----------   </left-column-main>           -----------*/
 
 
@@ -191,6 +200,12 @@ body {
     box-shadow: 0px 5px 6px #03293c;
     margin-bottom: 21px;
 }
+.job-offer-main p, h5 {
+    margin-left: 16px;
+}
+.card-title {
+    margin-top: 10px;
+}
 .btn-yellow {
     background-color: #f3d537;
     color:  #03293c;
@@ -198,7 +213,7 @@ body {
     transition-duration: .2s;
     -webkit-transition-timing-function: ease;
     transition-timing-function: ease;
-    display: inline-block;
+    display: block;
     margin-bottom: 0;
     font-weight: normal;
     text-align: center;
@@ -224,13 +239,43 @@ body {
     font-weight: bolder;
     text-decoration: none;
 }
+
+
 /*------------   </right-column-main>           ---------------*/
+
+/************       <Footer>          ************ */
+
 .footer {
-    height: 60px;
-    background-color: #f5f5f5;
+    background-color: #03293c ;
     border-top: 1px solid #ddd;
     padding-top: 20px;
+    margin-top: 40px;
 }
+
+.footer > .container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.polocies-title , .social-auth-links > a > li , .follow-us > strong{
+    color: #f3d537;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+.polocies-title:hover , .social-auth-links > a > li:hover {
+    color: #fff;
+}
+
+.quick-links {
+    margin-right: 239px;
+}
+.follow-us {
+    margin-top: 86px;
+}
+/*------------   </Footer>           ---------------*/
 
 .nav li > form > button.logout {
     padding: 15px;

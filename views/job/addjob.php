@@ -6,7 +6,19 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 ?>
+<?php
+$cityName = 'city_' . Yii::$app->language;
+$cities = [];
+        foreach ($data['cities'] as $city){
+            array_push($cities,$city->$cityName);
+        }
+$categoryTitle = 'title_' . Yii::$app->language;
+$categories = [];
+        foreach ($data['categories'] as $category){
+            array_push($categories,$category->$categoryTitle);
+        }
 
+?>
 <?//phpecho \pigolab\locationpicker\LocationPickerWidget::widget(['key' => 'AIzaSyBWI2cyUSaCLExmXTG4HHW44RQM-G3qDeQ']); ?>
 <div class="container">
     <div class="align-content-center">
@@ -26,7 +38,7 @@ use yii\widgets\ActiveForm;
         'autoComplete' => 'off',
     ],
     //'convertFormat' => true,
-    'language' => 'ar',
+    'language' => "Yii::$app->language;",
 
     'pluginOptions' => [
         'autoclose'=>true,
@@ -63,20 +75,10 @@ use yii\widgets\ActiveForm;
 ]]); ?>
 </div>
 <?= $form->field($data['model'], 'description') ?>
-<?= $form->field($data['model'], 'category') ?>
+<?= $form->field($data['model'], 'category')->dropDownList($categories,['prompt'=>'Select...']) ?>
 <?= $form->field($data['model'], 'howlong') ?>
 <?= $form->field($data['model'], 'pay') ?>
-<?=
-
-$form->field($data['model'], 'place')->dropDownList(
-    [
-        'Amman' => 'Amman' ,
-        'Assalt' => 'Assalt',
-
-    ],
-    ['prompt'=>'Select...']);
-
-?>
+<?= $form->field($data['model'], 'place')->dropDownList($cities, ['prompt'=>'Select...']); ?>
 
 <?= Html::submitButton('Submit') ?>
 <?php ActiveForm::end(); ?>

@@ -47,6 +47,18 @@
     INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('سكرتير','Secretary');
     INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('أخرى','Other');
 
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Amman','عمان');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Zarqa','الزرقاء');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Irbid','إربد');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Aqaba','العقبة');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Mafraq','المفرق');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Madaba','مادبا');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Al-Balqa','البلقاء');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Jerash','جرش');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Ma\'an','معان');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Tafilah','الطفيلة');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Ajloun','عجلون');
+    INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Karak','الكرك');
 
     yii2 --> messages https://gitlab.com/thyseus/yii2-message
     The following Actions are possible:
@@ -260,8 +272,38 @@ accesss to pages in user
 /user/admin/index Displays user management interface
 
 
-
-
+from index :
+    unnessesery NOW
+    <!--<nav style="width: 100%; background-color: white; margin: auto;">-->
+    <!--    <div class="dropdown-menu-lg table-bordered select-category" style="">-->
+    <!--        <label for="">choose your category</label><span class="fas fa-arrow-circle-down arrow-category"-->
+    <!--                                                        style="margin-left: 9%;"></span>-->
+    <!--    </div>-->
+    <!--    <div class="category-list list-group-horizontal hide-category-list">-->
+    <!---->
+    <!--        --><?php //foreach ($category as $cat) { ?>
+    <!--            <div class="list-group-item checkbox">-->
+    <!--                <label><input class="common_selector category" type="checkbox" value="--><?//= $cat->title_en ?><!--"-->
+    <!--                              id="category_id">--><?//= $cat->title_en ?><!--</label>-->
+    <!--            </div>-->
+    <!--        --><?php //} ?>
+    <!--    </div>-->
+    <!---->
+    <!--    City -->
+    <!--    <div class="dropdown-menu-lg table-bordered select-city" style="">-->
+    <!--        <label for="">city</label><span class="fas fa-arrow-circle-down arrow-city" style="margin-left: 9%;"></span>-->
+    <!---->
+    <!--    </div>-->
+    <!--    <div class="city-list list-group-horizontal hide-city-list">-->
+    <!--        --><?php //foreach ($city as $c) { ?>
+    <!--            <div class="list-group-item checkbox">-->
+    <!--                <label><input class="common_selector city" type="checkbox" value="--><?//= $c->city ?><!--"-->
+    <!--                              id="city_id">--><?//= $c->city ?><!--</label>-->
+    <!--            </div>-->
+    <!--        --><?php //} ?>
+    <!--    </div>-->
+    <!--    <a type="button" class="btn btn-primary" id="filter">Search</a>-->
+    <!--</nav>-->
 </p>
 </body>
 </html>

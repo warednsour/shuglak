@@ -27,15 +27,4 @@ use yii\helpers\Url;
 </div>
 
 
-<script>
-    $(".logo").hover(
-        function () {
-            $(this).attr("src","<?= Yii::$app->request->baseUrl?>/images/logo/logo-hover.png");
-        },
-        function () {
-            $(this).attr("src","<?= Yii::$app->request->baseUrl?>/images/logo/logo.png");
-
-        }
-    );
-</script>
 

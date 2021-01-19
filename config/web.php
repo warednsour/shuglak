@@ -24,10 +24,10 @@ $config = [
             ],
         ],
         'request' => [
-         //   'baseUrl' => '',
+//            'baseUrl' => '',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'NI6enDkEQ-Esl0ShcI-xNoiYi0g7HAOz',
-      //      'class' => 'klisl\languages\Request',
+            'class' => 'klisl\languages\Request',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -89,16 +89,16 @@ $config = [
     ],
     'modules' => [
         'gridview' => ['class' => 'kartik\grid\Module'],
-//        'languages' => [
-//            'class' => 'klisl\languages\Module',
-//            //Языки используемые в приложении
-//            'languages' => [
-//                'English' => 'en',
-//                'Arabic' => 'ar',
-//            ],
-//            'default_language' => 'ar', //основной язык (по-умолчанию)
-//            'show_default' => true, //true - показывать в URL основной язык, false - нет
-//        ],
+        'languages' => [
+            'class' => 'klisl\languages\Module',
+            //Языки используемые в приложении
+            'languages' => [
+                'English' => 'en',
+                'Arabic' => 'ar',
+            ],
+            'default_language' => 'en', //основной язык (по-умолчанию)
+            'show_default' => false, //true - показывать в URL основной язык, false - нет
+        ],
         'user' => [
             'class' => 'dektrium\user\Module',
             'enableUnconfirmedLogin' => true,
