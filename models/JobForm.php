@@ -46,8 +46,8 @@ class JobForm extends ActiveRecord
 {
     return [
         'id' => 'id',
-        'title' => 'title',
-        'description' => 'description',
+        'title' => 'Title',
+        'description' => 'Description',
         'howlong' => 'For how long is the job?',
         'place' => 'in which city?',
         'pay' => 'how much are you going to pay?',

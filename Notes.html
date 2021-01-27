@@ -47,6 +47,22 @@
     INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('سكرتير','Secretary');
     INSERT INTO `category`(`title_ar`, `title_en`) VALUES ('أخرى','Other');
 
+    ALTER TABLE cities
+    ADD city VARCHAR(255);
+
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Amman','عمان','Amman');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Zarqa','الزرقاء','Zarqa');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Irbid','إربد','Irbid');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Aqaba','العقبة','Aqaba');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Mafraq','المفرق','Mafraq');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Madaba','مادبا','Madaba');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Al-Balqa','البلقاء','Al-Balqa');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Jerash','جرش','Jerash');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Ma\'an','معان','Ma\'an');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Tafilah','الطفيلة','Tafilah');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Ajloun','عجلون','Ajloun');
+    INSERT INTO `cities`(`city_en`, `city_ar`,`city`) VALUES ('Karak','الكرك','Karak');
+
     INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Amman','عمان');
     INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Zarqa','الزرقاء');
     INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Irbid','إربد');
@@ -59,6 +75,16 @@
     INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Tafilah','الطفيلة');
     INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Ajloun','عجلون');
     INSERT INTO `cities`(`city_en`, `city_ar`) VALUES ('Karak','الكرك');
+
+
+    ALTER TABLE profile
+    ADD telephone_number VARCHAR(255);
+
+    ALTER TABLE profile
+    ADD fav_categories VARCHAR(255);
+
+    ALTER TABLE profile
+    ADD company_name VARCHAR(255);
 
     yii2 --> messages https://gitlab.com/thyseus/yii2-message
     The following Actions are possible:
@@ -232,29 +258,8 @@ $this->registerJs($script);
 
 4. create a form in models with nameForm.php ... don't forget static tableName() {{%tablename}}
 
-
-
-
-
-
-
-
-
-
-
 errors :
 values are not getting saved in the database only the id number is increasing .. don't know why
-
-
-
-
-
-
-
-
-
-
-
 
 
 accesss to pages in user
@@ -304,6 +309,48 @@ from index :
     <!--    </div>-->
     <!--    <a type="button" class="btn btn-primary" id="filter">Search</a>-->
     <!--</nav>-->
+
+
+    //    public function savejob()
+    //    {
+    //        $link = $this->url_slug($this->title);
+    //        $link_t = $link;
+    //        if($this->validate()){
+    //            $this->title = $title;
+    //            $this->description = $description;
+    //            $this->howlong = $howlong;
+    //            $this->place = $place;
+    //            $this->pay = $pay;
+    //            $this->category = $category;
+    //            $this->expire_date = $expire_date;
+    //            $this->link = $link_t;
+    //            $this->file = $this->getfilenames();
+    //            return true;
+    //        } else {
+    //            return false;
+    //        }
+    //    }
+    //
+    //    public function upload()
+    //    {
+    //          if ($this->validate()) {
+    //            foreach ($this->file as $f) {
+    //                $f->saveAs('uploads/' . $f->baseName . '.' . $f->extension);
+    //            }
+    //            return true;
+    //        } else {
+    //            return false;
+    //        }
+    //    }
+
+    //    public function getfilenames()
+    //    {
+    //        $files =[];
+    //        foreach ($this->file as $f) {
+    //                array_push($files, $f->baseName . '.' . $f->extension);
+    //        }
+    //        return implode(',',$files);
+    //    }
 </p>
 </body>
 </html>

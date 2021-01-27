@@ -43,4 +43,16 @@ class Category extends \yii\db\ActiveRecord
             'title_en' => 'Title En',
         ];
     }
+    public function getCategoryName($categoryId)
+    {
+        $$category =   Category::find()
+            ->where(['id' => $categoryId])
+            ->one();
+        if(\Yii::$app->language == 'en') {
+
+            return $$category->title_en;
+        } elseif(\Yii::$app->language == 'ar') {
+            return  $$category->title_ar;
+        }
+    }
 }

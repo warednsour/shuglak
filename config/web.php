@@ -77,7 +77,7 @@ $config = [
 
 
 
-                //'job/<link:[\w-]+>' => 'showjob',
+//                'job/<showjob:[\w-]+>' => '<controller>/<action>',
                 'ajax/<action:\w+>' => 'ajax/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
@@ -85,7 +85,14 @@ $config = [
 
             ],
         ],
-
+        'i18n' => [
+            'translations' => [
+                '*'     =>  [
+                    'class'     =>  'yii\i18n\PhpMessageSource',
+//                    'basePath'  =>  '@app\messages',
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'gridview' => ['class' => 'kartik\grid\Module'],
@@ -94,7 +101,7 @@ $config = [
             //Языки используемые в приложении
             'languages' => [
                 'English' => 'en',
-                'Arabic' => 'ar',
+                'العربية' => 'ar',
             ],
             'default_language' => 'en', //основной язык (по-умолчанию)
             'show_default' => false, //true - показывать в URL основной язык, false - нет

@@ -9,21 +9,52 @@
 
     ?>
 
+<div class="container">
+    <div class="job-offer">
+        <div class="job-information" id="<?= $data['model']->id ?>">
+            <p class="job-offer-details"><?=\Yii::t('main','Job details')?></p>
+            <hr>
+            <div class="job-offer-header">
+                <div class="job-title">
+                    <h1><?= $data['model']->title; ?></h1>
+                </div>
+                <div class="job-offer-expire-date">
+                    <p>
+                        <?= \Yii::t('main','Bidding on this Job ends in')?>
+                    </p>
+                    <p id="demo"></p>
+                  <span id ="expire-date"class="<?= $data['model']->expire_date ?>"></span>
+                </div>
+            </div>
+
+            <hr>
+            <div class="job-offer-description">
+                <h2><?= $data['model']->description; ?></h2>
+            </div>
+
+            <div class="job-offer-pay">
+                <h2><?= $data['model']->pay; ?> JD</h2>
+            </div>
+
+            <h2><?= $data['model']->place; ?></h2>
+            <h2><?= $data['model']->category; ?></h2>
+            <h2><?= $data['model']->howlong; ?></h2>
+            <h3> <?= $data['model']->views; ?><i class="fas fa-eye"></i>Views</h3>
+            <div class="job-offer-published-at">
+                <span><?= Yii::t('main','Published at: ') . $new_date = date('Y-m-d', strtotime($data['model']->create_date)); ?></span>
+            </div>
+        </div>
+        <div class="employer-details">
+            <p class="employer"><?= \Yii::t('main','About the employer')?></p>
+        </div>
+    </div>
+
 
     <h1>Hello there from show job</h1>
-    <div class="job-information" id="<?= $data['model']->id ?>">
-        <h1>the job information</h1>
-        <h1><?= $data['model']->title; ?></h1>
-        <h2><?= $data['model']->description; ?></h2>
-        <h2><?= $data['model']->pay; ?></h2>
-        <h2><?= $data['model']->place; ?></h2>
-        <h2><?= $data['model']->category; ?></h2>
-        <h2><?= $data['model']->howlong; ?></h2>
-        <h3>Views: <?= $data['model']->views; ?></h3>
-        <h3>Create date : <?= $data['model']->create_date; ?></h3>
+
         <!--The job id and the user id should be  -->
         <h2>Job id = </h2>
-    </div>
+
     <br>
 
 
@@ -40,10 +71,7 @@
     <?php if ($data['bidStatus']->status == 0) { ?>
         <?php if (!Yii::$app->user->isGuest && $data['model']->user_id != Yii::$app->user->getId()) { ?>
             <?php if (Yii::$app->user->identity) { ?>
-                <a
-                        class="btn btn-info "
-                        data-toggle="modal" data-target="#writeNewMsg">Write Message
-                </a>
+                <a class="btn btn-info " data-toggle="modal" data-target="#writeNewMsg">Write Message</a>
 
             <?php } ?>
 
@@ -244,7 +272,7 @@
 
             }
     ?>
-
+</div>
     <?php
 
     $footer =
@@ -323,7 +351,6 @@
     Modal::end();
     ?>
 
-
     <?php
 
 
@@ -342,6 +369,58 @@
     // to show the form of add a bid to this job
     
     $(document).ready(function(){
+    
+    
+    
+    // Count down for expire date
+        var expire_date = $('#expire-date').attr('class');
+        var date_object = new Date();
+        date_object.setTime(Date.parse( expire_date ));
+        
+        // Set the date we're counting down to
+        var countDownDate = date_object.getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+        
+            // Get today's date and time
+            var now = new Date().getTime();
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+            
+            if (!isNaN(distance)) {
+              // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+            if(days > 3) {
+                $('#demo').css('color', '#28a745');
+            }
+            if(days >= 1 && days < 3){
+                $('#demo').css('color', '#ffc107');
+            }
+            if(days < 1 || isNaN(distance)){
+                $('#demo').css('color', '#a71d2a');
+            }
+            // Output the result in an element with id=\"demo\"
+            document.getElementById(\"demo\").innerHTML = days + \"d \" + hours + \"h \"
+                + minutes + \"m \" + seconds + \"s \";
+        
+            // If the count down is over, write some text
+            if (distance < 0 || isNaN(distance)) {
+              $('#demo').css('color', '#a71d2a');
+                clearInterval(x);
+                document.getElementById(\"demo\").innerHTML = \"EXPIRED\";
+            }
+            } else if (isNaN(distance)) {
+              $('#demo').css('color', '#a71d2a');
+                clearInterval(x);
+                document.getElementById(\"demo\").innerHTML = \"EXPIRED\";
+            }
+        }, 1000);
+
         $('#ShowBidForm').click(function(){
             $('#BidForm').toggle(500);
             

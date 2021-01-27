@@ -199,6 +199,7 @@ class AjaxController extends SiteController
 
             $job = $jobs
                 ->limit($increment)
+                ->orderBy(["joboffer.create_date"=> SORT_DESC])
                 ->where(['like','title',$title . '%' , false])
                 ->orWhere(['like','description',$title . '%', false])
                 ->all();
@@ -208,6 +209,7 @@ class AjaxController extends SiteController
 
                 $job = $jobs
                     ->limit($increment)
+                    ->orderBy(["joboffer.create_date"=> SORT_DESC])
                     ->where(['place' => $place])
                     ->all();
 
@@ -215,6 +217,7 @@ class AjaxController extends SiteController
         } else {
             $job = $jobs
                 ->limit($increment)
+                ->orderBy(["joboffer.create_date"=> SORT_DESC])
                 ->all();
         }
 

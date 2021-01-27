@@ -18,5 +18,16 @@ class cities extends ActiveRecord
     {
         return 'cities';
     }
+    public function  getCityName($cityId)
+    {
+        $city =    Cities::find()
+            ->where(['id' => $cityId])
+            ->one();
+        if(\Yii::$app->language == 'en') {
 
+            return $city->city_en;
+        } elseif(\Yii::$app->language == 'ar') {
+            return  $city->city_ar;
+        }
+    }
 }

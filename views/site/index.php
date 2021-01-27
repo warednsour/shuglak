@@ -24,21 +24,21 @@ $categoryName = 'title_' . Yii::$app->language;
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="<?= Yii::$app->request->baseUrl?>/images/slide1.jpg"" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="<?= Yii::$app->request->baseUrl?>/images/slide1.jpg"" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="<?= Yii::$app->request->baseUrl?>/images/slide1.jpg"" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -78,7 +78,7 @@ $categoryName = 'title_' . Yii::$app->language;
             </ul>
         </div>
         <div class="city-list">
-            <p>City  </p>
+            <p>City</p>
             <ul>
                 <?php $x = 0;  foreach ($city as $c) {
                 if($x < 4) {?>
@@ -90,38 +90,25 @@ $categoryName = 'title_' . Yii::$app->language;
             </ul>
         </div>
         <h3>Paid</h3>
-        <p id="paid_show"> 0 - 1000 </p>
+        <p id="paid_show"> 0 - 1000 JD</p>
         <input type="range" id="paid" value="0" min="0" max="1000">
-        <h3>title</h3>
-        <input type="text" id="title">
-        <h3>Description</h3>
-        <input type="text" id="description">
-        <h3>how long</h3>
-        <input type="text" id="howlong">
-        <h3>city</h3>
+
     </div>
     <!-- Results -->
     <div class="right-column">
         <div class="filter_data">
-            <button id = "loadMore" class="btn-primary btn-block">
+
+        </div>
+             <button id = "loadMore" class="btn-dark-blue btn-block" style="vertical-align: bottom;">
                 Load More
             </button>
+        <div id="loading">
+
         </div>
     </div>
+
 </div>
 </div>
-<style>
-    #loading {
-        text-align: center;
-        /*background: url('photos/loader_800.gif') no-repeat center;*/
-        position: absolute;
-        justify-content: center;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 9;
-    }
-</style>
 <?php
 $actionIndex = Url::to(['ajax/filter']);
 
@@ -134,7 +121,7 @@ $this->registerJs("
         
        var page = 0;
         
-            
+        $('#loading').hide();    
         filter_data();
        
        function filter_data() {
@@ -182,14 +169,16 @@ $this->registerJs("
         })
 
  function ready() {
-    for(var i = 0 ; $('#loading').length ; i ++ ){
     $('#loading').fadeOut();
-    }
 }
 
   $('#loadMore').on('click',function(){
         page++;
-      filter_data();
+        $('#loadMore').fadeOut(2000);
+        $('#loading').show(2000);
+        filter_data();
+         $('#loading').fadeOut(2000);
+        $('#loadMore').fadeIn(1000);
         });
 })
 
@@ -199,30 +188,9 @@ $this->registerJs("
     })
     
     
-   $('.select-city').on('click', () => {
+
    
-        if($('.city-list').hasClass('show-city-list')){
-            $('.city-list').removeClass('show-city-list').addClass('hide-city-list');
-             $('.arrow-city').addClass('fa-arrow-circle-down').removeClass('fa-arrow-circle-up');
-        } else {
-            $('.city-list').addClass('show-city-list').removeClass('hide-city-list');
-            $('.arrow-city').addClass('fa-arrow-circle-up').removeClass('fa-arrow-circle-down');
-            $('.city-list').slideDown();
-        }
-       
-   })
-   
-     $('.select-category').on('click', () => {
-   
-        if($('.category-list').hasClass('show-category-list')){
-            $('.category-list').removeClass('show-category-list').addClass('hide-category-list');
-             $('.arrow-category').addClass('fa-arrow-circle-down').removeClass('fa-arrow-circle-up');
-        } else {
-            $('.category-list').addClass('show-category-list').removeClass('hide-category-list');
-            $('.arrow-category').addClass('fa-arrow-circle-up').removeClass('fa-arrow-circle-down');
-        }
-       
-   })
+    
     
     
 

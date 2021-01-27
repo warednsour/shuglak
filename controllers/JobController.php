@@ -14,6 +14,7 @@ use dektrium\user\models\Profile;
 use yii\web\Controller;
 use Yii;
 
+
 class JobController extends Controller
 {
 
@@ -34,6 +35,7 @@ class JobController extends Controller
      */
     public function actionAddjob()
     {
+         $this->layout = 'addjob/main';
         if(!Yii::$app->user->isGuest){
             $data['model'] = new Job();
             $data['cities'] = Cities::find()->all();
@@ -54,8 +56,23 @@ class JobController extends Controller
     public function actionShowjob($link)
     {
 
+
         $data['model'] = Job::find()->where(['link'=> $link ])->one();
         $id = $data['model']->id;
+
+        //Getting the Employer the user who wrote the job offer throw Job model where the user id is the user_id in Job offer
+        // using the getUser() function accessing it like this $data['model']->user;
+
+        $user = $data['model']->user;
+
+        //Get city name
+        $city = Cities::getCityName($data['model']->place);
+        //Declare city name
+        $data['model']->place= $city;
+        //Get Category name
+        $category = Category::getCategoryName($data['model']->category);
+        //Declare category name
+         $data['model']->category = $category;
 
         $data['bidStatusHire'] = Bids::find()
             ->where(['job_id'=>$id])
@@ -87,7 +104,6 @@ class JobController extends Controller
             ->one();
 
 
-
         if($data['bidStatusHire']->status == 1 ){   // if at least one is hired for this job it no longer will be shown!
             $this->goHome();
         } else {
@@ -97,6 +113,8 @@ class JobController extends Controller
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
+
+
     public function getJobs()
     {
         return Job::find()->all();

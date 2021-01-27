@@ -5,37 +5,72 @@ namespace app\controllers;
 
 use app\models\Job;
 use Yii;
-
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
+use app\models\cities;
 
 class UploadController extends SiteController
 {
 
     public function actionJobadd()
     {
-        if (Yii::$app->request->post("Job")['title']) {
+        if(!Yii::$app->user->isGuest) {
+
+            if (Yii::$app->request->isPost) {
+                $files =  UploadedFile::getInstancesByName('Job[file]');
+                if($files[0] !== NULL){
+                    for($i = 0; $i >= count($files); $i++){
+
+                        array_push($files, $files->baseName . '.' . $files->extension);
+                    }
+                    $filename = date("Y-M-d-H-i-s-u").'---'. Yii::$app->user->id;
+                    $path = mkdir( "../uploads/" . date("Y-M-d-H-i-s-u").'---'. Yii::$app->user->id   , 0777, true);
+                    foreach ($files as $file) {
+                        $file->saveAs("../uploads/". $filename .'/'  . $file->baseName . '.' . $file->extension);
+                    }
+                }
+
+                $file = implode(',',$files);
 
 
-            $title = Yii::$app->request->post("Job")['title'];
-            $link = $this->url_slug($title);
-            $link_t = $link;
-            $model = new Job([
-                'user_id' => Yii::$app->user->identity->id,
-                'title' => $title,
-                'description' => Yii::$app->request->post("Job")['description'],
-                'howlong' => Yii::$app->request->post("Job")['howlong'],
-                'place' => Yii::$app->request->post("Job")['place'],
-                'pay' => Yii::$app->request->post("Job")['pay'],
-                'category' => Yii::$app->request->post("Job")['category'],
-                'link' => $link_t,
-                'expire_date' => Yii::$app->request->post("Job")['expire_date'],
-            ]);
+                //Check if there is any job with this title, each title has to be unique because we use titles to show job.
+                //if it's an object then there is a Job offer with the exact same title!
+
+                if(Yii::$app->request->post("Job")['title']){
+                    $typeof =  gettype(Job::findMatchTitle(Yii::$app->request->post("Job")['title'])[0]);
+                    if( $typeof === 'object'){
+                        $title = Yii::$app->request->post("Job")['title'];
+                        $title .= time();
+                    } else {
+                        $title = Yii::$app->request->post("Job")['title'];
+                    }
+                }
 
 
-                $model->save(false);
+                $link = $this->url_slug($title);
+                $link_t = $link;
+                $model = new Job([
+                    'user_id' => Yii::$app->user->identity->id,
+                    'title' => Yii::$app->request->post("Job")['title'],
+                    'description' => Yii::$app->request->post("Job")['description'],
+                    'howlong' => Yii::$app->request->post("Job")['howlong'],
+                    'place' => Yii::$app->request->post("Job")['place'],
+                    'pay' => Yii::$app->request->post("Job")['pay'],
+                    'category' => Yii::$app->request->post("Job")['category'],
+                    'link' => $link_t,
+                    'expire_date' => Yii::$app->request->post("Job")['expire_date'],
+                    'file' => $file,
+                ]);
 
+                $model->save();
+                Yii::$app->session->setFlash('success', Yii::t('main','Job offer created successfully'));
+            } else {
+                Yii::$app->session->setFlash('error',\Yii::t('main', 'Something went wrong'));
+        }
             $this->goHome();
         } else {
             $this->goHome();
+            Yii::$app->session->setFlash('registerFirst' , \Yii::t('main', 'registerFirst'));
         }
     }
 
