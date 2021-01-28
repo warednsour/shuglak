@@ -23,7 +23,7 @@
         "thyseus/yii2-message": "^0.4.2",
         "bubasuma/yii2-simplechat": "^2.0",
         "venkatesanchinna/yii2-livechat": "^1.0",
-        "yiisoft/yii2-twig": "> 2.0.4",
+        "yiisoft/yii2-twig": "^2.0.4",
         "bower-asset/twig.js" : "0.8.4@stable",
         "klisl/yii2-languages": "^2.8",
         "hosannahighertech/yii2-light-bootstrap": "*",
@@ -37,8 +37,9 @@
         "kartik-v/yii2-krajee-base": "@dev",
         "budyaga/yii2-cropper": "*",
         "rmrevin/yii2-fontawesome": "~3.5",
-        "yiisoft/yii2-composer": "dev-composer-2 as 2.0.8",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "yiisoft/yii2-composer": "^2.0",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/yii2-widget-select2": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
