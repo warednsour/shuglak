@@ -169,13 +169,21 @@ class SettingsController extends Controller
         
         //Cities
         $cities = Cities::find()->all();
-        
+
+        //Get the favorite categories from the $form
+         $fav_categories =  \Yii::$app->request->post("Profile")['fav_categories'];
+
         $this->performAjaxValidation($model);
-        
         $this->trigger(self::EVENT_BEFORE_PROFILE_UPDATE, $event);
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
+
+        if ($model->load(\Yii::$app->request->post())) {
+            if(isset(\Yii::$app->request->post('Proifle')['fav_categories'])){
+                $model->fav_categories = implode(',',$fav_categories);
+            }
+            $model->save() ;
+//            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
             $this->trigger(self::EVENT_AFTER_PROFILE_UPDATE, $event);
+//
             return $this->refresh();
         }
 

@@ -69,11 +69,6 @@ class Job extends ActiveRecord
      * @return \yii\db\ActiveQuery
      */
 
-    public function getAuthor()
-    {
-        return $this->hasOne(Profile::class, ['user_id' => 'user_id'])->alias('author');
-    }
-
     public function getJobsForUser()
     {
         return $this->hasMany(User::className(),['user_id'=>'id'])->alias('user');
@@ -101,8 +96,8 @@ class Job extends ActiveRecord
         return $this->hasOne(\dektrium\user\models\User::className(),['id'=> 'user_id']);
     }
 
-    public function getProfile()
+    public function getEmployeer()
     {
-        return $this->hasOne(\dektrium\user\models\Profile::className(),['id'=> 'user_id']);
+        return $this->hasOne(\dektrium\user\models\Profile::className(), ['user_id' => 'user_id']);
     }
 }

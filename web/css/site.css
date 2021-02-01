@@ -508,5 +508,290 @@ input#file-upload-button {
     width: 20%;
 }
 
+.verified {
+    color:#28a745;
+}
+
+.not-verified {
+    color: #dc3545;
+}
 
 /*<<<<<<<<<<       SHOW JOB OFFER        >>>>>>>>>>>>*/
+
+
+/*<<<<<<<<<<<< ACCOUNT >>>>>>>>>>>>*/
+
+/********* <header> ***********/
+.account-header {
+    background-color: #f3d537;
+    height: 380px;
+}
+.account-nav {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
+}
+.account-nav > ul {
+    justify-content: space-evenly;
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    background-color:  #f3d537;
+}
+.nav-link.active {
+    background-color: #03293c !important;
+    color: #f3d537 !important;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/*.nav-link.active:hover {*/
+/*    background-color: #f3d537 !important;*/
+/*    color: #fff !important;*/
+/*    font-weight: bolder;*/
+/*}*/
+.nav-link {
+    color: #03293c !important;
+    font-weight: 700 !important;
+}
+/********* </header> *********/
+
+/****** <account> ******/
+.account-main-countainer {
+    background: #FFF;
+    position: relative;
+    z-index: 3;
+    margin: -60px 30px 0;
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+.account-info {
+    -webkit-font-smoothing: antialiased;
+}
+.profile {
+    text-align: center;
+}
+.material-icons {
+    margin-top: 0;
+    position: absolute;
+    width: 100%;
+    transform: none;
+    left: 0;
+    top: 0;
+    height: 100%;
+    line-height: 41px;
+    font-size: 20px;
+}
+.edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.edit .btn-fab   {
+    margin-top: -28px;
+}
+.btn-round {
+    border-radius: 50%;
+    padding: 10px !important;
+    line-height: 0.5 !important;
+}
+.btn.btn-primary  {
+    color: #fff;
+    background-color: #006400;
+    border-color: #006400;
+    box-shadow: 0 2px 2px 0 rgba(156,39,176,.14), 0 3px 1px -2px rgba(156,39,176,.2), 0 1px 5px 0 rgba(156,39,176,.12);
+}
+.btn.btn-primary:not(:disabled):not(.disabled):active{
+    color: #009688;
+    background-color: hsla(0,0%,60%,.4);
+    border-color: hsla(0,0%,60%,.4);
+}
+
+.avatar > img {
+    max-width: 160px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transform: translate3d(0,-50%,0);
+    -moz-transform: translate3d(0,-50%,0);
+    -o-transform: translate3d(0,-50%,0);
+    -ms-transform: translate3d(0,-50%,0);
+    transform: translate3d(0,-50%,0);
+}
+
+.account-name {
+    margin-top: -80px;
+}
+
+.account-title {
+    margin-top: 30px;
+    margin-bottom: 25px;
+    min-height: 32px;
+    color: #3C4858;
+    font-weight: 700;
+}
+.account-bio , .review-content, .review-date  {
+    margin: 1.071rem auto 0;
+    max-width: 600px;
+    color: #999;
+    font-weight: 300;
+}
+
+.account-fav-categories {
+    margin-top: 4.284rem;
+}
+
+.tags {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.tags li {
+    float: left;
+}
+.tab-space {
+     padding-top: 20px;
+    width: 100%;
+}
+.tag {
+    background: #03293c;
+    border-radius: 3px 0 0 3px;
+    color: #fff;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+.tag::before {
+    background: #03293c;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 6px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    top: 10px;
+}
+
+.tag::after {
+    background: #fff;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #03293c;
+    border-top: 13px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+.tag:hover {
+    background-color: #f3d537;
+    color: white;
+}
+
+.tag:hover::after {
+    border-left-color: #f3d537;
+}
+
+.latest-work {
+    margin-top: 20px;
+}
+
+.card-background {
+    background-size: cover !important;
+    text-align: center;
+}
+/****** </account> ******/
+
+/******** <reviews> ******/
+
+.review {
+    display: flex;
+}
+#pills-reviews {
+
+}
+.review-writer-photo > img {
+    width: 85%;
+}
+.review-date {
+    float: right;
+}
+.box {
+    width:70%;
+    height:200px;
+    background:#FFF;
+    margin:40px auto;
+}
+.effect
+{
+    position: relative;
+}
+.effect:before, .effect:after
+{
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 25px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 35px 20px #777;
+    -moz-box-shadow: 0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+    -webkit-transform: rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+}
+.effect:after
+{
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
+    right: 10px;
+    left: auto;
+}
+/******** </reviews> ******/
+/*>>>>>>>>>>> ACCOUNT <<<<<<<<<<<< */

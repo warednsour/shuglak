@@ -63,10 +63,9 @@ $cityName = 'city_' . Yii::$app->language;
 //                ])->dropDownList(ArrayHelper::map($categories,'id',"$categoryTitle"),['prompt'=>\Yii::t("main","Select a category"), 'multiple'=>'multiple',]) ?>
 <!--                --><?php
                 echo '<label class="control-label">'.\Yii::t("main","Favorite Categories").'</label>';
-                echo Select2::widget([
+                echo $form->field($model,'fav_categories')->widget(Select2::className(),[
                     'language' => Yii::$app->language,
                     'name' => 'fav_categories',
-//                    'value' => ['teal', 'green', 'red'], // initial value (will be ordered accordingly and pushed to the top)
                     'data' => ArrayHelper::map($categories,'id',"$categoryTitle"),
                     'maintainOrder' => true,
                     'options' => ['placeholder' => \Yii::t("main","Select a category"), 'multiple' => true],
@@ -81,25 +80,18 @@ $cityName = 'city_' . Yii::$app->language;
                 ?>
                 <?= $form->field($model, 'city')->dropDownList(ArrayHelper::map($cities,'id',"$cityName"), ['prompt'=>'Select...']) ?>
                 <?= $form->field($model, 'bio')->textarea() ?>
-
+                <?php
+                    echo $form->field($model, 'photo')->widget(Widget::className(), [
+                    'uploadUrl' => Url::toRoute('/user/user/uploadPhoto'),
+                ])
+                ?>
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
                         <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
                         <br>
                     </div>
                 </div>
-
                 <?php ActiveForm::end(); ?>
-
-<!--                --><?php //$form = ActiveForm::begin(['id' => 'form-profile']); ?>
-<!--<!--                -->--><?php ////echo $form->field($model, 'photo')->widget(Widget::className(), [
-////                    'uploadUrl' => Url::toRoute('/user/user/uploadPhoto'),
-////                ]) ?>
-<!--                <div class="form-group">-->
-<!--                    --><?php //echo Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
-<!--                </div>-->
-<!--                --><?php //ActiveForm::end(); ?>
-
             </div>
         </div>
     </div>

@@ -11,6 +11,7 @@
 
 namespace dektrium\user\models;
 
+use app\models\Job;
 use dektrium\user\traits\ModuleTrait;
 use yii\db\ActiveRecord;
 
@@ -37,10 +38,10 @@ class Profile extends ActiveRecord
     protected $module;
 
     /** @inheritdoc */
-    public function init()
-    {
-        $this->module = \Yii::$app->getModule('user');
-    }
+//    public function init()
+//    {
+//        $this->module = \Yii::$app->getModule('user');
+//    }
 
     /**
      * Returns avatar url or null if avatar is not set.
@@ -70,9 +71,10 @@ class Profile extends ActiveRecord
             'publicEmailLength'    => ['public_email', 'string', 'max' => 255],
             'telephone'            => ['telephone_number','string', 'max' => 255],
             'cityLength'           => ['city', 'string', 'max' => 255],
-            'preferedCategories'   => ['fav_categories', 'string', 'max' => 255],
+//            'preferedCategories'   => ['fav_categories', 'string', 'max' => 255],
             'companyName'          => ['company_name', 'string'],
             'nameLength'           => ['name', 'string', 'max' => 255],
+            'photo'                => ['photo','file']
         ];
     }
 
@@ -92,74 +94,130 @@ class Profile extends ActiveRecord
         ];
     }
 
+    public static function tableName()
+    {
+        return '{{%profile}}';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Validates the timezone attribute.
      * Adds an error when the specified time zone doesn't exist.
      * @param string $attribute the attribute being validated
      * @param array $params values for the placeholders in the error message
      */
-    public function validateTimeZone($attribute, $params)
-    {
-        if (!in_array($this->$attribute, timezone_identifiers_list())) {
-            $this->addError($attribute, \Yii::t('user', 'Time zone is not valid'));
-        }
-    }
+//    public function validateTimeZone($attribute, $params)
+//    {
+//        if (!in_array($this->$attribute, timezone_identifiers_list())) {
+//            $this->addError($attribute, \Yii::t('user', 'Time zone is not valid'));
+//        }
+//    }
 
     /**
      * Get the user's time zone.
      * Defaults to the application timezone if not specified by the user.
      * @return \DateTimeZone
      */
-    public function getTimeZone()
-    {
-        try {
-            return new \DateTimeZone($this->timezone);
-        } catch (\Exception $e) {
-            // Default to application time zone if the user hasn't set their time zone
-            return new \DateTimeZone(\Yii::$app->timeZone);
-        }
-    }
+//    public function getTimeZone()
+////    {
+////        try {
+////            return new \DateTimeZone($this->timezone);
+////        } catch (\Exception $e) {
+////            // Default to application time zone if the user hasn't set their time zone
+////            return new \DateTimeZone(\Yii::$app->timeZone);
+////        }
+////    }
 
     /**
      * Set the user's time zone.
      * @param \DateTimeZone $timezone the timezone to save to the user's profile
      */
-    public function setTimeZone(\DateTimeZone $timeZone)
-    {
-        $this->setAttribute('timezone', $timeZone->getName());
-    }
+//    public function setTimeZone(\DateTimeZone $timeZone)
+//    {
+//        $this->setAttribute('timezone', $timeZone->getName());
+//    }
 
     /**
      * Converts DateTime to user's local time
      * @param \DateTime the datetime to convert
      * @return \DateTime
      */
-    public function toLocalTime(\DateTime $dateTime = null)
-    {
-        if ($dateTime === null) {
-            $dateTime = new \DateTime();
-        }
-
-        return $dateTime->setTimezone($this->getTimeZone());
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeSave($insert)
-    {
-        if ($this->isAttributeChanged('gravatar_email')) {
-            $this->setAttribute('gravatar_id', md5(strtolower(trim($this->getAttribute('gravatar_email')))));
-        }
-
-        return parent::beforeSave($insert);
-    }
+//     public function toLocalTime(\DateTime $dateTime = null)
+//    {
+//        if ($dateTime === null) {
+//            $dateTime = new \DateTime();
+//        }
+//
+//        return $dateTime->setTimezone($this->getTimeZone());
+//    }
 
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
-        return '{{%profile}}';
-    }
+//    public function beforeSave($insert)
+//    {
+//        if ($this->isAttributeChanged('gravatar_email')) {
+//            $this->setAttribute('gravatar_id', md5(strtolower(trim($this->getAttribute('gravatar_email')))));
+//        }
+//
+//        return parent::beforeSave($insert);
+//    }
+
+    /**
+     * @inheritdoc
+     */
+
+
 }

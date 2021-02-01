@@ -11,6 +11,7 @@ use app\models\Bids;
 use app\models\JobForm;
 use app\models\Job;
 use dektrium\user\models\Profile;
+use dektrium\user\models\User;
 use yii\web\Controller;
 use Yii;
 
@@ -60,10 +61,7 @@ class JobController extends Controller
         $data['model'] = Job::find()->where(['link'=> $link ])->one();
         $id = $data['model']->id;
 
-        //Getting the Employer the user who wrote the job offer throw Job model where the user id is the user_id in Job offer
         // using the getUser() function accessing it like this $data['model']->user;
-
-        $user = $data['model']->user;
 
         //Get city name
         $city = Cities::getCityName($data['model']->place);
@@ -73,6 +71,17 @@ class JobController extends Controller
         $category = Category::getCategoryName($data['model']->category);
         //Declare category name
          $data['model']->category = $category;
+        //Getting the Employer the user who wrote the job offer throw Job model where the user id is the user_id in Job offer
+        //Get the employer
+        $data['employeer'] = $data['model']->employeer;
+        //Get the employer creating date of account which is in time , converting to readable date.
+        $user = User::findOne($data['model']->user_id);
+        $data['employeerCreateDate'] = (date('Y-m-d',$user->created_at));
+
+
+        //Employer Verification
+        //If the email is verified
+        $data['employeerEmailVer'] = $user->confirmed_at;
 
         $data['bidStatusHire'] = Bids::find()
             ->where(['job_id'=>$id])

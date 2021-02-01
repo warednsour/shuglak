@@ -46,6 +46,29 @@
         </div>
         <div class="employer-details">
             <p class="employer"><?= \Yii::t('main','About the employer')?></p>
+            <ul>
+                <li><?=$data['employeer']->name?></li>
+                <li><?=$data['employeer']->company_name?></li>
+                <li><?=$data['employeer']->city?></li>
+                <li>Show or not ?<?=$data['employeer']->telephone_number?></li>
+                <li><?= \Yii::t('main','Member since ') . $data['employeerCreateDate']?></li>
+            </ul>
+            <div class="employer-verification">
+                <p><?=\Yii::t('main','Employer verification')?></p>
+                <ul>
+                    <?php  if($data['employeerEmailVer']){ ?>
+                        <li><i class="fas fa-envelope-square verified"></i><p class="verified"><?= \Yii::t('main','Email address verified')?> </p></li>
+                      <?php      } else { ?>
+                        <li><i class="fas fa-envelope-square not-verified"></i><p class="not-verified"><?= \Yii::t('main','Email address verified')?></p></li>
+                   <?php }  ?>
+                    <?php if($data['employeerIdentityVer']){?>
+                        <li><i class="fas fa-address-card verified"></i><p class="verified"><?= \Yii::t('main','Identity verified')?> </p></li>
+                    <?php } else {?>
+                        <li><i class="fas fa-address-card not-verified"></i> <p class="not-verified"><?= \Yii::t('main','Identity verified')?></p></li>
+                    <?php }?>
+                </ul>
+            </div>
+
         </div>
     </div>
 
@@ -58,15 +81,7 @@
     <br>
 
 
-    <h3>The author information</h3>
-    <h1></h1>
-    <h3><?php
-        if (isset($data['model']['author'])) {
-            echo $data['model']['author']->getAuthorname();
-        } else {
-            echo 'New user';
-        }
-        ?></h3>
+
     <p>write a message to the author:</p>
     <?php if ($data['bidStatus']->status == 0) { ?>
         <?php if (!Yii::$app->user->isGuest && $data['model']->user_id != Yii::$app->user->getId()) { ?>
@@ -133,15 +148,15 @@
     foreach ($data['bidders'] as $bidder) {
         $new_receiver = $bidder->user_id;
     };
-    var_dump($bidder->user_id);
-    var_dump($new_receiver);
-    if ($data['model']['author']->user_id == Yii::$app->user->getId()) {
-        $receiver = $new_receiver;
-        var_dump($new_receiver);
-        var_dump($receiver);
-    } else {
-        $receiver = $data['model']['author']->user_id;
-    };
+//    var_dump($bidder->user_id);
+//    var_dump($new_receiver);
+//    if ($data['model']['author']->user_id == Yii::$app->user->getId()) {
+//        $receiver = $new_receiver;
+//        var_dump($new_receiver);
+//        var_dump($receiver);
+//    } else {
+//        $receiver = $data['model']['author']->user_id;
+//    };
 
     echo $form->field($data['message'], 'title')->textInput(['value' => '', 'placeholder' => 'write your title here', 'id' => 'dialog_footer-title'])->label('Title');
     echo $form->field($data['message'], 'text')->textarea(['rows' => '3', 'id' => 'message_footer-content'])->label('Message');
@@ -330,11 +345,11 @@
     };
 
 
-    if ($data['model']['author']->user_id == Yii::$app->user->getId()) {
-        $receiver = $new_receiver;
-    } else {
-        $receiver = $data['model']['author']->user_id;
-    };
+//    if ($data['model']['author']->user_id == Yii::$app->user->getId()) {
+//        $receiver = $new_receiver;
+//    } else {
+//        $receiver = $data['model']['author']->user_id;
+//    };
 
     echo $form->field($data['review'], 'review_title')->textInput(['value' => '', 'placeholder' => 'write your title here', 'id' => 'review_footer-title'])->label('Title');
     echo $form->field($data['review'], 'review_content')->textarea(['rows' => '3', 'id' => 'review_footer-content'])->label('Tell us in detail');

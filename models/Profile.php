@@ -15,7 +15,7 @@ use yii\db\ActiveRecord;
 class Profile extends ActiveRecord
 {
     /**
-     * This is the model class for table "profile".
+     * This is the model class for table "account".
      *
      * @property integer $user_id
      * @property string  $name
@@ -32,7 +32,7 @@ class Profile extends ActiveRecord
      */
 
     public static function tableName() {
-        return '{{profile}}';
+        return '{{account}}';
     }
 
     public function rules() {

@@ -67,7 +67,7 @@ $config = [
          //       '<action:(contact|login|logout|language|about|signup)>' => 'site/<action>',
           //      'languages' => 'ar/languages/common/',
          //       '/' => 'site/index',
-                '<id:\d+>'                               => 'profile/show',
+                '<id:\d+>'                               => 'account/show',
                 '<action:(login|logout|auth)>'           => 'security/<action>',
                 '<action:(register|resend)>'             => 'registration/<action>',
                 'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
@@ -76,8 +76,8 @@ $config = [
                 'settings/<action:\w+>'                  => 'settings/<action>',
 
 
-
-//                'job/<showjob:[\w-]+>' => '<controller>/<action>',
+                '/<name:\w+>/' => 'account/index',
+//               'job/<showjob:[\w-]+>' => '<controller>/<action>',
                 'ajax/<action:\w+>' => 'ajax/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
