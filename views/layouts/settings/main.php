@@ -13,6 +13,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <?php $this->head() ?>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +27,7 @@ AppAsset::register($this);
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">-->
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -41,21 +42,19 @@ AppAsset::register($this);
 <?= $content ?>
 
 
-
-<?= $this->render('footer.php')?>
-<<script>
-   $(".logo").hover(
-       function () {
-            $(this).attr("src","--><?//= Yii::$app->request->baseUrl?>///images/logo/logo-hover.png");
-      },
-       function () {
-            $(this).attr("src","<?//= Yii::$app->request->baseUrl?>///images/logo/logo.png");
+<?php $this->endBody() ?>
+<script>
+    $(".logo").hover(
+        function () {
+            $(this).attr("src","<?= Yii::$app->request->baseUrl?>/images/logo/logo-hover.png");
+        },
+        function () {
+            $(this).attr("src","<?= Yii::$app->request->baseUrl?>/images/logo/logo.png");
 
         }
-   );
+    );
 </script>
-
-<?php $this->endBody() ?>
+<?= $this->render('footer.php')?>
 </body>
 </html>
 <?php $this->endPage() ?>

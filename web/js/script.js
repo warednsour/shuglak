@@ -111,4 +111,22 @@ function removeFile(e) {
 }
 
 
+// Account settings Pills
+$('#v-pills-tab a').on('click', function (e) {
+    e.preventDefault();
+    $(this).tab('show')
+})
 
+//Redirect user to the choosen PILL - Account from settings or settings to account
+var url = document.location.toString();
+var whereTo = url.split('#')[1];
+if (url.match('#') && url.match('pills')) {
+    $('#pills-account-tab').removeClass('active');
+    $('#pills-account-tab').attr('aria-selected' , 'false');
+    $('#pills-account').removeClass('show');
+    $('#pills-account').removeClass('active');
+    $('#'+whereTo +'-tab').addClass('active');
+    $('#' +whereTo + '-tab').attr('aria-selected','true');
+    $('#'+whereTo).addClass('show');
+    $('#'+whereTo).addClass('active');
+}

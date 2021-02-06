@@ -39,6 +39,13 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -67,7 +74,7 @@ $config = [
          //       '<action:(contact|login|logout|language|about|signup)>' => 'site/<action>',
           //      'languages' => 'ar/languages/common/',
          //       '/' => 'site/index',
-                '<id:\d+>'                               => 'account/show',
+//                '<id:\d+>'                               => 'account/show',
                 '<action:(login|logout|auth)>'           => 'security/<action>',
                 '<action:(register|resend)>'             => 'registration/<action>',
                 'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
@@ -76,8 +83,8 @@ $config = [
                 'settings/<action:\w+>'                  => 'settings/<action>',
 
 
-                '/<name:\w+>/' => 'account/index',
-//               'job/<showjob:[\w-]+>' => '<controller>/<action>',
+                '<name:\w+>' => 'account/index',
+                'job/showjob/<link:\w+>/' => 'job/showjob/<link:\w+>',
                 'ajax/<action:\w+>' => 'ajax/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

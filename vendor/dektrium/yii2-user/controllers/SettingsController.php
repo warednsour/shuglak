@@ -106,7 +106,8 @@ class SettingsController extends Controller
 
     /** @var Finder */
     protected $finder;
-
+    
+    public $layout = '@app/views/layouts/settings/main';
     /**
      * @param string $id
      * @param \yii\base\Module $module
@@ -163,10 +164,10 @@ class SettingsController extends Controller
         }
 
         $event = $this->getProfileEvent($model);
-        
+
         //Categories
         $categories = Category::find()->all();
-        
+
         //Cities
         $cities = Cities::find()->all();
 
@@ -316,16 +317,16 @@ class SettingsController extends Controller
     }
 
     public function actionJobs()
-    {   
-        
+    {
+
          $jobs['jobs'] = Job::find()
             ->where(['user_id' => Yii::$app->user->getId()])
             ->one();
-         
+
         $job['job'] = Job::find()
             ->where(['user_id' => Yii::$app->user->getId()])
             ->all();
-        
+
         $bidsOnJob['bids'] = Bids::find()
             ->where(['job_id'=> $jobs['jobs']->id])
             ->all();
@@ -342,7 +343,7 @@ class SettingsController extends Controller
 
     public function actionMessages()
     {
-        
+
         $message['message'] = Message::find()
             ->where(['receiver_id' => Yii::$app->user->getId()])
             ->orWhere(['sender_id' => Yii::$app->user->getId()])

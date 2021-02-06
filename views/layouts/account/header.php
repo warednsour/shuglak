@@ -17,22 +17,22 @@ use yii\helpers\Url;
     <nav class="account-nav">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-home" aria-selected="true">Account</a>
+                <a class="nav-link active" id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-home" aria-selected="true">Account</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-settings" role="tab" aria-controls="pills-profile" aria-selected="false">Settings</a>
+                <a class="nav-link" id="pills-settings-tab" data-toggle="pill" href="#pills-settings" role="tab" aria-controls="pills-profile" aria-selected="false">Settings</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-verify" role="tab" aria-controls="pills-contact" aria-selected="false">Verify</a>
+                <a class="nav-link" id="pills-verify-tab" data-toggle="pill" href="#pills-verify" role="tab" aria-controls="pills-contact" aria-selected="false">Verify</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-messages" role="tab" aria-controls="pills-contact" aria-selected="false">Messages</a>
+                <a class="nav-link" id="pills-messages-tab" data-toggle="pill" href="#pills-messages" role="tab" aria-controls="pills-contact" aria-selected="false">Messages</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-jobs" role="tab" aria-controls="pills-contact" aria-selected="false">Jobs</a>
+                <a class="nav-link" id="pills-jobs-tab" data-toggle="pill" href="#pills-jobs" role="tab" aria-controls="pills-contact" aria-selected="false">Jobs</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-bids" role="tab" aria-controls="pills-contact" aria-selected="false">Bids</a>
+                <a class="nav-link" id="pills-bids-tab" data-toggle="pill" href="#pills-bids" role="tab" aria-controls="pills-contact" aria-selected="false">Bids</a>
             </li>
         </ul>
     </nav>

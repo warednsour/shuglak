@@ -4,6 +4,7 @@ use kartik\rating\StarRating;
 
 $language = \Yii::$app->language;
 ?>
+
 <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-home-tab">
     <div class="account-info">
         <div class="container">

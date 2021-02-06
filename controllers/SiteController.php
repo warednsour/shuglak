@@ -52,7 +52,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-
         $category = Category::find()->all();
         $jobs =  Job::find();
         $count = $jobs->count();

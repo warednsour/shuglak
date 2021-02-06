@@ -4,15 +4,21 @@
 namespace app\controllers;
 
 
-use yii\web\Controller;
+
+use app\models\Verify;
+use dektrium\user\models\Profile;
 use dektrium\user\models\User;
+use yii\web\Controller;
 use app\models\Job;
 use app\models\Bids;
-use dektrium\user\models\Profile;
+use app\models\Message;
 use Yii;
+use app\models\Category;
+use app\models\cities;
 
 class AccountController extends Controller
 {
+
     public function init()
     {
        if(Yii::$app->user->isGuest)
@@ -28,11 +34,15 @@ class AccountController extends Controller
         $this->layout = 'account/main';
         //Find the user by Username
         #usernames are unique so don't worry.
-        $user =  User::find()->where(['username'=>$name])->one();
+        $data['user'] =  User::find()->where(['username'=>$name])->one();
         //Get the userId
-        $userId = $user->id;
+        $data['userId'] = $data['user']->id;
         //Find the Profile of the user by userId
-        $profile = Profile::findOne($userId);
+        $data['profile'] = Profile::findOne($userId);
+        $data['ward'] = 'name';
+        //Verify Form
+        $data['verify'] = new Verify();
+
         if(Yii::$app->user->id === $userId && !Yii::$app->user->isGuest){
 
 
@@ -41,7 +51,7 @@ class AccountController extends Controller
 //            echo 'you are looking at another profile';
         }
 
-        return $this->render('index');
+        return $this->render('index',compact('data'));
     }
 
 }

@@ -9,6 +9,24 @@
 
 <p>
 
+    verification identity
+    CREATE TABLE verify_user (
+    id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_id int(11),
+    name_ar varchar(255),
+    name_en varchar(255),
+    national_number varchar(13),
+    sex varchar(1),
+    birth_date datetime,
+    city_of_birth varchar(30),
+    mother_name varchar(255),
+    reg_num_place varchar(255),
+    place_issue varchar(255),
+    place_residence varchar(255),
+    files varchar(255)
+    )
+    ALTER TABLE verify_user
+    ADD status int(1)
 
         creating categories in ar and en
 

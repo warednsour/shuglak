@@ -4,14 +4,14 @@
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Url;
-
+$username = Yii::$app->user->identity->username;
 ?>
 <div class="site-header">
     <?php if (Yii::$app->session->hasFlash('success')): ?>
         <div class="alert alert-success alert-dismissable">
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
             <h4><i class="icon fa fa-check"></i><?=Yii::t('Main','Yes Yes')?></h4>
-            <?= Yii::$app->session->getFlash('success') ?>
+            <?//= Yii::$app->session->getFlash('success') ?>
         </div>
     <?php endif; ?>
 
@@ -35,7 +35,7 @@ use yii\helpers\Url;
                 <?php if( Yii::$app->user->isGuest) {?>
                     <a href="<?= Url::to(['/user/login'])?>" class="nav-link-head">Sing In</a>
                 <? } else {?>
-                    <a href="<?= Url::to(['/user/settings/account'])?>" class="nav-link-head"><?= Yii::$app->user->identity->username ?></a>
+                    <a href="<?= Url::to(["/$username"])?>" class="nav-link-head"><?= Yii::$app->user->identity->username ?></a>
                 <?php } ?>
             </nav>
         </div>

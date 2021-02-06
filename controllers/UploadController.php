@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 use app\models\Job;
+use app\models\Verify;
 use Yii;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
@@ -74,7 +75,52 @@ class UploadController extends SiteController
         }
     }
 
+    public function actionVerifyuser()
+    {
 
+        if(!Yii::$app->user->isGuest) {
+
+            if (Yii::$app->request->isPost) {
+                $files =  UploadedFile::getInstancesByName('Verify[files]');
+                if($files[0] !== NULL){
+                    for($i = 0; $i >= count($files); $i++){
+                        array_push($files, $files->baseName . '.' . $files->extension);
+                    }
+                    $filename = date("Y-M-d-H-i-s-u").'-Verify-Request-'. Yii::$app->user->id;
+                    $path = mkdir( "../uploads/Verify-requests/" . date("Y-M-d-H-i-s-u").'-Verify-Request-'. Yii::$app->user->id   , 0777, true);
+                    foreach ($files as $file) {
+                        $file->saveAs("../uploads/Verify-requests/". $filename .'/'  . $file->baseName . '.' . $file->extension);
+                    }
+                }
+
+                $file = implode(',',$files);
+
+                $model = new Verify([
+                    'user_id' => Yii::$app->user->identity->id,
+                    'name_ar' => Yii::$app->request->post("Job")['name_ar'],
+                    'name_en' => Yii::$app->request->post("Job")['name_en'],
+                    'national_number' => Yii::$app->request->post("Job")['national_number'],
+                    'sex' => Yii::$app->request->post("Job")['sex'],
+                    'birth_date' => Yii::$app->request->post("Job")['birth_date'],
+                    'city_of_birth' => Yii::$app->request->post("Job")['city_of_birth'],
+                    'mother_name' =>  Yii::$app->request->post("Job")['mother_name'],
+                    'reg_num_place' => Yii::$app->request->post("Job")['reg_num_place'],
+                    'place_issue' =>  Yii::$app->request->post("Job")['place_issue'],
+                    'place_residence' => Yii::$app->request->post("Job")['place_residence'],
+                    'files' => $file,
+                ]);
+
+                $model->save();
+                Yii::$app->session->setFlash('success', Yii::t('main','Job offer created successfully'));
+            } else {
+                Yii::$app->session->setFlash('error',\Yii::t('main', 'Something went wrong'));
+            }
+            $this->goHome();
+        } else {
+            $this->goHome();
+            Yii::$app->session->setFlash('registerFirst' , \Yii::t('main', 'registerFirst'));
+        }
+    }
     public function url_slug($str, $options = array())
     {
         // Make sure string is in UTF-8 and strip invalid UTF-8 characters
