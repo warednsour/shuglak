@@ -13,6 +13,7 @@ use Yii;
 use yii\data\Pagination;
 use yii\db\conditions\LikeCondition;
 use yii\db\Query;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -60,27 +61,38 @@ class AjaxController extends SiteController
 
    public function actionMessage()
    {
+       //Check if the user is not a guest and the request is an Ajax request
+       if(!Yii::$app->user->isGuest && Yii::$app->request->isAjax) {
 
-       $result['result'] = false;
-       if(Yii::$app->request->isAjax && Yii::$app->user->identity) {
-           $request = Yii::$app->request;
-          if($request->post('Message')['receiver_id'] > 0 && $request->post('Message')['text']){
-//              if($request->post('Message')['sender_id'] == Yii::$app->user->getId()){
-               $message = new Message([
-                   'text' => $request->post('Message')['text'],
-                   'title' => $request->post('Message')['title'],
-                   'receiver_id' => $request->post('Message')['receiver_id'],
-                   'sender_id' => $request->post('Message')['sender_id'],
+           $result['result'] = false;
 
-               ]);
+           $model = new Message;
+           if ($model->load(Yii::$app->request->post())) {
+           /* The user who is receiving the message (receiver_id)  $receiver
+            * The user who is sending the message (sender_id)  $sender
+            * Check if it's a number why are receiving and since we are receiving
+            * a string we convert it to integer
+            */
+           if (is_int(intval($model->receiver_id)) && is_int(intval($model->sender_id))) {
+               $receiver = $model->receiver_id;
+               $sender = $model->sender_id;
+               /* Check if the users all ready have messaged each others. Add the message to their messages,
+                * if not create a new messages bettwen these two users!
+                */
+               $oldMessages = Message::find()
+                   ->where([$receiver => 'receiver_id'])
+                   ->AndWhere([$sender => 'sender_id'])
+                   ->one();
+               return json_encode($oldMessages->text);
+           }
 
-               $message->save();
-               $result['result'] = true;
-              Yii::$app->session->setFlash('MessageSuccess');
-              }
-//         }
+
+
+           }
        }
-       json_encode($result);
+
+//       }
+//       json_encode($result);
    }
 
    public function actionBidstatusaccepted($id)

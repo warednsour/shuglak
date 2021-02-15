@@ -515,7 +515,9 @@ input#file-upload-button {
 .not-verified {
     color: #dc3545;
 }
-
+.show {
+    opacity: unset;
+}
 /*<<<<<<<<<<       SHOW JOB OFFER        >>>>>>>>>>>>*/
 
 
@@ -759,12 +761,10 @@ input#file-upload-button {
     background:#FFF;
     margin:40px auto;
 }
-.effect
-{
+.effect {
     position: relative;
 }
-.effect:before, .effect:after
-{
+.effect:before, .effect:after {
     z-index: -1;
     position: absolute;
     content: "";
@@ -783,8 +783,7 @@ input#file-upload-button {
     -ms-transform: rotate(-8deg);
     transform: rotate(-8deg);
 }
-.effect:after
-{
+.effect:after {
     -webkit-transform: rotate(8deg);
     -moz-transform: rotate(8deg);
     -o-transform: rotate(8deg);
@@ -836,7 +835,9 @@ input#file-upload-button {
 /*>>>>>>>>>>> VERIFY <<<<<<<<<<<< */
 
 /*<<<<<<<<<<< MESSAGES >>>>>>>>>> */
-img{ max-width:100%;}
+img{
+    max-width:100%;
+}
 .inbox_people {
     background: #f8f8f8 none repeat scroll 0 0;
     float: left;
@@ -848,10 +849,13 @@ img{ max-width:100%;}
     clear: both;
     overflow: hidden;
 }
-.top_spac{ margin: 20px 0 0;}
-
-
-.recent_heading {float: left; width:40%;}
+.top_spac {
+    margin: 20px 0 0;
+}
+.recent_heading {
+    float: left;
+    width:40%;
+}
 .srch_bar {
     display: inline-block;
     text-align: right;
@@ -864,7 +868,13 @@ img{ max-width:100%;}
     font-size: 21px;
     margin: auto;
 }
-.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+.srch_bar input{
+    border:1px solid #cdcdcd;
+    border-width:0 0 1px 0;
+    width:80%;
+    padding:2px 0 4px 6px;
+    background:none;
+}
 .srch_bar .input-group-addon button {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -887,15 +897,23 @@ img{ max-width:100%;}
     width: 88%;
 }
 
-.chat_people{ overflow:hidden; clear:both;}
+.chat_people {
+    overflow:hidden;
+    clear:both;
+}
 .chat_list {
     border-bottom: 1px solid #c4c4c4;
     margin: 0;
     padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.inbox_chat {
+    height: 550px;
+    overflow-y: scroll;
+}
 
-.active_chat{ background:#ebebeb;}
+.active_chat {
+    background:#ebebeb;
+}
 
 .incoming_msg_img {
     display: inline-block;
@@ -922,7 +940,9 @@ img{ max-width:100%;}
     font-size: 12px;
     margin: 8px 0 0;
 }
-.received_withd_msg { width: 57%;}
+.received_withd_msg {
+    width: 57%;
+}
 .mesgs {
     float: left;
     padding: 30px 15px 0 25px;
@@ -937,7 +957,10 @@ img{ max-width:100%;}
     padding: 5px 10px 5px 12px;
     width:100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg{
+    overflow:hidden;
+    margin:26px 0 26px;
+}
 .sent_msg {
     float: right;
     width: 46%;
@@ -951,7 +974,10 @@ img{ max-width:100%;}
     width: 100%;
 }
 
-.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.type_msg {
+    border-top: 1px solid #c4c4c4;
+    position: relative;
+}
 .msg_send_btn {
     background: #05728f none repeat scroll 0 0;
     border: medium none;
@@ -965,10 +991,23 @@ img{ max-width:100%;}
     top: 11px;
     width: 33px;
 }
-.messaging { padding: 0 0 50px 0;}
+.messaging {
+    padding: 0 0 50px 0;
+}
 .msg_history {
     height: 516px;
     overflow-y: auto;
 }
 /*>>>>>>>>>>> MESSAGES <<<<<<<<<< */
 
+/*<<<<<<<<<< CHAT BOX >>>>>>>>>>>*/
+.chat-box {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    margin: 0;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+/*>>>>>>>>>> CHAT BOX <<<<<<<<<<<*/

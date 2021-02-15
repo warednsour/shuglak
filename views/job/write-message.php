@@ -35,7 +35,6 @@ Modal::begin(
         'closeButton' => ['class' => 'close arab-close-modal', 'tag' => 'button', 'label' => '&times;'],
         'bodyOptions' => ['class' => 'modal-body arab'],
         'footer' => $footer,
-
     ]
 );
 $model = new DialogForm;

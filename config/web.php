@@ -3,10 +3,11 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
+/** @var TYPE_NAME $db */
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+//    'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -19,11 +20,14 @@ $config = [
         'assetManager' => [
             'bundles' => [
                 'kartik\grid\GridView' => [
-          //          'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+//                    'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
                 ],
             ],
         ],
         'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
 //            'baseUrl' => '',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'NI6enDkEQ-Esl0ShcI-xNoiYi0g7HAOz',

@@ -35,9 +35,9 @@ $('.show-more-city').on('click', function () {
 
 $('#job-description').on('keyup',function () {
     $('.counter-container').show();
-    var textCount = $(this).val().length;
-    var counter = $('.counter-text');
-    var span  = $('.counter-container > span');
+    let textCount = $(this).val().length;
+    let counter = $('.counter-text');
+    let span  = $('.counter-container > span');
     counter.text(255 - textCount);
     if(textCount == 255) {
         counter.css('color', '#dc3545');
@@ -57,35 +57,37 @@ $(document).ready(function() {
     // $("#myForm").on("submit", handleForm);
     $("body").on("click", ".selFile", removeFile);
 });
-var selDiv = "";
-// var selDivM="";
-var storedFiles = [];
+let urlAddJob = document.location.toString();
+if(urlAddJob.match('addjob') != null) {
+let selDiv = "";
+// let selDivM="";
+let storedFiles = [];
 
 function handleFileSelect(e) {
-    var files = e.target.files;
-    var filesArr = Array.prototype.slice.call(files);
-    var device = $(e.target).data("device");
+    let files = e.target.files;
+    let filesArr = Array.prototype.slice.call(files);
+    let device = $(e.target).data("device");
     filesArr.forEach(function(f) {
         // if (!f.type.match("image.*")) {
         //     return;
         // }
         storedFiles.push(f);
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function(e) {
-            var html = "<div><img src=\"" + e.target.result + "\" data-file='" + f.name + "' class='selFile' title='Click to remove'>" + f.name + "<br clear=\"left\"/></div>";
+            // let html = "<div><img src="" + e.target.result + "" data-file='" + f.name + "' class='selFile' title='Click to remove'>" + f.name + "<br clear="left"/></div>";
             $("#selectedFiles").append(html);
         }
         reader.readAsDataURL(f);
     });
 }
-
+}
 // function handleForm(e) {
 //     e.preventDefault();
-//     var data = new FormData();
-//     for (var i = 0, len = storedFiles.length; i < len; i++) {
+//     let data = new FormData();
+//     for (let i = 0, len = storedFiles.length; i < len; i++) {
 //         data.append('Job[file][]', storedFiles[i]);
 //     }
-//     var xhr = new XMLHttpRequest();
+//     let xhr = new XMLHttpRequest();
 //     xhr.open('POST', 'handler.cfm', true);
 //     xhr.onload = function(e) {
 //         if (this.status == 200) {
@@ -96,9 +98,9 @@ function handleFileSelect(e) {
 //     xhr.send(data);
 // }
 function removeFile(e) {
-    var file = $(this).data("file");
-    var files = $('#job-file').prop('files');
-    for (var i = 0; i < storedFiles.length; i++) {
+    let file = $(this).data("file");
+    let files = $('#job-file').prop('files');
+    for (let i = 0; i < storedFiles.length; i++) {
         console.log(file);
         console.log(files[i].name);
         if (files[i].name === file) {
@@ -118,8 +120,8 @@ $('#v-pills-tab a').on('click', function (e) {
 })
 
 //Redirect user to the choosen PILL - Account from settings or settings to account
-var url = document.location.toString();
-var whereTo = url.split('#')[1];
+let url = document.location.toString();
+let whereTo = url.split('#')[1];
 if (url.match('#') && url.match('pills')) {
     $('#pills-account-tab').removeClass('active');
     $('#pills-account-tab').attr('aria-selected' , 'false');
@@ -130,3 +132,120 @@ if (url.match('#') && url.match('pills')) {
     $('#'+whereTo).addClass('show');
     $('#'+whereTo).addClass('active');
 }
+
+
+// Count down for expire date
+let expire_date = $('#expire-date').attr('class');
+let date_object = new Date();
+date_object.setTime(Date.parse( expire_date ));
+
+// Set the date we're counting down to
+let countDownDate = date_object.getTime();
+
+// Update the count down every 1 second
+let x = setInterval(function() {
+
+    // Get today's date and time
+    let now = new Date().getTime();
+    // Find the distance between now and the count down date
+    let distance = countDownDate - now;
+
+    if (!isNaN(distance)) {
+        // Time calculations for days, hours, minutes and seconds
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if(days > 3) {
+            $('#demo').css('color', '#28a745');
+        }
+        if(days >= 1 && days < 3){
+            $('#demo').css('color', '#ffc107');
+        }
+        if(days < 1 || isNaN(distance)){
+            $('#demo').css('color', '#a71d2a');
+        }
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text
+        if (distance < 0 || isNaN(distance)) {
+            $('#demo').css('color', '#a71d2a');
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    } else if (isNaN(distance)) {
+        $('#demo').css('color', '#a71d2a');
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 1000);
+
+$('#ShowBidForm').click(function(){
+    $('#BidForm').toggle(500);
+
+});
+
+
+
+//Send message
+$('#writeNewMsgSend').on('click',function (event) {
+    if($('#dialog_footer-title').val() !== '' && $('#message_footer-content').val() !== '') {
+        // var data = ;
+        var url = '/basic/web/ajax/message/';
+         // console.log($('#message-form').serializeArray());
+        $.ajax({
+            url: url,
+            // contentType: "application/json",
+            type: 'POST',
+            // dataType: 'json',
+            data: $('#message-form').serializeArray(),
+            // data: {
+            //     'title' : $('#dialog_footer-title').val(),
+            //    'text' : $('#message_footer-content').val(),
+            //    'receiver_id' : $('.receiver').attr('value'),
+            //    'sender_id' : $('.sender').attr('value'),
+            // },
+        })
+            .done(function(response) {
+                console.log("Wow you commented" + response);
+            })
+            .fail(function(jqXHR, textStatus, error) {
+                console.log("error" + error);
+                console.log("jqXHR" + jqXHR);
+                console.dir(jqXHR);
+                console.log("textStatus" + textStatus);
+            });
+    }
+
+}).on('submit',function (e) {
+    e.preventDefault();
+    console.log(e)
+});
+
+// $('#writeNewMsgSend').on('click',function(event)
+// {
+//     // event.preventDefault();
+//     if($('#message_footer-content').val() !==''){
+//         $('#writeNewMsg').modal('hide');
+//         $.ajax({
+//             url: '/basic/web/ajax/message',
+//             type : 'POST',
+//             dataType : 'json',
+//             data: {
+//                 'title' : $('#dialog_footer-title').val(),
+//                 'text' : $('#message_footer-content').val(),
+//                 'receiver_id' : $('.receiver').attr('value'),
+//                 'sender_id' : $('.sender').attr('value'),
+//             },
+//             success: function(data) {
+//                 $('.new__bid__alert').show(200);
+//             }
+//         });
+//
+//     } else {
+//         alert('please contact webmaster');
+//     }
+// });

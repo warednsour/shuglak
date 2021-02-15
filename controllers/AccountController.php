@@ -30,25 +30,25 @@ class AccountController extends Controller
     public function actionIndex($name)
     {
 
-        //The account has it's own layouts.
-        $this->layout = 'account/main';
         //Find the user by Username
         #usernames are unique so don't worry.
         $data['user'] =  User::find()->where(['username'=>$name])->one();
         //Get the userId
         $data['userId'] = $data['user']->id;
-        //Find the Profile of the user by userId
-        $data['profile'] = Profile::findOne($userId);
-        $data['ward'] = 'name';
-        //Verify Form
-        $data['verify'] = new Verify();
-
-        if(Yii::$app->user->id === $userId && !Yii::$app->user->isGuest){
-
+        if(Yii::$app->user->id === $data['userId'] && !Yii::$app->user->isGuest){
+            //It's the users account
+            $data['userOwnAccount'] = true;
+            //The account has it's own layouts.
+            $this->layout = 'account/main';
+            //Find the Profile of the user by userId
+            $data['profile'] = Profile::findOne($userId);
+            $data['ward'] = 'name';
+            //Verify Form
+            $data['verify'] = new Verify();
 
 //            echo 'you can edit this is your profile';
         } else {
-//            echo 'you are looking at another profile';
+            echo 'you are looking at another profile';
         }
 
         return $this->render('index',compact('data'));

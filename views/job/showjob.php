@@ -47,7 +47,7 @@
         <div class="employer-details">
             <p class="employer"><?= \Yii::t('main','About the employer')?></p>
             <ul>
-                <li><?=$data['employeer']->name?></li>
+                <li><?=$data['employeer']->name ?></li>
                 <li><?=$data['employeer']->company_name?></li>
                 <li><?=$data['employeer']->city?></li>
                 <li>Show or not ?<?=$data['employeer']->telephone_number?></li>
@@ -72,38 +72,27 @@
         </div>
     </div>
 
-
-    <h1>Hello there from show job</h1>
-
-        <!--The job id and the user id should be  -->
-        <h2>Job id = </h2>
-
-    <br>
-
-
-
     <p>write a message to the author:</p>
     <?php if ($data['bidStatus']->status == 0) { ?>
         <?php if (!Yii::$app->user->isGuest && $data['model']->user_id != Yii::$app->user->getId()) { ?>
             <?php if (Yii::$app->user->identity) { ?>
                 <a class="btn btn-info " data-toggle="modal" data-target="#writeNewMsg">Write Message</a>
-
-            <?php } ?>
-
-        <?php } ?>
-
-    <?php } ?>
+            <?php }
+       }
+    } ?>
 
 
     <?php
-    //if(Yii::$app->session->setFlash('MessageSuccess')){
-    //    $success = 'Thank you for sending a message';
-    //}
+    if(Yii::$app->session->hasFlash('MessageSuccess')){
+        $success = 'Thank you for sending a message';
+    } elseif ( Yii::$app->session->hasFlash('MessageNot'))
+    echo $success;
     $footer =
         Html::tag(
             'button',
             'Cancel',
             [
+                'id' => 'close-modal-msg',
                 'type' => 'button',
                 'class' => 'btn btn-secondary',
                 'data-dismiss' => 'modal',
@@ -118,7 +107,8 @@
             [
                 'id' => 'writeNewMsgSend',
                 'class' => 'btn btn-primary',
-                'onClick' => 'hideMsgSend()',
+//                'onClick' => 'hideMsgSend()',
+                'type' => 'submit',
             ]
         );
     //    .
@@ -139,31 +129,20 @@
 
     $form = ActiveForm::begin(
         [
-
-            'id' => 'dialog_footer-form',
-            'action' => Url::to(['/ajax/message']),
+            'id' => 'message-form',
+            'action' => '/ajax/message',
+            'method' => 'POST',
         ]
     );
 
-    foreach ($data['bidders'] as $bidder) {
-        $new_receiver = $bidder->user_id;
-    };
-//    var_dump($bidder->user_id);
-//    var_dump($new_receiver);
-//    if ($data['model']['author']->user_id == Yii::$app->user->getId()) {
-//        $receiver = $new_receiver;
-//        var_dump($new_receiver);
-//        var_dump($receiver);
-//    } else {
-//        $receiver = $data['model']['author']->user_id;
-//    };
 
+    $receiver = $data['employeer']->user_id;
     echo $form->field($data['message'], 'title')->textInput(['value' => '', 'placeholder' => 'write your title here', 'id' => 'dialog_footer-title'])->label('Title');
     echo $form->field($data['message'], 'text')->textarea(['rows' => '3', 'id' => 'message_footer-content'])->label('Message');
     echo $form->field($data['message'], 'receiver_id')->HiddenInput(['value' => $receiver, 'id' => $receiver, 'class'=>'receiver'])->label(false);
     echo $form->field($data['message'], 'sender_id')->HiddenInput(['value' => Yii::$app->user->getId(), 'id' => Yii::$app->user->getId(),'class'=>'sender'])->label(false);
-    //echo $form->field($data['message'], 'dialog_id')->HiddenInput(['value' => 0, 'id' => 'dialog_footer-dialog_id'])->label(false);
-
+//    echo $form->field($data['message'], 'dialog_id')->HiddenInput(['value' => 0, 'id' => 'dialog_footer-dialog_id'])->label(false);
+//    echo  Html::submitButton('Submit', ['class' => 'btn-dark-blue']) ;
 
     ActiveForm::end();
 
@@ -377,72 +356,14 @@
     $reviewUrl = Url::to(['ajax/review']);
     $doneUrl = Url::to(['ajax/bidstatusdone']);
     $notUrl = Url::to(['ajax/bidstatusnot']);
+    $messageUrl = Url::to(['ajax/message']);
 
     $this->registerJs(" 
     
     
     // to show the form of add a bid to this job
     
-    $(document).ready(function(){
-    
-    
-    
-    // Count down for expire date
-        var expire_date = $('#expire-date').attr('class');
-        var date_object = new Date();
-        date_object.setTime(Date.parse( expire_date ));
-        
-        // Set the date we're counting down to
-        var countDownDate = date_object.getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-        
-            // Get today's date and time
-            var now = new Date().getTime();
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-            
-            if (!isNaN(distance)) {
-              // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-            if(days > 3) {
-                $('#demo').css('color', '#28a745');
-            }
-            if(days >= 1 && days < 3){
-                $('#demo').css('color', '#ffc107');
-            }
-            if(days < 1 || isNaN(distance)){
-                $('#demo').css('color', '#a71d2a');
-            }
-            // Output the result in an element with id=\"demo\"
-            document.getElementById(\"demo\").innerHTML = days + \"d \" + hours + \"h \"
-                + minutes + \"m \" + seconds + \"s \";
-        
-            // If the count down is over, write some text
-            if (distance < 0 || isNaN(distance)) {
-              $('#demo').css('color', '#a71d2a');
-                clearInterval(x);
-                document.getElementById(\"demo\").innerHTML = \"EXPIRED\";
-            }
-            } else if (isNaN(distance)) {
-              $('#demo').css('color', '#a71d2a');
-                clearInterval(x);
-                document.getElementById(\"demo\").innerHTML = \"EXPIRED\";
-            }
-        }, 1000);
-
-        $('#ShowBidForm').click(function(){
-            $('#BidForm').toggle(500);
-            
-      });
-    });
-    
-   
+  
     
     //Ajax to review submit
     $('#reviewSend').on('click',function(event)
@@ -541,30 +462,31 @@
     }
     }
     
-    $('#writeNewMsgSend').on('click',function(event)
-    {
-        event.preventDefault();
-        if($('#message_footer-content').val() !=''){
-            $('#writeNewMsg').modal('hide');
-            $.ajax({
-            url : $(this).attr(' action '),
-            type : 'POST',
-            dataType: 'json',
-            data: {
-            'title' : $('#dialog_footer-title').val(),
-            'text' : $('#message_footer-content').val(),
-            'receiver_id' : $('.receiver').attr('value'),
-            'sender_id' : $('.sender').attr('value'),
-            },
-            success: function(data) {
-                $('.new__bid__alert').show(200);
-            }
-        }); 
-        
-        } else {
-        alert('please contact webmaster');
-        }
-    });
+//    $('#writeNewMsgSend').on('click',function(event)
+////    {
+////        event.preventDefault();
+////        if($('#message_footer-content').val() !=''){
+////            $('#writeNewMsg').modal('hide');
+////            $.ajax({
+//////            url : $(this).attr(' action '),
+////            url: '$messageUrl',
+////            type : 'POST',
+//////            dataType: 'json',
+////            data: {
+////            'title' : $('#dialog_footer-title').val(),
+////            'text' : $('#message_footer-content').val(),
+////            'receiver_id' : $('.receiver').attr('value'),
+////            'sender_id' : $('.sender').attr('value'),
+////            },
+////            success: function(data) {
+////                $('.new__bid__alert').show(200);
+////            }
+////        }); 
+////        
+////        } else {
+////        alert('please contact webmaster');
+////        }
+////    });
     
     // Ajax to add a bid on this Job
     

@@ -19,21 +19,21 @@ use Yii;
 class JobController extends Controller
 {
 
-    public function actionIndex()
-    {
-        $model = new JobForm();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->refresh();
-        }
-        return $this->render('index', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * @return string
-     */
+//    public function actionIndex()
+//    {
+//        $model = new JobForm();
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->refresh();
+//        }
+//        return $this->render('index', [
+//            'model' => $model,
+//        ]);
+//    }
+//
+//    /**
+//     * @return string
+//     */
     public function actionAddjob()
     {
          $this->layout = 'addjob/main';
@@ -83,6 +83,8 @@ class JobController extends Controller
         //If the email is verified
         $data['employeerEmailVer'] = $user->confirmed_at;
 
+
+        //Employer username - use it
         $data['bidStatusHire'] = Bids::find()
             ->where(['job_id'=>$id])
             ->andWhere(['status'=> 0])
@@ -96,7 +98,7 @@ class JobController extends Controller
 
         $data['bid'] = new Bids();
 
-        $data['message'] = new Message();
+        $data['message'] = new Message;
 
         $post = Job::find()
             ->where(['id' => $data['model']['id']])

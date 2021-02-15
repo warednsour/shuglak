@@ -109,6 +109,7 @@ $categoryName = 'title_' . Yii::$app->language;
 
 </div>
 </div>
+<?php echo $this->render('../chat/chatbox.php');?>
 <?php
 $actionIndex = Url::to(['ajax/filter']);
 
