@@ -20,8 +20,6 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "dektrium/yii2-user": "^0.9.14",
         "ext-json": "*",
-        "thyseus/yii2-message": "^0.4.2",
-        "bubasuma/yii2-simplechat": "^2.0",
         "venkatesanchinna/yii2-livechat": "^1.0",
         "yiisoft/yii2-twig": "^2.0.4",
         "bower-asset/twig.js" : "0.8.4@stable",

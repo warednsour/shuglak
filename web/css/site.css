@@ -515,8 +515,43 @@ input#file-upload-button {
 .not-verified {
     color: #dc3545;
 }
+/*this is very important for the Bootstrap Modal to show don't Change it
+Don't touch the code bellow
+*/
 .show {
     opacity: unset;
+}
+/*Don't touch the code above*/
+.place-bid-container {
+    padding: 2%;
+}
+
+.place-bid-container h5 {
+    margin: 0px;
+    font-size: 2rem;
+}
+.place-bid-container p {
+    font-size: 1.5rem;
+}
+.hidden {
+    display: none;
+}
+
+#jobid {
+    display: none;
+}
+
+#BidForm {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 14px;
+    background: #ececec;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.new__bid__alert {
+    display: none;
 }
 /*<<<<<<<<<<       SHOW JOB OFFER        >>>>>>>>>>>>*/
 
@@ -814,7 +849,7 @@ input#file-upload-button {
 }
 
 .verified {
-    font-size: 50px;
+    font-size: 10px;
     color: green;
 }
 

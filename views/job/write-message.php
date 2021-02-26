@@ -1,56 +1,67 @@
 <?php
+    use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
+    use yii\bootstrap\Modal;
+?>
 
-use app\models\DialogForm;
-use yii\bootstrap\Modal;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\helpers\Url;
+            <p><?=Yii::t('main','Congratulations! You have been hired for this Job now you can write a message to the employer')?></p>
+            <a class="btn btn-info " data-toggle="modal" data-target="#writeNewMsg">Write Message</a>
+<?php
 
 $footer =
     Html::tag(
         'button',
-        Yii::t('main', 'Cancel'),
+        'Cancel',
         [
+            'id' => 'close-modal-msg',
             'type' => 'button',
             'class' => 'btn btn-secondary',
             'data-dismiss' => 'modal',
 
         ]
     )
+
     .
     Html::tag(
         'span',
-        Yii::t('main', 'Send'),
+        'Send',
         [
             'id' => 'writeNewMsgSend',
             'class' => 'btn btn-primary',
+//                'onClick' => 'hideMsgSend()',
+            'type' => 'submit',
         ]
     );
-
+//    .
+//    $success;
 Modal::begin(
     [
+
         'id' => 'writeNewMsg',
-        'header' => Yii::t('main', 'Write New Message'),
+        'header' => 'Write New Message',
         'headerOptions' => ['class' => 'modal-title arab'],
         'closeButton' => ['class' => 'close arab-close-modal', 'tag' => 'button', 'label' => '&times;'],
         'bodyOptions' => ['class' => 'modal-body arab'],
         'footer' => $footer,
+
     ]
 );
-$model = new DialogForm;
+
+
 $form = ActiveForm::begin(
     [
-        'id' => 'dialog_footer-form',
-        'action' => '/ajax/dialog',
+        'id' => 'message-form',
+        'action' => '/ajax/message',
+        'method' => 'POST',
     ]
 );
 
-echo $form->field($model, 'title')->textInput(['id' => 'dialog_footer-title'])->label(Yii::t('main', 'Title'));
-echo $form->field($model, 'content')->textarea(['rows' => '3', 'id' => 'dialog_footer-content'])->label(Yii::t('main', 'Message'));
-echo $form->field($model, 'user_to')->HiddenInput(['id' => 'dialog_footer-user_to'])->label(false);
-echo $form->field($model, 'dialog_id')->HiddenInput(['value' => 0, 'id' => 'dialog_footer-dialog_id'])->label(false);
-
-
+$receiver = $data['employeer']->user_id;
+echo $form->field($data['message'], 'title')->textInput(['value' => '', 'placeholder' => 'write your title here', 'id' => 'dialog_footer-title'])->label('Title');
+echo $form->field($data['message'], 'text')->textarea(['rows' => '3', 'id' => 'message_footer-content'])->label('Message');
+echo $form->field($data['message'], 'receiver_id')->HiddenInput(['value' => $receiver, 'id' => $receiver, 'class'=>'receiver'])->label(false);
+echo $form->field($data['message'], 'sender_id')->HiddenInput(['value' => Yii::$app->user->getId(), 'id' => Yii::$app->user->getId(),'class'=>'sender'])->label(false);
 ActiveForm::end();
 
 Modal::end();
+?>

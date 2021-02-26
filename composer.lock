@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9fbbb5dfdcf57e17c86ad5c10a36605",
+    "content-hash": "1c3485a108fb4b5218e587fe05a14716",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -209,55 +209,6 @@
             "license": [
                 "MIT"
             ]
-        },
-        {
-            "name": "bubasuma/yii2-simplechat",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bubasuma/yii2-simplechat.git",
-                "reference": "1d3c2c30df72d29ff1a0bf62832275f14893a1de"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bubasuma/yii2-simplechat/zipball/1d3c2c30df72d29ff1a0bf62832275f14893a1de",
-                "reference": "1d3c2c30df72d29ff1a0bf62832275f14893a1de",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "~2.0.0"
-            },
-            "require-dev": {
-                "bower-asset/twig.js": "0.8.4@stable",
-                "yiisoft/yii2-bootstrap": "~2.0.0",
-                "yiisoft/yii2-faker": "*",
-                "yiisoft/yii2-twig": "dev-master"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "bubasuma\\simplechat\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Buba Suma",
-                    "email": "bubasuma@gmail.com"
-                }
-            ],
-            "description": "A simple chat for your yii2 application",
-            "keywords": [
-                "chat",
-                "conversation",
-                "extension",
-                "message",
-                "yii2"
-            ],
-            "time": "2016-06-19T07:00:25+00:00"
         },
         {
             "name": "budyaga/yii2-cropper",
@@ -1982,57 +1933,6 @@
                 }
             ],
             "time": "2020-02-27T09:26:54+00:00"
-        },
-        {
-            "name": "thyseus/yii2-message",
-            "version": "0.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://gitlab.com/thyseus/yii2-message.git",
-                "reference": "4ede5e6abbbb798043f5d920228ebcbe9265d6a3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/thyseus%2Fyii2-message/repository/archive.zip?sha=4ede5e6abbbb798043f5d920228ebcbe9265d6a3",
-                "reference": "4ede5e6abbbb798043f5d920228ebcbe9265d6a3",
-                "shasum": ""
-            },
-            "require": {
-                "kartik-v/yii2-widget-select2": "^2.0",
-                "rmrevin/yii2-fontawesome": "~3.0",
-                "yiisoft/yii2": "^2.0.0",
-                "yiisoft/yii2-bootstrap": "^2.0.0",
-                "yiisoft/yii2-swiftmailer": "^2.0.0"
-            },
-            "require-dev": {
-                "codeception/specify": "^0.4.3",
-                "codeception/verify": "^0.3.1",
-                "yiisoft/yii2-codeception": "^2.0.0"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "thyseus\\message\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "Herbert Maschke",
-                    "email": "thyseus@gmail.com",
-                    "homepage": "https://github.com/thyseus/yii2-message"
-                }
-            ],
-            "description": "Message system for Yii2",
-            "keywords": [
-                "message",
-                "yii2",
-                "yii2-user"
-            ],
-            "time": "2019-10-10T05:32:35+00:00"
         },
         {
             "name": "twbs/bootstrap",

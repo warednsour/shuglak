@@ -225,6 +225,41 @@ $('#writeNewMsgSend').on('click',function (event) {
     console.log(e)
 });
 
+//Place a bid
+$('#placeBidNow').on('click',function (e) {
+         e.preventDefault();
+        let paidField = $('#paid');
+        let bidForm =  $('#bidForm');
+        let description = $('#description');
+        if(description !== "") {
+            $.ajax({
+                url: bidForm.attr('action'),
+                type: 'POST',
+                data: bidForm.serializeArray(),
+            })
+                .done(function(response) {
+                    console.log("Wow you made a bid" + response);
+                })
+                .fail(function(jqXHR, textStatus, error) {
+                    console.log("error" + error);
+                    console.log("jqXHR" + jqXHR);
+                    console.dir(jqXHR);
+                    console.log("textStatus" + textStatus);
+                }
+            );
+
+        }
+
+        });
+        // if(isNaN(paidField.val()) || paidField.val() !== ''){
+        //    return;
+        // }
+
+$('#bidForm').on('submit',function (e) {
+    e.preventDefault();
+    console.log(e)
+});
+
 // $('#writeNewMsgSend').on('click',function(event)
 // {
 //     // event.preventDefault();
