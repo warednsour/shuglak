@@ -19,18 +19,6 @@ class UploadController extends SiteController
 
             if (Yii::$app->request->isPost) {
                 $files =  UploadedFile::getInstancesByName('Job[file]');
-                if($files[0] !== NULL){
-                    for($i = 0; $i >= count($files); $i++){
-
-                        array_push($files, $files->baseName . '.' . $files->extension);
-                    }
-                    $filename = date("Y-M-d-H-i-s-u").'---'. Yii::$app->user->id;
-                    $path = mkdir( "../uploads/" . date("Y-M-d-H-i-s-u").'---'. Yii::$app->user->id   , 0777, true);
-                    foreach ($files as $file) {
-                        $file->saveAs("../uploads/". $filename .'/'  . $file->baseName . '.' . $file->extension);
-                    }
-                }
-
                 $file = implode(',',$files);
 
 
@@ -64,6 +52,17 @@ class UploadController extends SiteController
                 ]);
 
                 $model->save();
+                if($files[0] !== NULL){
+                    $job_id = $model->getPrimaryKey();
+                    for($i = 0; $i >= count($files); $i++){
+                        array_push($files, $files->baseName . '.' . $files->extension);
+                    }
+                    $filename = $job_id.'-'. Yii::$app->user->id;
+                    $path = mkdir( "../uploads/jobs/" . $job_id .'-'. Yii::$app->user->id   , 0777, true);
+                    foreach ($files as $file) {
+                        $file->saveAs("../uploads/jobs/". $filename .'/'  . $file->baseName . '.' . $file->extension);
+                    }
+                }
                 Yii::$app->session->setFlash('success', Yii::t('main','Job offer created successfully'));
             } else {
                 Yii::$app->session->setFlash('error',\Yii::t('main', 'Something went wrong'));
@@ -120,6 +119,13 @@ class UploadController extends SiteController
             $this->goHome();
             Yii::$app->session->setFlash('registerFirst' , \Yii::t('main', 'registerFirst'));
         }
+    }
+
+    public function actionAvatar()
+    {
+        //Uploading the avatar of current user , this from
+        $user_id = Yii::$app->user->id;
+
     }
     public function url_slug($str, $options = array())
     {

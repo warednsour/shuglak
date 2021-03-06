@@ -11,14 +11,20 @@ use yii\widgets\ActiveForm;
 <?php
 
 if (!Yii::$app->user->isGuest && Yii::$app->user->identity) {
-    foreach ($data['bids'] as $bidder) { ?>
-        <div class="bid">
+    foreach ($data['bids'] as $bid) {
+        foreach ($data['bidders'] as $bidder) {
+            if($bid->user_id == $bidder->user_id){
 
+
+       ?>
+        <div class="bid">
+            <p class="bid-title"><?= $bid->title?></p>
+            <p class="bid-description"><?= $bid->description?></p>
+            <div class="bidder-information">
+                <img src="<?= Yii::getAlias("@webroot/uploads/2021-Mar-04-16-36-14-000000---4/azad.png")?>" alt="">
+            </div>
         </div>
-        $idBidder = $bidder->id;
-        echo $idBidder;
-        echo $bidder->title . "<br>";
-        echo $bidder->description . "<br>";
+
         echo $bidder->paid . "<br>";
         echo $bidder->job_id . "<br>";
         echo $bidder->user_id . "<br>";
@@ -30,26 +36,26 @@ if (!Yii::$app->user->isGuest && Yii::$app->user->identity) {
             data-toggle="modal" data-target="#writeNewMsgToBidder">Write Message to bidder
         </button>
 
-        <?php if ($bidder->status == 0) { ?>
+        <?php if ($bid->status == 0) { ?>
             <button id="hire" class="btn btn-outline-dark btn-group-sm btn-danger hireHim"
-                    value="<?= $idBidder ?>" formmethod="post"> hire him
+                    value="<?= $bid->id ?>" formmethod="post"> hire him
             </button>
-        <?php } elseif ($bidder->status == 1) { ?>
+        <?php } elseif ($bid->status == 1) { ?>
             <div class="row">
                 <div class="col-md-4">
                     <button id="jobDone" class="btn btn-outline-dark btn-group-sm btn-danger jobDone"
-                            value="<?= $idBidder ?>" formmethod="post">The job is done
+                            value="<?= $bid->id ?>" formmethod="post">The job is done
                     </button>
                     <button id="jobNot" class="btn btn-outline-dark btn-group-sm btn-danger jobNot"
-                            value="<?= $idBidder ?>" formmethod="post"> The job was not complited
+                            value="<?= $bid->id ?>" formmethod="post"> The job was not complited
                     </button>
                 </div>
             </div>
-        <?php } elseif ($bidder->status == 2 || $bidder->status == 3) { ?>
+        <?php } elseif ($bid->status == 2 || $bid->status == 3) { ?>
             <div class="row">
                 <div class="col-md-4">
                     <button id="jobDone" data-toggle="modal" data-target="#review" class="btn btn-dark btn-group-sm btn-block feedback"
-                            value="<?= $idBidder ?>" formmethod="post">leave a review please!
+                            value="<?= $bid->id ?>" formmethod="post">leave a review please!
                     </button>
                 </div>
             </div>
@@ -114,6 +120,8 @@ if (!Yii::$app->user->isGuest && Yii::$app->user->identity) {
             <?php
         }
     }
+}
+}
 }
 //                 }
 //

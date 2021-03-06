@@ -1,6 +1,6 @@
 <?php
     use yii\helpers\Url;
-    ?>
+?>
 
 <div class="container">
     <?php
@@ -18,10 +18,14 @@
     } elseif ($data['userIsEmployeer'] !== true) {
         echo $this->render('place-bid.php',compact('data'));
     }
+    ?>
+    <div class="success">
+        Hello
+    </div>
 
-    #List of bids on this job
-   echo $this->render('bidders.php',compact('data'));
 
+  <?php #List of bids on this job
+    echo $this->render('bidders.php',compact('data'));
 
     $url = Url::to(['/ajax/addbid']);
     $userId = Yii::$app->user->getId();

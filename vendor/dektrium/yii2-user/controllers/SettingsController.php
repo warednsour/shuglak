@@ -29,6 +29,8 @@ use app\models\Message;
 use Yii;
 use app\models\Category;
 use app\models\cities;
+use yii\web\UploadedFile;
+
 /**
  * SettingsController manages updating user settings (e.g. profile, email and password).
  *
@@ -162,7 +164,9 @@ class SettingsController extends Controller
             $model = \Yii::createObject(Profile::className());
             $model->link('user', \Yii::$app->user->identity);
         }
-
+//        if(Yii::$app->request->post()) {
+//            return var_dump(Yii::$app->request->post()); die;
+//        }
         $event = $this->getProfileEvent($model);
 
         //Categories
@@ -184,7 +188,6 @@ class SettingsController extends Controller
             $model->save() ;
 //            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
             $this->trigger(self::EVENT_AFTER_PROFILE_UPDATE, $event);
-//
             return $this->refresh();
         }
 

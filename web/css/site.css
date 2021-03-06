@@ -553,6 +553,15 @@ Don't touch the code bellow
 .new__bid__alert {
     display: none;
 }
+
+
+/******** <Bids list> ************/
+.bid {
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.12);    margin-bottom: 21px;
+
+}
+/******** </Bids list> ***********/
 /*<<<<<<<<<<       SHOW JOB OFFER        >>>>>>>>>>>>*/
 
 

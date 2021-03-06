@@ -47,7 +47,7 @@ $cityName = 'city_' . Yii::$app->language;
                         'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
                         'labelOptions' => ['class' => 'col-lg-3 control-label'],
                     ],
-                    'enableAjaxValidation' => true,
+                    'enableAjaxValidation' => false,
                     'enableClientValidation' => false,
                     'validateOnBlur' => false,
                 ]); ?>
@@ -82,7 +82,7 @@ $cityName = 'city_' . Yii::$app->language;
                 <?= $form->field($model, 'bio')->textarea() ?>
                 <?php
                     echo $form->field($model, 'photo')->widget(Widget::className(), [
-                    'uploadUrl' => Url::toRoute('/user/user/uploadPhoto'),
+                    'uploadUrl' => Url::toRoute('/ajax/change-avatar'),
                 ])
                 ?>
                 <div class="form-group">

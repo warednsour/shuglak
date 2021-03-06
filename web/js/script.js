@@ -227,26 +227,32 @@ $('#writeNewMsgSend').on('click',function (event) {
 
 //Place a bid
 $('#placeBidNow').on('click',function (e) {
-         e.preventDefault();
-        let paidField = $('#paid');
+        let bidContainer = $('.place-bid-container');
+        let paidField = $('#paid').val();
         let bidForm =  $('#bidForm');
-        let description = $('#description');
-        if(description !== "") {
+        let description = $('#description').val();
+        let title = $('#title').val();
+        if(description !== "" &&  title !== "" && !isNaN(paidField)) {
             $.ajax({
                 url: bidForm.attr('action'),
                 type: 'POST',
                 data: bidForm.serializeArray(),
+                dataType: 'json',
             })
                 .done(function(response) {
-                    console.log("Wow you made a bid" + response);
+                    bidContainer.toggle(500);
+
                 })
                 .fail(function(jqXHR, textStatus, error) {
+                    alert('Please contact a web master');
                     console.log("error" + error);
                     console.log("jqXHR" + jqXHR);
                     console.dir(jqXHR);
                     console.log("textStatus" + textStatus);
                 }
             );
+
+        } else {
 
         }
 
@@ -255,9 +261,8 @@ $('#placeBidNow').on('click',function (e) {
         //    return;
         // }
 
-$('#bidForm').on('submit',function (e) {
+$('#bidForm').on('beforeSubmit',function (e) {
     e.preventDefault();
-    console.log(e)
 });
 
 // $('#writeNewMsgSend').on('click',function(event)

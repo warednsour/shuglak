@@ -17,6 +17,8 @@ Thumbs.db
 
 #don't ignore changes to dektrium
 !/vendor/dektrium/*
+#don't ignore changes to budyaga
+!/vendor/bedyaga/*
 # composer itself is not needed
 composer.phar
 

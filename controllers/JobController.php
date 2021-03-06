@@ -12,6 +12,7 @@ use app\models\JobForm;
 use app\models\Job;
 use dektrium\user\models\Profile;
 use dektrium\user\models\User;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use yii\web\Controller;
 use Yii;
 use yii\web\View;
@@ -19,6 +20,12 @@ use yii\web\View;
 
 class JobController extends Controller
 {
+
+    public function actionWard()
+    {
+       $myfiles = array_diff(scandir("../uploads/2021-Mar-04-16-36-14-000000---4"),array('.','..'));
+       copy("../uploads/2021-Mar-04-16-36-14-000000---4/main page.png","../web/images/main page.png");
+    }
 
     public function actionAddjob()
     {
@@ -87,11 +94,17 @@ class JobController extends Controller
 
         //Get the bids on this job using the job_id each bid has a job_id, The bids are showed to all the users
         $data['bids'] = Bids::getBids($id);
+        $data['bidders'] = [];
+        foreach ($data['bids'] as $bid){
+            $profile =  Profile::findOne($bid->user_id);
+           array_push( $data['bidders'],$profile) ;
+//            return var_dump($profile->user_id);
+        }
 
         /*
          * User showing this job
          * */
-
+        $data['currentUserId'] = Yii::$app->user->id;
         //Check if current user all ready applied for this Job
         $data['bidStatus'] = Bids::userAllReadyAppliedForJob($id);
         if(is_object($data['bidStatus'])) {
