@@ -21,19 +21,7 @@ use yii\widgets\ActiveForm;
 
 class AjaxController extends SiteController
 {
-    public function actions()
-    {
-        if (Yii::$app->user->identity) {
-            return [
-                'change-avatar' => [
-                    'class' => 'budyaga\cropper\actions\UploadAction',
-                    'url' => '../uploads/users-photos/' . Yii::$app->user->identity->getId(),
-                    'type' => 'user_avatar',
-                    'path' => '../uploads/users-photos/' . Yii::$app->user->identity->getId(),
-                ]
-            ];
-        }
-    }
+
     public $enableCsrfValidation = false;
     //Never to Change
     CONST SPECIAL_MESSAGE_REGEX = '!@#$%^&*(-+)2021SHUGHLAK1202(+-)*&^%$#@!';
@@ -45,7 +33,20 @@ class AjaxController extends SiteController
 
 
 
-
+    public function actions()
+    {
+        $userId = Yii::$app->user->id;
+        if (Yii::$app->user->identity) {
+            return [
+                'change-avatar' => [
+                    'class' => 'budyaga\cropper\actions\UploadAction',
+                    'url' =>  Yii::getAlias("@web").'/images/users-photos/' . Yii::$app->user->identity->getId(),
+                    'type' => 'user_avatar',
+                    'path' => '@app/web/images/users-photos/' . Yii::$app->user->identity->getId(),
+                ]
+            ];
+        }
+    }
 
     /*
      * Ajax request

@@ -23,7 +23,7 @@ use kartik\select2\Select2;
  */
 
 $this->title = Yii::t('user', 'Profile settings');
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 $categoryTitle = 'title_' . Yii::$app->language;
 $cityName = 'city_' . Yii::$app->language;
 ?>
@@ -32,7 +32,7 @@ $cityName = 'city_' . Yii::$app->language;
 
 <div class="row">
     <div class="col-md-3">
-        <?= $this->render('_menu') ?>
+        <?//= $this->render('_menu') ?>
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
@@ -51,7 +51,12 @@ $cityName = 'city_' . Yii::$app->language;
                     'enableClientValidation' => false,
                     'validateOnBlur' => false,
                 ]); ?>
-
+                <?php
+                echo $form->field($model, 'photo')->widget(Widget::className(), [
+                    'uploadUrl' => Url::toRoute('/ajax/change-avatar'),
+                    'aspectRatio'=>1,
+                ])
+                ?>
                 <?= $form->field($model, 'name') ?>
                 <?= $form->field($model, 'company_name') ?>
                 <?= $form->field($model, 'public_email') ?>
@@ -80,14 +85,10 @@ $cityName = 'city_' . Yii::$app->language;
                 ?>
                 <?= $form->field($model, 'city')->dropDownList(ArrayHelper::map($cities,'id',"$cityName"), ['prompt'=>'Select...']) ?>
                 <?= $form->field($model, 'bio')->textarea() ?>
-                <?php
-                    echo $form->field($model, 'photo')->widget(Widget::className(), [
-                    'uploadUrl' => Url::toRoute('/ajax/change-avatar'),
-                ])
-                ?>
+
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success crop-photo']) ?>
                         <br>
                     </div>
                 </div>

@@ -24,6 +24,7 @@ use yii\db\ActiveRecord;
  * @property string  $gravatar_email
  * @property string  $gravatar_id
  * @property string  $location
+ *  @property string $fav_categories
  * @property string  $website
  * @property string  $bio
  * @property string  $timezone
