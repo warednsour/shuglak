@@ -26,18 +26,21 @@ $this->title = Yii::t('user', 'Profile settings');
 //$this->params['breadcrumbs'][] = $this->title;
 $categoryTitle = 'title_' . Yii::$app->language;
 $cityName = 'city_' . Yii::$app->language;
+$user = Yii::$app->user->identity;
+
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
-    <div class="col-md-3">
-        <?//= $this->render('_menu') ?>
+<div class="row profile-settings-container">
+    <div class="col-md-3 user-info">
+        <?= $this->render('_menu') ?>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-7 user-edit-info">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <?= Html::encode($this->title) ?>
+               <h2><?= Html::encode($this->title) ?></h2>
+                <hr>
             </div>
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
@@ -51,29 +54,34 @@ $cityName = 'city_' . Yii::$app->language;
                     'enableClientValidation' => false,
                     'validateOnBlur' => false,
                 ]); ?>
-                <?php
-                echo $form->field($model, 'photo')->widget(Widget::className(), [
-                    'uploadUrl' => Url::toRoute('/ajax/change-avatar'),
-                    'aspectRatio'=>1,
-                ])
-                ?>
+
+                    <?php
+                    echo $form->field($model, 'photo')->widget(Widget::className(), [
+                        'uploadUrl' => Url::toRoute('/ajax/change-avatar'),
+                        'aspectRatio'=>1,
+                    ])
+                    ?>
+
+
                 <?= $form->field($model, 'name') ?>
                 <?= $form->field($model, 'company_name') ?>
                 <?= $form->field($model, 'public_email') ?>
                 <?= $form->field($model, 'telephone_number') ?>
-<!--                --><?//= $form->field($model, 'fav_categories',[
-//                        'options' => ['class' => 'selectpicker' , 'data-max-option ="3"'],
-//                        'template' =>
-//                    '{label}<p class="sub-label">' . \Yii::t("main","Let it be Uniqe!").'</p> {input}{error}{hint}'
-//                ])->dropDownList(ArrayHelper::map($categories,'id',"$categoryTitle"),['prompt'=>\Yii::t("main","Select a category"), 'multiple'=>'multiple',]) ?>
-<!--                --><?php
+                <!--                --><?//= $form->field($model, 'fav_categories',[
+                //                        'options' => ['class' => 'selectpicker' , 'data-max-option ="3"'],
+                //                        'template' =>
+                //                    '{label}<p class="sub-label">' . \Yii::t("main","Let it be Uniqe!").'</p> {input}{error}{hint}'
+                //                ])->dropDownList(ArrayHelper::map($categories,'id',"$categoryTitle"),['prompt'=>\Yii::t("main","Select a category"), 'multiple'=>'multiple',]) ?>
+                <!--                --><?php
                 echo '<label class="control-label">'.\Yii::t("main","Favorite Categories").'</label>';
+                $model->fav_categories = $user->profile->getFavoriteCategoriesForInput();
                 echo $form->field($model,'fav_categories')->widget(Select2::className(),[
                     'language' => Yii::$app->language,
+                    'showToggleAll' => false,
                     'name' => 'fav_categories',
                     'data' => ArrayHelper::map($categories,'id',"$categoryTitle"),
                     'maintainOrder' => true,
-                    'options' => ['placeholder' => \Yii::t("main","Select a category"), 'multiple' => true],
+                    'options' => [ 'placeholder' => \Yii::t("main","Select a category"), 'multiple' => true],
                     'pluginOptions' => [
                         'tags' => true,
                         'maximumInputLength' => 2,
@@ -88,7 +96,7 @@ $cityName = 'city_' . Yii::$app->language;
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success crop-photo']) ?>
+                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success crop-photo2']) ?>
                         <br>
                     </div>
                 </div>

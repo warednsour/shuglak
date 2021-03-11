@@ -475,7 +475,7 @@ input#file-upload-button {
     padding: 2%;
     justify-content: space-between;
 }
-.job-information, .employer-details  {
+.job-information, .employer-details , .user-info , .user-edit-info {
     box-shadow: 0 0 4px 0 rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.12);
     padding: 1%;
 }
@@ -783,6 +783,7 @@ Don't touch the code bellow
     background-size: cover !important;
     text-align: center;
 }
+
 /****** </account> ******/
 
 /******** <reviews> ******/
@@ -837,7 +838,6 @@ Don't touch the code bellow
     left: auto;
 }
 /******** </reviews> ******/
-
 
 
 /*>>>>>>>>>>> ACCOUNT <<<<<<<<<<<< */
@@ -1043,6 +1043,53 @@ img{
     overflow-y: auto;
 }
 /*>>>>>>>>>>> MESSAGES <<<<<<<<<< */
+
+/*<<<<<<<<<< SETTINGS >>>>>>>>>>>> */
+
+
+/******** <Profile Settings> ******/
+
+.profile-settings-container {
+    background-color: #F2F2F2;
+    justify-content: space-between;
+    flex-direction: row !important;
+}
+
+.user-info {
+    background-color: white;
+    margin-left: 5%;
+    margin-top: 2%;
+    height: fit-content;
+}
+.user-edit-info {
+    background-color: white;
+    margin-right: 7%;
+    margin-top: 2%;
+}
+
+.panel-heading > h2 {
+    text-align: center;
+}
+
+.profile-strength {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cropper-label {position:relative;}
+.cropper-label .cover { width: 98%; height: 98%; position: absolute;top: 1%;left: 1%;opacity: 0.3;}
+.new-photo-area .cropper-label span { display: block; margin-top: 45%; text-shadow: 1px 1px 3px #6e6e6e; }
+
+/******** </Profile Settings> ******/
+
+
+
+/*>>>>>>>>>>>> SETTINGS <<<<<<<<<<< */
+
+
+
 
 /*<<<<<<<<<< CHAT BOX >>>>>>>>>>>*/
 .chat-box {

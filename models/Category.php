@@ -49,7 +49,6 @@ class Category extends \yii\db\ActiveRecord
             ->where(['id' => $categoryId])
             ->one();
         if(\Yii::$app->language == 'en') {
-
             return $$category->title_en;
         } elseif(\Yii::$app->language == 'ar') {
             return  $$category->title_ar;

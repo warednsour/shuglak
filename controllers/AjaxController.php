@@ -71,7 +71,7 @@ class AjaxController extends SiteController
            // User can't bid twice and he will not be able to, but for double check
            $bidIsUniqe =  Bids::userAllReadyAppliedForJob($job_id);
            if(is_object($bidIsUniqe)) {
-               return false;
+               return $result['result'];
            }
 
            if($model->load($request->post()))

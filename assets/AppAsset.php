@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/circle.css'
     ];
 //    public $jsOptions = array(
 //        'position' => \yii\web\View::POS_HEAD

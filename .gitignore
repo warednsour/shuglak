@@ -11,14 +11,14 @@ nbproject
 
 # windows thumbnail cache
 Thumbs.db
+# don't ignore changes to dektrium
+!/vendor/dektrium/*
+# don't ignore changes to budyaga
+!/vendor/budyaga/*
 
 # composer vendor dir
 /vendor/*
 
-#don't ignore changes to dektrium
-!/vendor/dektrium/*
-#don't ignore changes to budyaga
-!/vendor/budyaga/*
 # composer itself is not needed
 composer.phar
 

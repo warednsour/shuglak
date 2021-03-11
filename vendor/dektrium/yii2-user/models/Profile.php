@@ -11,25 +11,23 @@
 
 namespace dektrium\user\models;
 
+use app\models\Category;
 use app\models\Job;
 use dektrium\user\traits\ModuleTrait;
 use yii\db\ActiveRecord;
-
 /**
  * This is the model class for table "profile".
  *
  * @property integer $user_id
  * @property string  $name
  * @property string  $company_name
- * @property string  $gravatar_email
- * @property string  $gravatar_id
- * @property string  $location
- *  @property string $fav_categories
- * @property string  $website
+ * @property integer $city
+ * @property string  $fav_categories
+ * @property string  $telephone_number
+ * @property string  $photo
  * @property string  $bio
- * @property string  $timezone
  * @property User    $user
- *
+ * @property string  $public_email
  * @author Dmitry Erofeev <dmeroff@gmail.com
  */
 class Profile extends ActiveRecord
@@ -43,20 +41,60 @@ class Profile extends ActiveRecord
 //    {
 //        $this->module = \Yii::$app->getModule('user');
 //    }
+    /**
+     * Returns integer out of 100 to show the strength of the profile, completed or not
+     * @return integer
+     */
+    public function getProfileStrength()
+    {
+        $point = 12.5;
+        $stringth = 0;
+        $profile_name = $this->name;
+        $profile_company_name = $this->company_name;
+        $profile_photo = $this->photo;
+        $profile_bio = $this->bio;
+        $profile_email = $this->public_email;
+        $profile_telephone_number = $this->telephone_number;
+        $profile_city = $this->city;
+        $profile_fav_cat = $this->fav_categories;
+        
+        if($profile_name !== '') {$stringth += $point;}
+        if($profile_bio !== '') {$stringth += $point;}
+        if($profile_email !== '') {$stringth += $point;}
+        if($profile_telephone_number !== ''){$stringth += $point;}
+        if($profile_company_name !== ''){$stringth += $point;}
+        if($profile_photo !== ''){$stringth += $point;}
+        if($profile_fav_cat !== ''){$stringth += $point;}
+        if($profile_city !== ''){$stringth += $point;}
 
+        return $stringth;
+    }
+
+    /**
+     * Returns favorite categories for the input field in the profile.php view for the form
+     * @return Array|NULL
+     */
+    public function getFavoriteCategoriesForInput()
+    {
+        return explode(',',$this->fav_categories);
+    }
     /**
      * Returns avatar url or null if avatar is not set.
      * @param  int $size
      * @return string|null
      */
-//    public function getAvatarUrl($size = 200)
-//    {
-//        return '//gravatar.com/avatar/' . $this->gravatar_id . '?s=' . $size;
-//    }
-
+    public function getAvatarUrl($size = 200)
+    {
+        if($this->photo!='') {
+            return $this->photo . '?s=' . $size;
+        } else {
+            return '/basic/web/images/users-photos/no-avatar.png'. '?s=' . $size;;
+        }
+    }
     /**
      * @return \yii\db\ActiveQueryInterface
      */
+
     public function getUser()
     {
         return $this->hasOne($this->module->modelMap['User'], ['id' => 'user_id']);

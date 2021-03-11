@@ -182,8 +182,10 @@ class SettingsController extends Controller
         $this->trigger(self::EVENT_BEFORE_PROFILE_UPDATE, $event);
 
         if ($model->load(\Yii::$app->request->post())) {
-            if(isset(\Yii::$app->request->post('Proifle')['fav_categories'])){
+            if($fav_categories != ''){
                 $model->fav_categories = implode(',',$fav_categories);
+            } else {
+                $model->fav_categories = '';
             }
             $model->save() ;
 //            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));

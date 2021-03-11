@@ -83,6 +83,12 @@ class User extends ActiveRecord implements IdentityInterface
     public static $usernameRegexp = '/^[-a-zA-Z0-9_\.@]+$/';
 
     /**
+     * Returns avatar url or null if avatar is not set.
+     * @param  int $size
+     * @return string|null
+     */
+  
+    /**
      * @return Finder
      * @throws \yii\base\InvalidConfigException
      */
