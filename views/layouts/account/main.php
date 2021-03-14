@@ -42,7 +42,7 @@ AppAsset::register($this);
 
 
 
-<?= $this->render('footer.php')?>
+<?//= $this->render('footer.php')?>
 <<script>
    $(".logo").hover(
        function () {

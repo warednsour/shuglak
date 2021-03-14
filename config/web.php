@@ -18,6 +18,7 @@ $config = [
             'class' => 'yii\rbac\DbManager',
         ],
         'assetManager' => [
+       'forceCopy' => true,
             'bundles' => [
                 'kartik\grid\GridView' => [
 //                    'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle

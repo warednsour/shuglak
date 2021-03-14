@@ -54,7 +54,7 @@ AppAsset::register($this);
         }
     );
 </script>
-<?= $this->render('footer.php')?>
+<?//= $this->render('footer.php')?>
 </body>
 </html>
 <?php $this->endPage() ?>

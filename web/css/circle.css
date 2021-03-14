@@ -877,3 +877,22 @@
 .c100.orange.dark:hover > span {
   color: #e08833;
 }
+/* 03-13-2021 By: Ward Nsour warednsour@gmail.com*/
+.c100.red .bar, .c100.red .fill {
+  border-color: #dc3545 !important;
+}
+
+.c100.red:hover > span {
+  color: #dc3545;
+}
+.c100.yellow .bar, .c100.yellow .fill {
+  border-color: #ffc107 !important;
+}
+
+.c100.yellow:hover > span {
+  color: #ffc107;
+}
+
+
+
+

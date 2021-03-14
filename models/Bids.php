@@ -51,4 +51,22 @@ class Bids extends ActiveRecord
             ->andWhere(['user_id'=> \Yii::$app->user->getId()])
             ->one();
     }
+
+    public function getBidsCountForUser($user_id)
+    {
+        $bids = Bids::find()
+            ->where(['user_id' => $user_id])
+            ->all();
+        return count($bids);
+    }
+
+    public function getBidsDoneCountForUser($user_id)
+    {
+        $bids = Bids::find()
+            ->where(['user_id' => $user_id])
+            ->andWhere(['status' => 2])
+            ->all();
+
+        return count($bids);
+    }
 }

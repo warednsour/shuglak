@@ -69,7 +69,27 @@ class Profile extends ActiveRecord
 
         return $stringth;
     }
-
+    /**
+     * For the Circyle.css
+     * Returns color ( red , dark = yellow , orange , green )
+     * @return string
+     */
+    public function getProfileColorStrength()
+    {
+      $strength = Profile::getProfileStrength();
+      if ($strength >= 0 && $strength <= 35 ){
+          return 'red';
+      }
+      if ($strength > 35 && $strength <= 70){
+          return 'yellow';
+      }
+      if($strength > 70 && $strength <= 99) {
+          return  'orange';
+      }
+      if($strength == 100){
+          return  'green';
+      }
+    }
     /**
      * Returns favorite categories for the input field in the profile.php view for the form
      * @return Array|NULL
@@ -85,10 +105,52 @@ class Profile extends ActiveRecord
      */
     public function getAvatarUrl($size = 200)
     {
-        if($this->photo!='') {
+        if($this->photo !='') {
             return $this->photo . '?s=' . $size;
         } else {
             return '/basic/web/images/users-photos/no-avatar.png'. '?s=' . $size;;
+        }
+    }
+    /**
+     * Returns company name of user's profile
+     * @return string
+     */
+    public function getCompanyName()
+    {
+        if(\Yii::$app->user->id == \Yii::$app->user->getId())
+        {
+            return $this->company_name ? $this->company_name : $this->company_name = \Yii::t('main', 'Please tell others where do you work or the name of company you own');
+        } else {
+            return $this->company_name ? $this->company_name : $this->company_name = \Yii::t('main', 'Shughlak');
+
+        }
+    }
+    /**
+     * Returns city of user's profile
+     * @return string
+     */
+    public function getCity()
+    {
+        if(\Yii::$app->user->id == \Yii::$app->user->getId())
+        {
+            return $this->city ? $this->city : $this->city = \Yii::t('main', 'Please tell others where is your location');
+        } else {
+            return $this->city ? $this->city : $this->city = \Yii::t('main', 'Solar system');
+
+        }
+    }
+    /**
+     * Returns bio of user's profile
+     * @return string
+     */
+    public function getBio()
+    {
+        if(\Yii::$app->user->id == \Yii::$app->user->getId())
+        {
+            return $this->bio ? $this->bio : $this->bio = \Yii::t('main', 'Please write about yourself');
+        } else {
+            return $this->bio ? $this->bio : $this->bio = \Yii::t('main', 'User didn\'t write about himself');
+
         }
     }
     /**

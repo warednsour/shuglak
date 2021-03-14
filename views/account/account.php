@@ -3,6 +3,7 @@
 use kartik\rating\StarRating;
 
 $language = \Yii::$app->language;
+
 ?>
 
 <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -12,24 +13,25 @@ $language = \Yii::$app->language;
                 <div class="col-md-6 ml-auto mr-auto" style="text-align: center !important;">
                     <div class="profile">
                         <div class="edit">
-                            <button class="btn btn-fab btn-primary btn-round" rel="tooltip" title="" data-original-title="Edit your profile">
-                                <i class="fas fa-user-edit"></i>
-                            </button>
+                            <a href="<?=\yii\helpers\Url::toRoute(['user/settings/profile'])?>">
+                                <button class="btn btn-fab btn-primary btn-round" rel="tooltip" title="" data-original-title="Edit your profile">
+                                    <i class="fas fa-user-edit"></i>
+                                </button>
+                            </a>
                         </div>
                         <div class="avatar">
-                            <img src="<?= \Yii::$app->request->baseUrl?>/images/logo/logo.png?>" alt="" class ="account-img">
+                            <img src="<?= $data['profile']->getAvatarUrl(200)?>" alt="" class ="account-img">
                         </div>
                         <div class="account-name">
-                            <h3 class="account-title"> Ward Nsour</h3>
-                            <h6>Chrome for web Design</h6>
-                            <h6>As-Salt</h6>
+                            <h3 class="account-title"><?=$data['profile']->name ? $data['profile']->name : Yii::$app->user->identity->username ?></h3>
+                            <h6><?=$data['profile']->getCompanyName()?></h6>
+                            <h6><?=$data['profile']->getCity()?></h6>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="account-bio text-center">
-                <p>The best PHP developer in 21th century, amazing performance in bulding websites up
-                    from the ground and making everything looks great!
+                <p><?=$data['profile']->getBio()?>
                 </p>
             </div>
             <div class="row">
@@ -84,21 +86,20 @@ $language = \Yii::$app->language;
                 </div>
             </div>
             <div class="col-md-2 mr-auto ml-auto stats">
-                <h4 class="account-title">Stats</h4>
+                <h4 class="account-title"><?=Yii::t('main','Status')?></h4>
                 <ul class="list-unstyled">
-                    <li><b>60</b> Jobs Done</li>
-                    <li><b>4</b> Bids Made</li>
-                    <li><b>331</b> Jobs offered</li>
-                    <li><b>1.2K</b> Reviews</li>
+                    <li><b><?=$data['jobsOffered']?></b> <?= Yii::t('main','Jobs offered')?></li>
+                    <li><b><?= $data['bidsMade']?></b> <?= Yii::t('main','Bids Made')?></li>
+                    <li><b><?=  $data['jobsDone']?></b> <?= Yii::t('main','Jobs Done')?></li>
+                    <li><b><?=$data['reviewsAboutUser']?> </b><?= Yii::t('main', 'Reviews')?> </li>
                 </ul>
                 <hr>
-                <h4 class="account-title">Favorite categories</h4>
+                <h4 class="account-title"><?= Yii::t('main', 'Favorite categories')?></h4>
                 <div class="account-fav-categories">
                     <ul class="tags">
-                        <li><a href="" class="tag">PHP</a></li>
-                        <li><a href="" class="tag">Jquery</a></li>
-                        <li><a href="" class="tag">Ajax</a></li>
-                        <li><a href="" class="tag">Mysql N Database</a></li>
+                        <?php foreach ( $data['favoriteCategories'] as $fav){ ?>
+                            <li><a href="" class="tag"><?= $fav?></a></li>
+                         <?php }?>
                     </ul>
                 </div>
                 <hr>

@@ -45,13 +45,22 @@ class Category extends \yii\db\ActiveRecord
     }
     public function getCategoryName($categoryId)
     {
-        $$category =   Category::find()
+        $category =   Category::find()
             ->where(['id' => $categoryId])
             ->one();
         if(\Yii::$app->language == 'en') {
-            return $$category->title_en;
+            return $category->title_en;
         } elseif(\Yii::$app->language == 'ar') {
-            return  $$category->title_ar;
+            return  $category->title_ar;
         }
+    }
+
+    public function getCategoryNames(array $fav_categories)
+    {
+        $favoriteCategories = [];
+        foreach ($fav_categories as $fav_category) {
+            array_push($favoriteCategories,Category::getCategoryName($fav_category));
+        }
+        return $favoriteCategories;
     }
 }

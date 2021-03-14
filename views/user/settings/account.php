@@ -23,12 +23,13 @@ $this->title = Yii::t('user', 'Account settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
     <div class="col-md-3">
+        <?= $this->render('_menu') ?>
         <a href="<?= Url::to(['/user/security/logout'])?>" data-method ="POST" class="btn">Logout </a>
     </div>
-    HELOOOOOOOOOOOOOO
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">

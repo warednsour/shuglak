@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 
+use app\models\Review;
 use app\models\Verify;
 use dektrium\user\models\Profile;
 use dektrium\user\models\User;
@@ -29,7 +30,6 @@ class AccountController extends Controller
 
     public function actionIndex($name)
     {
-
         //Find the user by Username
         #usernames are unique so don't worry.
         $data['user'] =  User::find()->where(['username'=>$name])->one();
@@ -41,17 +41,27 @@ class AccountController extends Controller
             //The account has it's own layouts.
             $this->layout = 'account/main';
             //Find the Profile of the user by userId
-            $data['profile'] = Profile::findOne($userId);
+            $data['profile'] =Yii::$app->user->identity->profile;
+            //Number of jobs user wrote
+            $data['jobsOffered'] = Job::getJobCountForUser($data['userId']);
+            //Number of bids user made
+            $data['bidsMade'] = Bids::getBidsCountForUser($data['userId']);
+            //Number of jobs that is done
+            $data['jobsDone'] = Bids::getBidsDoneCountForUser($data['userId']);
+            //Number of reviews written about this user
+            $data['reviewsAboutUser'] = Review::getReviewsCountAboutUser($data['userId']);
+            //Names of favorite Categories
+            $data['favoriteCategories'] = Category::getCategoryNames(explode(',',$data['profile']->fav_categories ));
+
             $data['ward'] = 'name';
             //Verify Form
             $data['verify'] = new Verify();
-
+            return $this->render('index',compact('data'));
 //            echo 'you can edit this is your profile';
         } else {
             echo 'you are looking at another profile';
         }
 
-        return $this->render('index',compact('data'));
     }
 
 }

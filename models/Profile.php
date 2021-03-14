@@ -48,4 +48,6 @@ class Profile extends ActiveRecord
         } else return $this->name;
     }
 
+
+
 }

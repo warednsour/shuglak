@@ -862,7 +862,7 @@ Don't touch the code bellow
     color: green;
 }
 
-.why-is {
+.why-is, .personal-information, .account-settings {
     border-radius: 6px;
     box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
 }
@@ -1082,6 +1082,41 @@ img{
 .cropper-label .cover { width: 98%; height: 98%; position: absolute;top: 1%;left: 1%;opacity: 0.3;}
 .new-photo-area .cropper-label span { display: block; margin-top: 45%; text-shadow: 1px 1px 3px #6e6e6e; }
 
+.personal-information , .account-settings {
+    background-color: #03293c;
+    padding: 20px;
+    margin-top: 40px;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .4s ease-in-out;
+    margin-bottom: 40px;
+}
+
+.personal-information:hover , .account-settings:hover {
+    border-radius: 6px;
+    box-shadow: 0 18px 12px 16px rgb(0 0 0 / 40%), 0 6px 54px 20px rgb(0 0 0 / 38%), 0 8px 10px -5px rgb(0 0 0 / 32%);
+}
+
+.personal-information > ul , .account-settings > ul {
+    list-style-type:none;
+}
+.personal-information > i , .account-settings > i {
+    font-size: 40px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+.personal-information * , .account-settings * {
+    color: #f3d537;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.personal-information:hover * , .account-settings:hover * {
+    color: #FFFFFF;
+}
 /******** </Profile Settings> ******/
 
 
