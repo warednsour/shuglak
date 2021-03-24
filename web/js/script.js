@@ -289,3 +289,29 @@ $('#bidForm').on('beforeSubmit',function (e) {
 //         alert('please contact webmaster');
 //     }
 // });
+
+
+//Redirect user in Job list to the job when clicked
+
+$('.responses-table-row').on('click',function (){
+    let target = $(this).find('.bloko-link');
+    window.location.href = target.attr('href')
+})
+
+//Showing the verification form
+$('.verify-start').on('click',function(){
+    let form = $('#verify-form-container');
+    form.slideToggle("slow");
+    // Store hash
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+        scrollTop: $(form).offset().top
+    }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = form;
+
+    })
+})

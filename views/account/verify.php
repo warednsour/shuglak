@@ -11,10 +11,11 @@ $language = Yii::$app->language;
         <div class="row">
             <div class="col-6">
                 <div class ="why-is p-3">
-                    <h1>Why it's important to verify your account?</h1>
+                    <h1><?=Yii::t('main','Why it\'s important to verify your account?')?></h1>
                     <p>
-                        It's important to verify your account to get hired fast than other users does
-                        getting verified means you are a person who i can trust to Hire!
+                        <?=Yii::t('main',' It\'s important to verify your account to get hired fast than other users does
+                        getting verified means you are a person who i can trust to Hire!')?>
+
                     </p>
                     <button class="verify-start btn-yellow">Let's Start!</button>
                 </div>
@@ -32,15 +33,20 @@ $language = Yii::$app->language;
                 </div>
             </div>
         </div>
-        <div class="row verify-form-container">
+        <div class="row verify-form-container hide" id ="verify-form-container">
             <div class="col-12">
-                <div class="bg-danger p-3">
-                    <h3 class="text-white">Please Be careful</h3>
-                    <p class="text-white">Be very accurate while entering your information they all should match
+                <div class="bg-danger p-3 mb-4">
+                    <h3 class="text-white">
+                        <?=Yii::t('main',' Please Be careful')?>
+
+                    </h3>
+                    <p class="text-white">
+                        <?=Yii::t('main',' Be very accurate while entering your information they all should match
                         the information that your ID card holds.
-                        Please don't be worry about your information, we care about your privacy,
-                        all of your information will be used only to verify you, we don't share your
-                        information with anyone.
+                        Please don\'t be worry about your information, we care about your privacy,
+                        all of your information will be used only to verify you, we don\'t share your
+                        information with anyone.')?>
+
                     </p>
                 </div>
             </div>
@@ -78,7 +84,7 @@ $language = Yii::$app->language;
                            {error}'
                 ]); ?>
 
-                <div class="form-row" style="margin-left: 0px !important;">
+                <div class="form-row" style="margin-left: 0px !important; justify-content: space-between;">
                     <?= $form->field($data['verify'],'national_number', [
 
                         'template'=>

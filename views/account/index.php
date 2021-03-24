@@ -10,11 +10,10 @@ use yii\base\view;
           <?= $this->render('settings.php', compact('data')) ?>
           <?= $this->render('verify.php', compact('data')) ?>
           <?= $this->render('messages.php', compact('data')) ?>
-          <div class="tab-pane fade" id="pills-jobs" role="tabpanel" aria-labelledby="pills-contact-tab">Jobs Hello</div>
-          <div class="tab-pane fade" id="pills-bids" role="tabpanel" aria-labelledby="pills-contact-tab">Bids Hello</div>
+          <?= $this->render('bids.php', compact('data'))?>
+          <?= $this->render('jobs.php', compact('data')) ?>
       </div>
  <?php
-      //if it's not his account then.
   } else {
       echo 'it\'s not your profile';
   }?>

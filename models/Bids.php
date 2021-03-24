@@ -60,6 +60,7 @@ class Bids extends ActiveRecord
         return count($bids);
     }
 
+    //Returns the number of bids the user made and done successfully
     public function getBidsDoneCountForUser($user_id)
     {
         $bids = Bids::find()
@@ -68,5 +69,13 @@ class Bids extends ActiveRecord
             ->all();
 
         return count($bids);
+    }
+
+    //Returns the bids for current job
+    public function getBidsForJob($job_id)
+    {
+        return $bids = Bids::find()
+            ->where(['job_id'=>$job_id])
+            ->all();
     }
 }

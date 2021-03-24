@@ -23,7 +23,7 @@ use yii\db\ActiveRecord;
 use yii\web\Application as WebApplication;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
-
+use app\models\Latestwork;
 
 /**
  * User ActiveRecord model.
@@ -137,6 +137,13 @@ class User extends ActiveRecord implements IdentityInterface
      * @return \yii\db\ActiveQuery
      */
     public function getProfile()
+    {
+        return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'id']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLatestwork()
     {
         return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'id']);
     }

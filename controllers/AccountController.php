@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 
+use app\models\Latestwork;
 use app\models\Review;
 use app\models\Verify;
 use dektrium\user\models\Profile;
@@ -52,6 +53,15 @@ class AccountController extends Controller
             $data['reviewsAboutUser'] = Review::getReviewsCountAboutUser($data['userId']);
             //Names of favorite Categories
             $data['favoriteCategories'] = Category::getCategoryNames(explode(',',$data['profile']->fav_categories ));
+            //Latest work - path/url
+            $data['latestWork'] = Latestwork::getLatestWorkForProfileInput($data['userId']);
+
+
+            //Messages
+            $data['messages'] = Message::getMessages($data['userId']);
+
+            //Jobs for current user
+            $data['jobs'] = Job::getJobs($data['userId']);
 
             $data['ward'] = 'name';
             //Verify Form

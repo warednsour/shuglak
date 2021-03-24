@@ -209,7 +209,7 @@ h1,h2,h3,h4,h5, p {
     width: 66%;
     display: inline-block;
 }
-.job-offer-main {
+.job-offer-main , .job {
     border: 1px solid #03293c;
     border-radius: 4px;
     box-shadow: 0px 5px 6px #03293c;
@@ -628,7 +628,7 @@ Don't touch the code bellow
     background: #FFF;
     position: relative;
     z-index: 3;
-    margin: -60px 30px 0;
+    margin: -60px 30px 60px;
     border-radius: 6px;
     box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
 }
@@ -858,7 +858,7 @@ Don't touch the code bellow
 }
 
 .verified {
-    font-size: 10px;
+    font-size: 50px;
     color: green;
 }
 
@@ -873,13 +873,13 @@ Don't touch the code bellow
 }
 
 .verify-form-container {
-    margin-top: 140px;
+    margin-top: 100px;
     padding-bottom: 50px;
 }
 /*>>>>>>>>>>> VERIFY <<<<<<<<<<<< */
 
 /*<<<<<<<<<<< MESSAGES >>>>>>>>>> */
-img{
+img {
     max-width:100%;
 }
 .inbox_people {
@@ -1123,8 +1123,148 @@ img{
 
 /*>>>>>>>>>>>> SETTINGS <<<<<<<<<<< */
 
+/*>>>>>>>>>>> JOBS LIST FOR USER <<<<<<<<<<< */
+table {
+    border-collapse: collapse;
+    empty-cells: show;
+    border-spacing: 0;
+}
+.responses-table {
+    color: #333;
+    width: 100%;
+}
+.responses-table-header {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
 
+.responses-table-header__cell {
+    color: #999;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: left;
+    padding: 10px 15px;
+}
+.responses-table-status {
+    display: table-cell;
+    white-space: nowrap;
+    line-height: 24px;
+}
 
+.responses-table-tbody {
+
+}
+
+.responses-table-row__cell:first-child {
+    position: relative;
+}
+
+.responses-table-row {
+    cursor: pointer;
+    border-top: 1px solid #f3f3f3;
+    position: relative;
+}
+
+.responses-table-row__cell_icon {
+    width: 1px;
+    padding-left: 0;
+}
+.responses-table-row__cell_vacancy {
+    word-break: break-word;
+}
+.responses-table-row__cell {
+    padding: 15px;
+}
+.responses-table-row__cell_nowrap {
+    white-space: nowrap;
+}
+
+.bloko-link {
+    display: inline;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    background: transparent;
+    box-shadow: none;
+    background-size: 0 0;
+    transition: color .1s, opacity .1s;
+}
+.responses-table-row__employer {
+    color: #999;
+}
+.responses-table-row__vacancy-details {
+    padding-top: 10px;
+    font-size: 12px;
+}
+.responses-table-actions-and-menu-container {
+    display: flex;
+}
+.responses-table-actions {
+    position: relative;
+}
+.responses-table-form {
+    display: table-cell;
+    padding-right: 15px;
+}
+.responses-table-action {
+    display: inline;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    background: transparent;
+    box-shadow: none;
+    color: #4f7c9d;
+    white-space: nowrap;
+}
+.bloko-checkbox {
+    display: inline-table;
+    position: relative;
+    margin-left: 24px;
+}
+.bloko-checkbox__text {
+    line-height: 1.5;
+    position: relative;
+    display: table-cell;
+}
+.responses-table-status {
+    display: table-cell;
+    white-space: nowrap;
+    line-height: 24px;
+}
+.bloko-link-switch, .bloko-link-switch:visited, .bloko-link-switch__content {
+    display: inline;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    background: transparent;
+    box-shadow: none;
+    background-image: linear-gradient(to right,rgba(41,152,255,.5),rgba(41,152,255,.5) 60%,transparent 60%,transparent 100%);
+    background-position: 0 bottom;
+    background-size: 5px 1px;
+    background-repeat: repeat-x;
+    color: #2998ff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    transition: opacity .1s;
+}
+.responses-table-row_selected, .responses-table-row:hover {
+    background-color: #f9f9f9;
+}
+/*<<<<<<<<<<<< JOBS LIST FOR USER >>>>>>>> */
 
 /*<<<<<<<<<< CHAT BOX >>>>>>>>>>>*/
 .chat-box {

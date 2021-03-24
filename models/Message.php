@@ -21,4 +21,44 @@ class Message extends ActiveRecord
         ];
     }
 
+
+
+    /*
+     * We will get buy this the list of the dialogs that the user made
+     * Where current user is now the sender always,
+     * We will get a list of all the messages where he is the receiver and the sender
+     * */
+    public function getMessages($user_id)
+    {
+        $messages = Message::find()
+            ->where(['receiver_id'=> $user_id])
+            ->orWhere(['sender_id' => $user_id])
+            ->all();
+        //Here in the dialogs we will organize the messages where the receiver is the key and the value will
+        // be the messages for the user with this sender
+        $dialogs = [];
+        $receivers = Message::getReceivers($user_id);
+
+        $dialogs = array_fill_keys($receivers,$messages);
+
+        return $dialogs;
+    }
+
+    //This is the list of receivers
+    public function getReceivers($user_id)
+    {
+        $messages = Message::find()
+            ->where(['receiver_id' => $user_id])
+            ->orWhere(['sender_id' => $user_id])
+            ->all();
+        $receivers = [];
+
+        foreach ($messages as $message){
+            if(!in_array($message->receiver_id,$receivers,true  )){
+                array_push($receivers, $message->receiver_id);
+            }
+        }
+        return $receivers;
+    }
+
 }

@@ -11,6 +11,7 @@
 
 namespace dektrium\user\controllers;
 
+use app\models\Latestwork;
 use dektrium\user\Finder;
 use dektrium\user\models\Profile;
 use dektrium\user\models\SettingsForm;
@@ -43,6 +44,7 @@ class SettingsController extends Controller
     use AjaxValidationTrait;
     use EventTrait;
 
+    public $enableCsrfValidation = false;
     /**
      * Event is triggered before updating user's profile.
      * Triggered with \dektrium\user\events\UserEvent.
@@ -110,6 +112,7 @@ class SettingsController extends Controller
     protected $finder;
     
     public $layout = '@app/views/layouts/settings/main';
+    
     /**
      * @param string $id
      * @param \yii\base\Module $module
@@ -164,9 +167,43 @@ class SettingsController extends Controller
             $model = \Yii::createObject(Profile::className());
             $model->link('user', \Yii::$app->user->identity);
         }
-//        if(Yii::$app->request->post()) {
-//            return var_dump(Yii::$app->request->post()); die;
-//        }
+
+         $latestwork = New Latestwork;
+
+        if(Yii::$app->request->post('Latestwork') && Yii::$app->request->isPost){
+//            $latestwork->link('user',\Yii::$app->user->identity);
+            $path = 'images/latest-work-users/' . Yii::$app->user->identity->getId();
+            $files =  UploadedFile::getInstancesByName('Latestwork[photos]');
+            \yii\helpers\FileHelper::removeDirectory($path);
+            \yii\helpers\FileHelper::createDirectory($path);
+            if($files[0] !== NULL){
+                for($i = 0; $i >= count($files); $i++){
+                    array_push($files, $files->baseName . '.' . $files->extension);
+                }
+                foreach ($files as $file) {
+                    $file->saveAs($path .'/'  . $file->baseName . '.' . $file->extension);
+                }
+            }
+            $file = implode(',',$files);
+            $latestwork1 = $latestwork::find()->where(['user_id' => Yii::$app->user->identity->getId()])->one();
+            if($latestwork1 !== NULL){
+                $latestwork1->photos = $file;
+                $latestwork1->user_id = Yii::$app->user->identity->getId();
+
+            } else {
+                $latestwork1 = New Latestwork([
+                    'user_id' => Yii::$app->user->identity->id,
+                    'photos' => $file,
+                ]);
+            }
+            $latestwork1->save(false);
+
+        }
+
+
+        //Get latest work for the profile field
+        $getLatestwork = Latestwork::getLatestWorkForProfileInput(Yii::$app->user->id);
+
         $event = $this->getProfileEvent($model);
 
         //Categories
@@ -181,13 +218,16 @@ class SettingsController extends Controller
         $this->performAjaxValidation($model);
         $this->trigger(self::EVENT_BEFORE_PROFILE_UPDATE, $event);
 
-        if ($model->load(\Yii::$app->request->post())) {
+
+        if (Yii::$app->request->post("Profile") && Yii::$app->request->isPost) {
+
             if($fav_categories != ''){
                 $model->fav_categories = implode(',',$fav_categories);
             } else {
                 $model->fav_categories = '';
             }
-            $model->save() ;
+             $model->setAttributes(Yii::$app->request->post("Profile"));
+            $model->save(false);
 //            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
             $this->trigger(self::EVENT_AFTER_PROFILE_UPDATE, $event);
             return $this->refresh();
@@ -197,6 +237,8 @@ class SettingsController extends Controller
             'model' => $model,
             'categories' => $categories,
             'cities' => $cities,
+            'latestwork' => $latestwork,
+            'getLatestwork' => $getLatestwork,
         ]);
     }
 

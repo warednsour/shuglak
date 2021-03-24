@@ -55,34 +55,40 @@ $language = \Yii::$app->language;
                             <div class="col-md-7 ml-auto mr-auto ">
                                 <h4 class="account-title">Latest Work</h4>
                                 <div class ="row latest-work">
+                                    <?php if($data['latestWork'] !== false){
+                                        foreach ($data['latestWork'] as $work){?>
                                     <div class="col-md-6">
-                                        <div class="card card-background" style=' background-image: url('<?php echo "ward"?>')'>
+                                        <div class="card card-background" style='background-image: url("<?//= $work?>")'>
+                                            <img src="<?=$work?>" alt="">
                                         <div class="card-body">
-
+                                            do you like it?
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card card-background" style=' background-image: url('<?php echo "ward"?>')'>
-                                    <div class="card-body">
+                                <?php }
+                                } ?>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card card-background" style=' background-image: url('<?php echo "ward"?>')'>
-                                <div class="card-body">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card card-background" style=' background-image: url('<?php echo "ward"?>')'>
-                            <div class="card-body">
-
-                            </div>
-                        </div>
-                    </div>
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="card card-background" style=' background-image: url('--><?php //echo "ward"?><!--')'>-->
+<!--                                    <div class="card-body">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <div class="card card-background" style=' background-image: url('--><?php //echo "ward"?><!--')'>-->
+<!--                                <div class="card-body">-->
+<!---->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                        <div class="card card-background" style=' background-image: url('--><?php //echo "ward"?><!--')'>-->
+<!--                        <div class="card-body">-->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 </div>
             </div>
             <div class="col-md-2 mr-auto ml-auto stats">

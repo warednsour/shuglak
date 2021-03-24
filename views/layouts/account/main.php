@@ -42,8 +42,7 @@ AppAsset::register($this);
 
 
 
-<?//= $this->render('footer.php')?>
-<<script>
+<script>
    $(".logo").hover(
        function () {
             $(this).attr("src","--><?//= Yii::$app->request->baseUrl?>///images/logo/logo-hover.png");

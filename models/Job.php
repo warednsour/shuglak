@@ -101,13 +101,18 @@ class Job extends ActiveRecord
         return $this->hasOne(\dektrium\user\models\Profile::className(), ['user_id' => 'user_id']);
     }
 
+    //Count all the jobs for current user
     public function getJobCountForUser($user_id)
     {
-        $jobs = Job::find()
-            ->where(['user_id'=> $user_id])
-            ->all();
-        return count($jobs);
+        return count(Job::getJobs($user_id));
     }
 
+    //Get all the jobs for current user
+    public function getJobs($user_id)
+    {
+        return $jobs = Job::find()
+            ->where(['user_id' => $user_id])
+            ->all();
+    }
 
 }

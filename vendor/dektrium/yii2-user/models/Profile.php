@@ -15,6 +15,7 @@ use app\models\Category;
 use app\models\Job;
 use dektrium\user\traits\ModuleTrait;
 use yii\db\ActiveRecord;
+use app\models\Cities;
 /**
  * This is the model class for table "profile".
  *
@@ -133,7 +134,8 @@ class Profile extends ActiveRecord
     {
         if(\Yii::$app->user->id == \Yii::$app->user->getId())
         {
-            return $this->city ? $this->city : $this->city = \Yii::t('main', 'Please tell others where is your location');
+
+            return $this->city ? Cities::getCityName($this->city) : $this->city = \Yii::t('main', 'Please tell others where is your location');
         } else {
             return $this->city ? $this->city : $this->city = \Yii::t('main', 'Solar system');
 

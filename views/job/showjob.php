@@ -8,9 +8,9 @@
    echo $this->render('job-offer.php',compact('data'));
 
    #Send Messages
-    if (($data['userIsEmployeer'] !== true) && $data['currentUserHiredForJob'] ) {
+//    if (($data['userIsEmployeer'] !== true) && $data['currentUserHiredForJob'] ) {
          echo $this->render('write-message.php' , compact('data'));
-     }
+//     }
 
     #Place Bid on the job
    if (($data['userIsEmployeer'] !== true) && ($data['currentUserMadeBid'] === true)) {

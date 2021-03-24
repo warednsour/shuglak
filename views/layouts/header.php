@@ -33,7 +33,7 @@ $username = Yii::$app->user->identity->username;
             <nav class="myNav">
                 <a href="<?= Url::to(['/job/addjob'],true)?>" class="nav-link-head">Add Job</a>
                 <?php if( Yii::$app->user->isGuest) {?>
-                    <a href="<?= Url::to(['/user/login'])?>" class="nav-link-head">Sing In</a>
+                    <a href="<?= Url::to(['/user/login'])?>" class="nav-link-head">Sign In</a>
                 <? } else {?>
                     <a href="<?= Url::to(["/$username"])?>" class="nav-link-head"><?= Yii::$app->user->identity->username ?></a>
                 <?php } ?>

@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
 use budyaga\cropper\Widget;
 use yii\helpers\Url;
 use kartik\select2\Select2;
+use kartik\file\FileInput;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -23,6 +24,7 @@ use kartik\select2\Select2;
  */
 
 $this->title = Yii::t('user', 'Profile settings');
+$language = Yii::$app->language;
 //$this->params['breadcrumbs'][] = $this->title;
 $categoryTitle = 'title_' . Yii::$app->language;
 $cityName = 'city_' . Yii::$app->language;
@@ -101,6 +103,56 @@ $user = Yii::$app->user->identity;
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>
+
+                <div class="panel-heading">
+                    <hr style="margin-top: 20px;">
+                    <h2 ><?= Yii::t('main','Latest Work') ?></h2>
+                    <hr>
+                </div>
+
+                <?php $form2 = ActiveForm::begin([
+                    'id' => 'latestwork',
+                    'options' => ['class' => 'form-horizontal'],
+                    'fieldConfig' => [
+                        'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
+                        'labelOptions' => ['class' => 'col-lg-3 control-label'],
+                    ],
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => false,
+                    'validateOnBlur' => false,
+                ]); ?>
+
+                <?= $form2->field($latestwork, 'photos')->widget(FileInput::classname(), [
+
+                    'options' => [
+                        'multiple' => true,
+                        'accept' => 'image/*'
+                    ],
+                    'language' => $language,
+                    'pluginOptions' => [
+                        'maxFileCount' => 4,
+                        'initialPreviewAsData'=>true,
+                        'initialPreview'=>
+                            is_array($getLatestwork) ? $getLatestwork : ''
+                        ,
+                            'overwriteInitial' => true,
+
+                    ]
+                ]);
+                ?>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <?= Html::button(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success crop-photo2' , 'type' => 'submit']) ?>
+                        <br>
+                    </div>
+                </div>
+                <?php ActiveForm::end(); ?>
+
+
+
+
+
             </div>
         </div>
     </div>
