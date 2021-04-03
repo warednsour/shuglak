@@ -91,9 +91,10 @@ class ProfileController extends Controller
     {
         $profile = $this->finder->findProfileById($id);
 
-//        if ($profile === null) {
-//            throw new NotFoundHttpException();
-//        }
+        if ($profile === null) {
+            throw new NotFoundHttpException();
+
+        }
         $data['bidOfUser'] = $this->getBidsForUser($id);
         
         return $this->render('show', [

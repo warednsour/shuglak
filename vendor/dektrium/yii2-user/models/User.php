@@ -143,10 +143,10 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLatestwork()
-    {
-        return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'id']);
-    }
+//    public function getLatestwork()
+//    {
+//        return $this->hasOne($this->module->modelMap['Profile'], ['user_id' => 'id']);
+//    }
 
     /**
      * @param Profile $profile

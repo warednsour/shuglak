@@ -7,8 +7,32 @@ use yii\bootstrap\ActiveForm;
 $language = Yii::$app->language;
 ?>
 <div class="tab-pane fade" id="pills-verify" role="tabpanel" aria-labelledby="pills-contact-tab">
+
     <div class="container pt-4">
         <div class="row">
+            <?php if ($data['userRequestedVerify'] === true){ ?>
+                <div class="col-6 ">
+                    <div class ="why-is p-3">
+                        <h1><?=Yii::t('main','Now Please Wait until your request is being reviewd')?></h1>
+                        <p>
+                            <?=Yii::t('main',' Our moderators is now reviewing your request please be pasiont as we have a lot of requests the sign will appear near your photo as your request is accepted')?>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col-md-6 ml-auto mr-auto" style="text-align: center !important;">
+                        <div class="profile">
+                            <div class="avatar-verify">
+                                <img src="<?= \Yii::$app->request->baseUrl?>/images/icons/no-image-verify.png?>" alt="" class ="account-img">
+                                <div class="verify-icon">
+                                    <i class="far fa-check-circle verified"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } elseif ($data['userRequestedVerify'] === false) { ?>
             <div class="col-6">
                 <div class ="why-is p-3">
                     <h1><?=Yii::t('main','Why it\'s important to verify your account?')?></h1>
@@ -58,7 +82,7 @@ $language = Yii::$app->language;
                         'enctype' => 'multipart/form-data',
                     ]
                 ]); ?>
-<!--                --><?//= $form->field($data['verify'],'user_id',['options' => ['value' =>'0']])->hiddenInput()->label(false); ?>
+                <!--                --><?//= $form->field($data['verify'],'user_id',['options' => ['value' =>'0']])->hiddenInput()->label(false); ?>
                 <?= $form->field($data['verify'],'name_ar', [
                     'template'=>
 
@@ -143,8 +167,8 @@ $language = Yii::$app->language;
                                 'autoComplete' => 'off',
 
                             ],
-                        //'convertFormat' => true,
-                        'language' => "$language",
+                            //'convertFormat' => true,
+                            'language' => "$language",
 
                             'pluginOptions' => [
                                 'autoclose'=>true,
@@ -154,10 +178,10 @@ $language = Yii::$app->language;
                             ]
                         ]);?>
                 </div>
-                    <?= $form->field($data['verify'],'city_of_birth', [
-                        'template'=>
+                <?= $form->field($data['verify'],'city_of_birth', [
+                    'template'=>
 
-                            '<div class="input-group">
+                        '<div class="input-group">
                              <div class="input-group-prepend">
                                   <div class="input-group-text">'. Yii::t("main", "City of birth").'
                                   </div>
@@ -165,11 +189,11 @@ $language = Yii::$app->language;
                           {input}
                       </div>
                            {error}'
-                    ]); ?>
-                    <?= $form->field($data['verify'],'mother_name', [
-                        'template'=>
+                ]); ?>
+                <?= $form->field($data['verify'],'mother_name', [
+                    'template'=>
 
-                            '<div class="input-group">
+                        '<div class="input-group">
                              <div class="input-group-prepend">
                                   <div class="input-group-text">'. Yii::t("main", "Mother name").'
                                   </div>
@@ -177,11 +201,11 @@ $language = Yii::$app->language;
                           {input}
                       </div>
                            {error}'
-                    ]); ?>
-                    <?= $form->field($data['verify'],'reg_num_place', [
-                        'template'=>
+                ]); ?>
+                <?= $form->field($data['verify'],'reg_num_place', [
+                    'template'=>
 
-                            '<div class="input-group">
+                        '<div class="input-group">
                              <div class="input-group-prepend">
                                   <div class="input-group-text">'. Yii::t("main", "Registration number and place").'
                                   </div>
@@ -189,11 +213,11 @@ $language = Yii::$app->language;
                           {input}
                       </div>
                            {error}'
-                    ]); ?>
-                    <?= $form->field($data['verify'],'place_issue', [
-                        'template'=>
+                ]); ?>
+                <?= $form->field($data['verify'],'place_issue', [
+                    'template'=>
 
-                            '<div class="input-group">
+                        '<div class="input-group">
                              <div class="input-group-prepend">
                                   <div class="input-group-text">'. Yii::t("main", "Place of issue").'
                                   </div>
@@ -201,11 +225,11 @@ $language = Yii::$app->language;
                           {input}
                       </div>
                            {error}'
-                    ]); ?>
-                    <?= $form->field($data['verify'],'place_residence', [
-                        'template'=>
+                ]); ?>
+                <?= $form->field($data['verify'],'place_residence', [
+                    'template'=>
 
-                            '<div class="input-group">
+                        '<div class="input-group">
                              <div class="input-group-prepend">
                                   <div class="input-group-text">'. Yii::t("main", "Place of residence").'
                                   </div>
@@ -213,23 +237,25 @@ $language = Yii::$app->language;
                           {input}
                       </div>
                            {error}'
-                    ]); ?>
-                    <?= $form->field($data['verify'],
-                        'files[]',
-                        ['template' =>     '<div class="input-group">
+                ]); ?>
+                <?= $form->field($data['verify'],
+                    'files[]',
+                    ['template' =>     '<div class="input-group">
                              <div class="input-group-prepend">
                                   <div class="input-group-text">'. Yii::t("main", "ID photos").'
                                   </div>
                              </div>
      
                       </div>' . \Yii::t("main","Upload two photos of your ID from the front side and the back side, make sure that the picture is clear and readable.").'</p> {input}{error}{hint}',
-            //        'options' => ['class' => 'ward']
-                        ])
-                        ->fileInput(['Multiple'=> true ])?>
-                    <div id="selectedFiles"></div>
-                    <?= Html::submitButton('Submit' , ['class' =>'btn-dark-blue'] ) ?>
+                        //        'options' => ['class' => 'ward']
+                    ])
+                    ->fileInput(['Multiple'=> true ])?>
+                <div id="selectedFiles"></div>
+                <?= Html::submitButton('Submit' , ['class' =>'btn-dark-blue'] ) ?>
                 <?php ActiveForm::end(); ?>
             </div>
+            <?php       } ?>
+
         </div>
     </div>
    </div>

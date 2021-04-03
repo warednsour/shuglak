@@ -35,10 +35,10 @@ AppAsset::register($this);
 <?= $this->render('header.php')?>
 
 
-    <?= Breadcrumbs::widget([
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-<?= Alert::widget() ?>
+<!--    --><?//= Breadcrumbs::widget([
+//        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+//    ]) ?>
+<?//= Alert::widget() ?>
 <?= $content ?>
 
 

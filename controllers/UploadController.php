@@ -93,28 +93,28 @@ class UploadController extends SiteController
                 }
 
                 $file = implode(',',$files);
-
+                if(Yii::$app->request->post('Verify')['user_agree']){$userAgree = 1;} else{$userAgree=0;}
                 $model = new Verify([
                     'user_id' => Yii::$app->user->identity->id,
-                    'name_ar' => Yii::$app->request->post("Job")['name_ar'],
-                    'name_en' => Yii::$app->request->post("Job")['name_en'],
-                    'national_number' => Yii::$app->request->post("Job")['national_number'],
-                    'sex' => Yii::$app->request->post("Job")['sex'],
-                    'birth_date' => Yii::$app->request->post("Job")['birth_date'],
-                    'city_of_birth' => Yii::$app->request->post("Job")['city_of_birth'],
-                    'mother_name' =>  Yii::$app->request->post("Job")['mother_name'],
-                    'reg_num_place' => Yii::$app->request->post("Job")['reg_num_place'],
-                    'place_issue' =>  Yii::$app->request->post("Job")['place_issue'],
-                    'place_residence' => Yii::$app->request->post("Job")['place_residence'],
+                    'name_ar' => Yii::$app->request->post("Verify")['name_ar'],
+                    'name_en' => Yii::$app->request->post("Verify")['name_en'],
+                    'national_number' => Yii::$app->request->post("Verify")['national_number'],
+                    'sex' => Yii::$app->request->post("Verify")['sex'],
+                    'birth_date' => Yii::$app->request->post("Verify")['birth_date'],
+                    'city_of_birth' => Yii::$app->request->post("Verify")['city_of_birth'],
+                    'mother_name' =>  Yii::$app->request->post("Verify")['mother_name'],
+                    'reg_num_place' => Yii::$app->request->post("Verify")['reg_num_place'],
+                    'place_issue' =>  Yii::$app->request->post("Verify")['place_issue'],
+                    'place_residence' => Yii::$app->request->post("Verify")['place_residence'],
                     'files' => $file,
                 ]);
 
-                $model->save();
+                $model->save(false);
                 Yii::$app->session->setFlash('success', Yii::t('main','Job offer created successfully'));
             } else {
                 Yii::$app->session->setFlash('error',\Yii::t('main', 'Something went wrong'));
             }
-            $this->goHome();
+            $this->redirect(Yii::$app->request->referrer);
         } else {
             $this->goHome();
             Yii::$app->session->setFlash('registerFirst' , \Yii::t('main', 'registerFirst'));

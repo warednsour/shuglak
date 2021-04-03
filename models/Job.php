@@ -115,4 +115,19 @@ class Job extends ActiveRecord
             ->all();
     }
 
+    //Get Job name
+    public function getJobName($job_id)
+    {
+        $job = Job::findOne($job_id);
+        return $job->title ;
+    }
+
+
+    //Get job link
+    public function getJobLink($job_id)
+
+    {
+        $job = Job::findOne($job_id);
+        return $job->link;
+    }
 }

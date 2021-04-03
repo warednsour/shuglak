@@ -1,11 +1,12 @@
 <?php
+use app\models\cities;
+use yii\helpers\Url;
 ?>
 <div class="tab-pane fade" id="pills-jobs" role="tabpanel" aria-labelledby="pills-contact-tab">
-    <?php use app\models\cities;
-    use yii\helpers\Url;
+    <?php
 
     if(count($data['jobs']) > 0){ ?>
-        <div class="container">
+        <div class="container  pt-4">
 
 
                     <h3><?= \Yii::t('main','This is a list of the jobs you have offered')?></h3>

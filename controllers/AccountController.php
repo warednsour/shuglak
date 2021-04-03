@@ -63,6 +63,13 @@ class AccountController extends Controller
             //Jobs for current user
             $data['jobs'] = Job::getJobs($data['userId']);
 
+
+            //Bids for current user
+            $data['bids'] = Bids::getBidsForUser($data['userId']);
+
+
+            $data['userRequestedVerify'] = Verify::getUserRequest($data['userId']);
+
             $data['ward'] = 'name';
             //Verify Form
             $data['verify'] = new Verify();

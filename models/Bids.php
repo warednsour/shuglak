@@ -78,4 +78,11 @@ class Bids extends ActiveRecord
             ->where(['job_id'=>$job_id])
             ->all();
     }
+
+    public function getBidsForUser($user_id)
+    {
+        return $bids = Bids::find()
+            ->where(['user_id'=>$user_id])
+            ->all();
+    }
 }

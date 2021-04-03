@@ -21,7 +21,10 @@ $config = [
        'forceCopy' => true,
             'bundles' => [
                 'kartik\grid\GridView' => [
-//                    'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+                    'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [],
                 ],
             ],
         ],

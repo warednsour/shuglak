@@ -31,11 +31,13 @@ $username = Yii::$app->user->identity->username;
                 </a>
             </div>
             <nav class="myNav">
-                <a href="<?= Url::to(['/job/addjob'],true)?>" class="nav-link-head">Add Job</a>
+                <a href="<?= Url::to(['/job/addjob'],true)?>" class="nav-link-head"><?= \Yii::t('main','Add Job')?></a>
                 <?php if( Yii::$app->user->isGuest) {?>
-                    <a href="<?= Url::to(['/user/login'])?>" class="nav-link-head">Sign In</a>
+                    <a href="<?= Url::to(['/user/login'])?>" class="nav-link-head"><?= \Yii::t('main','Sign In')?></a>
                 <? } else {?>
                     <a href="<?= Url::to(["/$username"])?>" class="nav-link-head"><?= Yii::$app->user->identity->username ?></a>
+                    <a href="<?= Url::to(['/user/security/logout'])?>" class="nav-link-head" data-method ="POST" class="btn"><?= \Yii::t('main','Logout')?></a>
+
                 <?php } ?>
             </nav>
         </div>

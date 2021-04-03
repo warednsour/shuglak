@@ -38,10 +38,10 @@ class Profile extends ActiveRecord
     protected $module;
 
     /** @inheritdoc */
-//    public function init()
-//    {
-//        $this->module = \Yii::$app->getModule('user');
-//    }
+    public function init()
+    {
+        $this->module = \Yii::$app->getModule('user');
+    }
     /**
      * Returns integer out of 100 to show the strength of the profile, completed or not
      * @return integer
@@ -158,7 +158,6 @@ class Profile extends ActiveRecord
     /**
      * @return \yii\db\ActiveQueryInterface
      */
-
     public function getUser()
     {
         return $this->hasOne($this->module->modelMap['User'], ['id' => 'user_id']);

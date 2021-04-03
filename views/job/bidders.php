@@ -21,41 +21,41 @@ if (!Yii::$app->user->isGuest && Yii::$app->user->identity) {
             <p class="bid-title"><?= $bid->title?></p>
             <p class="bid-description"><?= $bid->description?></p>
             <div class="bidder-information">
-                <img src="<?= Yii::getAlias("@webroot/uploads/2021-Mar-04-16-36-14-000000---4/azad.png")?>" alt="">
+                <?php
+               echo  Html::img(Yii::$app->getUser($bid->user_id)->identity->profile->getAvatarUrl(200), [
+                'class' => 'rounded-circle',
+                'alt' => $user->username,
+                ]);
+                ?>
             </div>
         </div>
 
-        echo $bidder->paid . "<br>";
-        echo $bidder->job_id . "<br>";
-        echo $bidder->user_id . "<br>";
-        echo $bidder->status . "<br>";
-        if (!Yii::$app->user->isGuest && $data['userIsEmployeer']) {
-        if (Yii::$app->user->identity) { ?>
+      <?php  if (!Yii::$app->user->isGuest && $data['userIsEmployeer'] && Yii::$app->user->identity) {?>
         <button
             class="btn btn-info "
-            data-toggle="modal" data-target="#writeNewMsgToBidder">Write Message to bidder
+            data-toggle="modal" data-target="#writeNewMsgToBidder"><?= Yii::t('main' , 'Write Message')?>
         </button>
 
         <?php if ($bid->status == 0) { ?>
             <button id="hire" class="btn btn-outline-dark btn-group-sm btn-danger hireHim"
-                    value="<?= $bid->id ?>" formmethod="post"> hire him
+                    value="<?= $bid->id ?>" formmethod="post"> <?= Yii::t('main','Hire')?>
             </button>
         <?php } elseif ($bid->status == 1) { ?>
             <div class="row">
                 <div class="col-md-4">
                     <button id="jobDone" class="btn btn-outline-dark btn-group-sm btn-danger jobDone"
-                            value="<?= $bid->id ?>" formmethod="post">The job is done
+                            value="<?= $bid->id ?>" formmethod="post"><?= Yii::t('main','The job is done')?>
                     </button>
                     <button id="jobNot" class="btn btn-outline-dark btn-group-sm btn-danger jobNot"
-                            value="<?= $bid->id ?>" formmethod="post"> The job was not complited
+                            value="<?= $bid->id ?>" formmethod="post"><?= Yii::t('main','The job was not completed')?>
                     </button>
                 </div>
             </div>
         <?php } elseif ($bid->status == 2 || $bid->status == 3) { ?>
             <div class="row">
                 <div class="col-md-4">
-                    <button id="jobDone" data-toggle="modal" data-target="#review" class="btn btn-dark btn-group-sm btn-block feedback"
-                            value="<?= $bid->id ?>" formmethod="post">leave a review please!
+                    <button id="leavereview" data-toggle="modal" data-target="#review" class="btn btn-dark btn-group-sm btn-block feedback"
+                            value="<?= $bid->id ?>" formmethod="post"><?= Yii::t('main','leave a review please!')?>
                     </button>
                 </div>
             </div>
@@ -115,17 +115,13 @@ if (!Yii::$app->user->isGuest && Yii::$app->user->identity) {
             echo $form->field($data['message'], 'sender_id')->HiddenInput(['value' => Yii::$app->user->getId(), 'id' => Yii::$app->user->getId(),'class'=>'sender'])->label(false);
             ActiveForm::end();
             Modal::end();
-            ?>
 
-            <?php
         }
     }
 }
 }
 }
-//                 }
-//
-//            }
+}
 ?>
 </div>
 

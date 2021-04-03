@@ -315,3 +315,11 @@ $('.verify-start').on('click',function(){
 
     })
 })
+
+// //Remove the bootstrap.min.css from head when head is ready.. not able to solve this one
+// $('head').ready(function () {
+// let urlShowJob = document.location.toString();
+// if(urlShowJob.match('showjob') != null) {
+//         $('head link').first().remove()
+// }
+// })

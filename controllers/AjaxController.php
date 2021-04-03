@@ -102,6 +102,7 @@ class AjaxController extends SiteController
            }
        }
 
+    //User Hired  , bid status = 1
    public function actionBidstatusaccepted($id)
    {
 
@@ -119,6 +120,7 @@ class AjaxController extends SiteController
        json_encode($result);
    }
 
+   //Job Done , bid status = 2
     public function actionBidstatusdone($id)
     {
 
