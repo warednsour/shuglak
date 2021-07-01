@@ -9,7 +9,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('main', 'Bids');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="content-wrapper">
+
 <div class="bids-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn',],
 
@@ -30,9 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
             'paid',
             'job_id',
-         //   'user_id',
-        //    'create_date',
-       //     'status',
+           'user_id',
+           'create_date',
+           'status',
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',
@@ -62,5 +63,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php Pjax::end(); ?>
 
-</div>
 </div>

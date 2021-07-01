@@ -7,13 +7,26 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-//    'bootstrap' => ['log'],
+    // 'bootstrap' => ['log', 'debug'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
  //       '@admin' => '@vendor/almasaeed2010/adminlte/docs/assets',
     ],
     'components' => [
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+              'facebook' => [
+                'class' => 'yii\authclient\clients\Facebook',
+                'authUrl' => 'https://www.facebook.com/dialog/oauth?display=popup',
+                'clientId' => 'YOUR APP CLIENT ID',
+                'clientSecret' => 'YOUR APP CLIENT SECRET',
+                'attributeNames' => ['name', 'email', 'first_name', 'last_name'],
+              ],
+            ],
+          ],
+      
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
@@ -23,16 +36,16 @@ $config = [
                 'kartik\grid\GridView' => [
                     'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
                 ],
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [],
-                ],
+                // 'yii\bootstrap\BootstrapAsset' => [
+                //     'css' => [],
+                // ],
             ],
         ],
         'request' => [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ],
-//            'baseUrl' => '',
+        //    'baseUrl' => 'localhost',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'NI6enDkEQ-Esl0ShcI-xNoiYi0g7HAOz',
             'class' => 'klisl\languages\Request',
@@ -90,8 +103,8 @@ $config = [
                 'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
                 'settings/<action:\w+>'                  => 'settings/<action>',
 
-
-                '<name:\w+>' => 'account/index',
+                '<_m:debug>/<_c:\w+>/<_a:\w+>' => '<_m>/<_c>/<_a>',
+                // '<name:\w+>' => 'account/index',
                 'job/showjob/<link:\w+>/' => 'job/showjob/<link:\w+>',
                 'ajax/<action:\w+>' => 'ajax/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -130,7 +143,7 @@ $config = [
         ],
         'adminpanel' => [
             'class' => 'app\modules\administrator\Module',
-        //    'layout' => '@app/modules/administrator/views/layouts/main'
+           'layout' => '@app/modules/administrator/views/layouts/main'
         ],
     ],
     'params' => $params,
@@ -143,15 +156,16 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-       // 'allowedIPs' => ['127.0.0.1', '::1'],
+       'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1' ],
     ];
 }
+
 
 return $config;

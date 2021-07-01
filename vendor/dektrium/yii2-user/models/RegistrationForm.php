@@ -39,7 +39,6 @@ class RegistrationForm extends Model
     public $password;
 
 
-    public $myattribute;
     /**
      * @inheritdoc
      */
@@ -48,11 +47,10 @@ class RegistrationForm extends Model
         $user = $this->module->modelMap['User'];
 
         return [
-            ['myattribute', 'required'],
             // username rules
             'usernameTrim'     => ['username', 'trim'],
             'usernameLength'   => ['username', 'string', 'min' => 3, 'max' => 255],
-            'usernamePattern'  => ['username', 'match', 'pattern' => $user::$usernameRegexp],
+            // 'usernamePattern'  => ['username', 'match', 'pattern' => $user::$usernameRegexp],
             'usernameRequired' => ['username', 'required'],
             'usernameUnique'   => [
                 'username',
@@ -140,4 +138,5 @@ class RegistrationForm extends Model
     {
         $user->setAttributes($this->attributes);
     }
+
 }

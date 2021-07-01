@@ -4,8 +4,13 @@
 use yii\bootstrap;
 use yii\bootstrap4;
 use yii\helpers\Url;
-//use yii\widgets\LinkPager;
-use yii\bootstrap4\LinkPager;
+use yii\widgets\LinkPager;
+// use yii\bootstrap4\LinkPager;
+use  kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
+// use yii\helpers\Html;
+use yii\bootstrap\html;
+use kartik\slider\Slider;
 
 \rmrevin\yii\fontawesome\CdnProAssetBundle::register($this);
 $this->title = 'My Yii Application';
@@ -16,7 +21,7 @@ $categoryName = 'title_' . Yii::$app->language;
 <div class="container">
 
 
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <!-- <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -24,21 +29,21 @@ $categoryName = 'title_' . Yii::$app->language;
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="<?= Yii::$app->request->baseUrl?>/images/slide1.jpg"" class="d-block w-100" alt="...">
+            <img src="<?= Yii::$app->request->baseUrl ?>/images/slide1.jpg"" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="<?= Yii::$app->request->baseUrl?>/images/slide1.jpg"" class="d-block w-100" alt="...">
+            <img src="<?= Yii::$app->request->baseUrl ?>/images/slide1.jpg"" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="<?= Yii::$app->request->baseUrl?>/images/slide1.jpg"" class="d-block w-100" alt="...">
+            <img src="<?= Yii::$app->request->baseUrl ?>/images/slide1.jpg"" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -53,150 +58,126 @@ $categoryName = 'title_' . Yii::$app->language;
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
-<!-- search bar for jobs -->
-<form class="search-form">
-    <input class="search-main" type="search" placeholder="Search" aria-label="Search">
+</div> -->
+    <!-- search bar for jobs -->
+
+    <input class="search-main" type="search" placeholder="<?= Yii::t('main', 'Enter title of job or a description') ?>" aria-label="Search" name="keyword" id="keyword">
     <button class="btn-dark-blue" type="submit" style="margin-bottom: 3px;">Search</button>
-</form>
 
 
-<!-- Results The job search -->
-<div class="results">
-    <!-- Filter column -->
-    <div class="left-column">
-        <div class="category-list">
-            <p>Category</p>
-            <ul>
-                <?php $i = 0; foreach ($category as $cat) {
-                    if($i < 4) {?>
-                <li><input type="checkbox" value="<?= $cat->$categoryName?>"><?= $cat->$categoryName ?></li>
-                                <?php  } else { ?>
-                        <li class="hide"><input  type="checkbox" value="<?= $cat->$categoryName?>"><?= $cat->$categoryName ?></li>
-                <?php    } $i++; }?>
-                <p class="show-more-category">Show more</p>
-            </ul>
+
+    <!-- Results The job search -->
+    <div class="results">
+        <!-- Filter column -->
+        <div class="left-column">
+            <div class="category-list">
+                <label for="category"><?= Yii::t('main', 'Category') ?></label>
+                <?= Select2::widget([
+                    'name' => 'category',
+                    'language' => \Yii::$app->language,
+                    'showToggleAll' => false,
+                    'size' => Select2::SMALL,
+                    'addon' => [
+                        'prepend' => [
+                            // 'content' => Html::icon('globe')
+                        ],
+                        'append' => [
+                            // 'content' => Html::button(Html::icon('map-marker'), [
+                            //     'class' => 'btn btn-primary', 
+                            //     'title' => 'Mark on map', 
+                            //     'data-toggle' => 'tooltip'
+                            // ]),
+                            'asButton' => true
+                        ]
+                    ],
+                    'data' => ArrayHelper::map($category, 'id', "$categoryName"),
+                    'maintainOrder' => true,
+                    'options' => ['placeholder' => \Yii::t("main", "Select a category"), 'multiple' => true],
+                    'pluginOptions' => [
+                        'tokenSeparators' => [',', ' '],
+
+                        //     'tags' => false,
+                        //     'maximumInputLength' => 2,
+                        //     'maximumSelectionSize' => 3,
+                        //     'maximumSelectionLength' => 3,
+                        //     'size' => 3,
+                    ],
+                ]);
+                ?>
+            </div>
+            <div class="city-list">
+                <label for="city"> <?= Yii::t('main', 'City') ?></label>
+                <?php
+                echo Select2::widget([
+                    'name' => 'city',
+                    'language' => \Yii::$app->language,
+                    'showToggleAll' => false,
+                    'size' => Select2::SMALL,
+                    'addon' => [
+                        'prepend' => [
+                            // 'content' => Html::icon('globe')
+                        ],
+                        'append' => [
+                            // 'content' => Html::button(Html::icon('map-marker'), [
+                            //     'class' => 'btn btn-primary', 
+                            //     'title' => 'Mark on map', 
+                            //     'data-toggle' => 'tooltip'
+                            // ]),
+                            'asButton' => true
+                        ]
+                    ],
+                    'data' => ArrayHelper::map($city, 'id', "$cityName"),
+                    'maintainOrder' => true,
+                    'options' => ['placeholder' => \Yii::t("main", "Select a City"), 'multiple' => true],
+                    'pluginOptions' => [
+                        'tokenSeparators' => [',', ' '],
+
+                        //     'tags' => false,
+                        //     'maximumInputLength' => 2,
+                        //     'maximumSelectionSize' => 3,
+                        //     'maximumSelectionLength' => 3,
+                        //     'size' => 3,
+                    ],
+                ]);
+                ?>
+            </div>
+            <div class="paying-range">
+            <label class="paying-range-label"for="paid" style="display: block;"><?= Yii::t('main', 'Paying Range') ?></label>
+            <?php
+            // A range select. Value must be passed as a delimited list separated by a `,` (comma). 
+            // If your value is passed as a single number, and you have set `pluginOptions['range']`
+            // to `true`, then `max` will be used for second value.
+            echo '<b class="badge">10 JD</b> ' . Slider::widget([
+                'name' => 'paid',
+                'value' => '250,650',
+                'sliderColor' => Slider::TYPE_GREY,
+                'pluginOptions' => [
+                    'min' => 10,
+                    'max' => 1000,
+                    'step' => 5,
+                    'range' => true,
+                    'tooltip' => 'show',
+                ],
+            ]) . ' <b class="badge"> 1,000 JD</b>';
+
+            ?>
+
+            </div>
+
         </div>
-        <div class="city-list">
-            <p>City</p>
-            <ul>
-                <?php $x = 0;  foreach ($city as $c) {
-                if($x < 4) {?>
-                    <li><input type="checkbox" value="<?= $c->$cityName; ?>"><?= $c->$cityName ?></li>
-                <?php  } else { ?>
-                    <li class="hide"><input  type="checkbox" value="<?= $c->$cityName ?>"><?= $c->$cityName  ?></li>
-                <?php    } $x++;}?>
-                <p class="show-more-city">Show more</p>
-            </ul>
-        </div>
-        <h3>Paid</h3>
-        <p id="paid_show"> 0 - 1000 JD</p>
-        <input type="range" id="paid" value="0" min="0" max="1000">
-
-    </div>
-    <!-- Results -->
-    <div class="right-column">
-        <div class="filter_data">
-
-        </div>
-             <button id = "loadMore" class="btn-dark-blue btn-block" style="vertical-align: bottom;">
-                Load More
+        <!-- Results -->
+        <div class="right-column">
+            <div class="filter_data">
+            <img id='loading1' alt='Looking for Jobs' src='/basic/web/images/loading.gif' style="display: hide;">
+            </div>
+            <button id="loadMore" class="btn-dark-blue btn-block" style="vertical-align: bottom;">
+                <?= Yii::t('main', 'Load More') ?>
             </button>
-        <div id="loading">
+            <div id="loading">
 
+            </div>
         </div>
+
     </div>
-
 </div>
-</div>
-<?php echo $this->render('../chat/chatbox.php');?>
-<?php
-$actionIndex = Url::to(['ajax/filter']);
-
-$this->registerJs("
-
-    //To filter the results
-    
-    $(document).ready(function(){
-        
-        
-       var page = 0;
-        
-        $('#loading').hide();    
-        filter_data();
-       
-       function filter_data() {
-
-              $.ajax({
-             url : '$actionIndex' + '?page=' + page,
-            type : 'POST',
-          
-            data: {
-            'title' : $('#title').val(),
-            'description' : $('#description').val(),
-            'place' : get_filter('city'),
-            'pay' : $('#paid').val(),
-            },
-            success:function(data){
-            
-                $('.filter_data').html(data);
-            }
-          
-        })
-        
-         
-    function get_filter(class_name)
-    {
-        var filter = [];
-        $('.'+class_name+':checked').each(function(){
-            filter.push($(this).val());
-        });
-        return filter;
-    }
-         
-       }
-       
-    $('.common_selector').click(function(){
-        filter_data();
-    });
-    
-    $('#title').on('keyup',function(){
-              filter_data();
-       })
-
-     $('#filter').on('click',function(){
-          page++;  
-        filter_data()
-        })
-
- function ready() {
-    $('#loading').fadeOut();
-}
-
-  $('#loadMore').on('click',function(){
-        page++;
-        $('#loadMore').fadeOut(2000);
-        $('#loading').show(2000);
-        filter_data();
-         $('#loading').fadeOut(2000);
-        $('#loadMore').fadeIn(1000);
-        });
-})
-
-    $('#allcities').hover(function(){
-        
-        $(this).children('option').stop(true,false,true).slideToggle(400);
-    })
-    
-    
-
-   
-    
-    
-    
-
-") ?>
-
-
-
-
+<?php echo $this->render('../chat/chatbox.php'); ?>

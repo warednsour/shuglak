@@ -51,4 +51,10 @@ class User extends ActiveRecord
     {
         return $this->password === $password;
     }
+    
+    public static function findIdentity($id)
+    {
+    return static::findOne($id);
+    }
+
 }

@@ -4,7 +4,7 @@
 namespace app\controllers;
 
 use app\models\Bids;
-use app\models\cities;
+use app\models\Cities;
 use app\models\Job;
 use app\models\Message;
 use app\models\Review;
@@ -184,15 +184,13 @@ class AjaxController extends SiteController
     public function actionFilter($page)
     {
         $request = Yii::$app->request;
+        
 
-        if($request->post('title')) {
-            $title = $request->post('title');
+        //This is the keyword, (description or title for the job)
+
+        if($request->get('keyword')) {
+            $keyword = $request->get('keyword');
         }
-
-        if($request->post('description')){
-            $description = $request->post('description');
-        }
-
         if($request->post('place')){
 
             $place = $request->post('place');
@@ -216,13 +214,12 @@ class AjaxController extends SiteController
 
         $increment = $pagination->limit + ($page * 5);
 
-        if(isset($title)){
-
+        if(isset($keyword)){
             $job = $jobs
                 ->limit($increment)
                 ->orderBy(["joboffer.create_date"=> SORT_DESC])
-                ->where(['like','title',$title . '%' , false])
-                ->orWhere(['like','description',$title . '%', false])
+                ->where(['like','title',$keyword . '%' , false])
+                ->orWhere(['like','description',$keyword . '%', false])
                 ->all();
 
         } else if (isset($place)) {
@@ -243,9 +240,6 @@ class AjaxController extends SiteController
         }
 
 
-//        $job = $jobs->offset($pagination->offset)
-//        ->limit($pagination->limit)
-//        ->all();
         if($job) {
             foreach ($job as $j) {
 
@@ -254,8 +248,8 @@ class AjaxController extends SiteController
             
                 <h5 class="card-title">' . $j->title . '</h5>
             <p class="card-text text-muted">' . $j->description . '</p>
-            <p class="card-text text-muted">' . $j->place . '</p>
-            <p class="card-text text-muted">' . $j->pay . '</p>
+            <p class="card-text text-muted">' . Cities::getCityName($j->place) . '</p>
+            <p class="card-text text-muted">' . $j->pay  .' JD </p>
             <a href="'. Url::to(['job/showjob', 'link' => $j->link]) .'" class="btn-yellow">Bid Now!</a></div>
           
            ';
@@ -264,30 +258,14 @@ class AjaxController extends SiteController
 
             $outPut .= '';
         } else {
-            $outPut = 'No results found';
+            $outPut = Yii::t('main','No results found');
         }
 
-//        $count = $jobs->count();
-//        $pagination = new Pagination(['totalCount' => $count]);
-//        $job = $jobs->offset($pagination->offset)
-//            ->limit($pagination->limit);
-////            ->andFilterWhere(['like','title', $request->post()['title']])->all();
-
-//     //   $job = new JobController();
-//        $data['jobs'] = Job::find()->all();
-//        $countData = clone $data['jobs'];
-//        $pages = new Pagination(['totalCount' => $countData->count()]);
-//        $models = $data['jobs']->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->all();
+        //Load more results
+            // $outPut .= ' <button id="loadMore" class="btn-dark-blue btn-block" style="vertical-align: bottom;">' .  Yii::t("main", "Load More") . '</button>';     
+        
         $result['result'] = true;
         json_encode($result);
-//        return $this->render('index',[
-//            'jobs' => $job,
-//            'pagination' => $pagination,
-//        ]);
-//        $outPut .= '<h1>'. $increment .'</h1>';
-
         return $outPut;
     }
 

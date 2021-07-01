@@ -35,9 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
 
                 <?= $form->field($model, 'email') ?>
-                
-                <?= $form->field($model, 'myattribute')->radioList( [0=>'zero', 1 => 'one', 2 => 'two'], ['options'=>null])->label(false) ?>
-                
+                                
                 <?= $form->field($model, 'username') ?>
 
                 <?php if ($module->enableGeneratingPassword == false): ?>

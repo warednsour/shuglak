@@ -1,5 +1,5 @@
 <?php
-use app\models\cities;
+use app\models\Cities;
 use yii\helpers\Url;
 ?>
 <div class="tab-pane fade" id="pills-jobs" role="tabpanel" aria-labelledby="pills-contact-tab">

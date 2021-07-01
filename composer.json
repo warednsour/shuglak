@@ -39,7 +39,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kartik-v/yii2-widget-select2": "dev-master",
         "messagebird/php-rest-api": "^1.19",
-        "karpoff/yii2-crop-image-upload": "*"
+        "karpoff/yii2-crop-image-upload": "*",
+        "kartik-v/yii2-slider": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -58,6 +59,7 @@
         "fxp-asset": {
             "enabled": false
         }
+        
     },
     "scripts": {
         "post-install-cmd": [

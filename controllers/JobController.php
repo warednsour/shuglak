@@ -4,7 +4,7 @@
 namespace app\controllers;
 
 use app\models\Category;
-use app\models\cities;
+use app\models\Cities;
 use app\models\Review;
 use app\models\Message;
 use app\models\Bids;

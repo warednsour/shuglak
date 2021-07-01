@@ -127,6 +127,6 @@ class BidsController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('main', 'The requested page does not exist.'));
     }
 }

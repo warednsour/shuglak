@@ -13,8 +13,9 @@ nbproject
 Thumbs.db
 # don't ignore changes to dektrium
 !/vendor/dektrium/*
-# don't ignore changes to budyaga
 !/vendor/budyaga/*
+
+# don't ignore changes to budyaga
 
 # composer vendor dir
 /vendor/*

@@ -316,10 +316,78 @@ $('.verify-start').on('click',function(){
     })
 })
 
-// //Remove the bootstrap.min.css from head when head is ready.. not able to solve this one
-// $('head').ready(function () {
-// let urlShowJob = document.location.toString();
-// if(urlShowJob.match('showjob') != null) {
-//         $('head link').first().remove()
-// }
-// })
+
+
+//Filter main page search
+$(document).ready(function(){
+        
+        
+    var page = 0;
+     
+     $('#loading').hide();    
+     filter_data();
+
+     function get_filter(class_name)
+     {
+     var filter = [];
+     $('.'+class_name+':checked').each(function(){
+         filter.push($(this).val());
+     });
+     return filter;
+    }
+
+    function filter_data() {
+           $.ajax({
+             url : '/basic/web/ajax/filter/' + '?page=' + page,
+             type : 'GET',
+             data: {
+                'keyword' : $('#keyword').val(),
+                'city' : get_filter('city'),
+                'category': get_filter('category'),
+                'pay' : $('#paid').val(),
+                 },
+                //  beforeSend: function(){
+                // },
+                   success:function(data){
+                    $('.filter_data').html(data);
+                   }
+       
+            })
+    }
+    
+ $('.common_selector').click(function(){
+     filter_data();
+ });
+ 
+ $('#keyword').on('keyup',function(){
+           filter_data();
+    })
+$('select').on('change',function(){
+    filter_data();
+})
+  $('#filter').on('click',function(){
+       page++;  
+     filter_data()
+     })
+
+function ready() {
+ $('#loading').fadeOut();
+}
+
+$('#loadMore').on('click',function(){
+     page++;
+     $('#loadMore').fadeOut(900);
+     $('#loading').show(900);
+     filter_data();
+      $('#loading').fadeOut(900);
+     $('#loadMore').fadeIn(900);
+     });
+})
+
+ $('#allcities').hover(function(){
+     
+     $(this).children('option').stop(true,false,true).slideToggle(400);
+ })
+ 
+ 
+

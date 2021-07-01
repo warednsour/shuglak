@@ -23,6 +23,7 @@ AppAsset::register($this);
     <!-- Arabic Font Almarai-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Almarai&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+  
 
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">-->
     <?php $this->registerCsrfMetaTags() ?>
@@ -33,7 +34,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <?= $this->render('header.php')?>
-
 
 <!--    --><?//= Breadcrumbs::widget([
 //        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

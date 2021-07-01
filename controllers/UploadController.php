@@ -8,7 +8,7 @@ use app\models\Verify;
 use Yii;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
-use app\models\cities;
+use app\models\Cities;
 
 class UploadController extends SiteController
 {

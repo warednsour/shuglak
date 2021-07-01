@@ -29,7 +29,7 @@ use app\models\Bids;
 use app\models\Message;
 use Yii;
 use app\models\Category;
-use app\models\cities;
+use app\models\Cities;
 use yii\web\UploadedFile;
 
 /**

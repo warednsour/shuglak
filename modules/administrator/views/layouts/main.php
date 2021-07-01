@@ -1,6 +1,7 @@
 <?php
 
 use app\assets\AdminAsset;
+use app\assets\AppAsset;
 
 ?>
 <?php $this->beginPage() ?>
@@ -27,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <?php AdminAsset::register($this); ?>
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
 <?php $this->beginBody() ?>
 
 <?= $this->render('header.php')?>
