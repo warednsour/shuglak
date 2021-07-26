@@ -104,7 +104,7 @@ $config = [
                 'settings/<action:\w+>'                  => 'settings/<action>',
 
                 '<_m:debug>/<_c:\w+>/<_a:\w+>' => '<_m>/<_c>/<_a>',
-                // '<name:\w+>' => 'account/index',
+                 '<name:\w+>' => 'account/index',
                 'job/showjob/<link:\w+>/' => 'job/showjob/<link:\w+>',
                 'ajax/<action:\w+>' => 'ajax/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',

@@ -342,8 +342,8 @@ $(document).ready(function(){
              type : 'GET',
              data: {
                 'keyword' : $('#keyword').val(),
-                'city' : get_filter('city'),
-                'category': get_filter('category'),
+                'city' : $('.city-select').val(),
+                'category': $('.category-select').val(),
                 'pay' : $('#paid').val(),
                  },
                 //  beforeSend: function(){
@@ -362,7 +362,7 @@ $(document).ready(function(){
  $('#keyword').on('keyup',function(){
            filter_data();
     })
-$('select').on('change',function(){
+$('select').change(function(){
     filter_data();
 })
   $('#filter').on('click',function(){
@@ -370,9 +370,6 @@ $('select').on('change',function(){
      filter_data()
      })
 
-function ready() {
- $('#loading').fadeOut();
-}
 
 $('#loadMore').on('click',function(){
      page++;

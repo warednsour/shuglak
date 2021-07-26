@@ -191,22 +191,19 @@ class AjaxController extends SiteController
         if($request->get('keyword')) {
             $keyword = $request->get('keyword');
         }
-        if($request->post('place')){
+        if($request->get('city')){
 
-            $place = $request->post('place');
+            $citys = $request->get('city');
 //            extract($place, EXTR_PREFIX_ALL,'p');
 
         }
 
-        if($request->post('pay')) {
-            $pay = $request->post('pay');
+        if($request->get('category')) {
+            $category = $request->get('category');
         }
 
-
-        $city = Cities::find()->all();
-
         $outPut = '';
-
+        // var_dump($citys);
         $jobs = Job::find();
         $count = $jobs->count();
         $pagination = new Pagination(['totalCount' => $count]);
@@ -214,24 +211,15 @@ class AjaxController extends SiteController
 
         $increment = $pagination->limit + ($page * 5);
 
-        if(isset($keyword)){
+        if(true == true){
             $job = $jobs
-                ->limit($increment)
-                ->orderBy(["joboffer.create_date"=> SORT_DESC])
                 ->where(['like','title',$keyword . '%' , false])
                 ->orWhere(['like','description',$keyword . '%', false])
+                ->andWhere(['place'=> $citys])
+                ->andWhere(['category' =>$category])
+                ->limit($increment)
+                ->orderBy(["joboffer.create_date"=> SORT_DESC])
                 ->all();
-
-        } else if (isset($place)) {
-
-
-                $job = $jobs
-                    ->limit($increment)
-                    ->orderBy(["joboffer.create_date"=> SORT_DESC])
-                    ->where(['place' => $place])
-                    ->all();
-
-
         } else {
             $job = $jobs
                 ->limit($increment)

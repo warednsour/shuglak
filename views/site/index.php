@@ -92,7 +92,7 @@ $categoryName = 'title_' . Yii::$app->language;
                     ],
                     'data' => ArrayHelper::map($category, 'id', "$categoryName"),
                     'maintainOrder' => true,
-                    'options' => ['placeholder' => \Yii::t("main", "Select a category"), 'multiple' => true],
+                    'options' => ['placeholder' => \Yii::t("main", "Select a category"), 'multiple' => true, 'class' => 'category-select'],
                     'pluginOptions' => [
                         'tokenSeparators' => [',', ' '],
 
@@ -128,7 +128,7 @@ $categoryName = 'title_' . Yii::$app->language;
                     ],
                     'data' => ArrayHelper::map($city, 'id', "$cityName"),
                     'maintainOrder' => true,
-                    'options' => ['placeholder' => \Yii::t("main", "Select a City"), 'multiple' => true],
+                    'options' => ['placeholder' => \Yii::t("main", "Select a City"), 'multiple' => true , 'class'=> 'city-select'],
                     'pluginOptions' => [
                         'tokenSeparators' => [',', ' '],
 
